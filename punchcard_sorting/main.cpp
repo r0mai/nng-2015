@@ -12,21 +12,17 @@ using Line = std::array<char, maxLength + 1>;
 void printLines(const std::vector<Line>& lines) {
     for (const auto& line : lines) {
         std::cout << line.data() << '\n';
-	}
+    }
 }
 
 void sortLines(std::vector<Line>& lines) {
-
-	std::sort(lines.begin(), lines.end(), [](const Line& lhs, const Line& rhs) {
-            return std::lexicographical_compare(
-			        lhs.begin(), lhs.end(), rhs.begin(), rhs.end());
-			});
-
+    std::sort(lines.begin(), lines.end(), [](const Line& lhs, const Line& rhs) {
+        return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(),
+                                            rhs.end());
+    });
 }
 
-void readLine(Line& line) {
-    std::cin >> line.data();
-}
+void readLine(Line& line) { std::cin >> line.data(); }
 
 int main() {
     std::ios::sync_with_stdio(false);
@@ -37,10 +33,10 @@ int main() {
     std::vector<Line> lines;
     lines.resize(numberOfLines);
 
-	for(std::size_t lineIndex = 0; lineIndex < numberOfLines; ++lineIndex) {
-		readLine(lines[lineIndex]);
-	}
+    for (std::size_t lineIndex = 0; lineIndex < numberOfLines; ++lineIndex) {
+        readLine(lines[lineIndex]);
+    }
 
-	sortLines(lines);
-	printLines(lines);
+    sortLines(lines);
+    printLines(lines);
 }
