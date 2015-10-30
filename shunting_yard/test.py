@@ -18,8 +18,7 @@ with open(sys.argv[2]) as solution:
         print "Count doesn't match the number of lines"
         sys.exit(1)
 
-    reverses = content
-    del reverses[0]
+    reverses = content[1:]
 
 for reverse in reverses:
     start, end = tuple(map(int, reverse.split()))
