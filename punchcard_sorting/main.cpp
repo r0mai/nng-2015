@@ -25,9 +25,6 @@ void sortLines(std::vector<Line>& lines) {
 }
 
 void readLine(Line& line) {
-    for(char& c: line) {
-        c = 0;
-    }
     std::cin >> line.data();
 }
 
