@@ -11,18 +11,19 @@ def parseContainers(containersFile):
         expected = list(content[1])
         return (original, expected)
 
-def test(original, expected, solutionFile):
+# Returns list of (start, end) tuples
+def parseSolutions(solutionFile):
     with open(solutionFile) as solution:
         content = solution.read().splitlines()
         count = int(content[0])
         if count != len(content) - 1:
             print 'Count doesn\'t match the number of lines'
-            return False
+            return None
 
-        reverses = content[1:]
+        return [tuple(map(int, c.split())) for c in content[1:]]
 
-    for reverse in reverses:
-        start, end = tuple(map(int, reverse.split()))
+def test(original, expected, reverses):
+    for start, end in reverses:
         original[start:end+1] = original[start:end+1][::-1]
 
     if original != expected:
@@ -54,4 +55,5 @@ if args.test is not None and args.solve:
 
 if args.test is not None:
     original, expected = parseContainers(args.containers)
-    sys.exit(0 if test(original, expected, args.test) else 1)
+    reverses = parseSolutions(args.test)
+    sys.exit(0 if test(original, expected, reverses) else 1)
