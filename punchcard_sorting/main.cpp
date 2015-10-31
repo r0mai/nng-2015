@@ -183,7 +183,7 @@ void sortAndPrintLines(std::vector<Line>& lines) {
                secondMerge.end(), outIterator);
 }
 
-void readLine(Line& line) { std::cin >> line.data(); }
+void readLine(Line& line) { std::cin.getline(line.data(), maxLength+1); }
 
 std::vector<Line> readLines(std::size_t numberOfLines) {
     std::vector<Line> lines;
@@ -202,7 +202,11 @@ int main() {
     std::ios::sync_with_stdio(false);
 
     std::size_t numberOfLines = 0;
-    std::cin >> numberOfLines;
+
+    std::array<char, 16> numberOfLinesAsString;
+    std::cin.getline(numberOfLinesAsString.data(), 16);
+
+    numberOfLines = std::atoi(numberOfLinesAsString.data());
 
     auto lines = readLines(numberOfLines);
 
