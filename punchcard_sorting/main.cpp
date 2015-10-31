@@ -9,7 +9,7 @@
 
 #include <boost/sort/sort.hpp>
 
-constexpr std::size_t maxLength = 63;
+constexpr std::size_t maxLength = 64;
 
 using Line = std::array<char, maxLength + 1>;
 
