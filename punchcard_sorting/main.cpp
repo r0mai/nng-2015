@@ -10,7 +10,6 @@
 #include <future>
 
 #include <boost/sort/sort.hpp>
-#include <boost/lexical_cast.hpp>
 
 constexpr std::size_t maxLength = 64;
 
@@ -34,7 +33,7 @@ struct Timer {
 void sortRange(std::vector<Line>::iterator begin,
                std::vector<Line>::iterator end) {
     Timer t("Time to sort subrange of size " +
-            boost::lexical_cast<std::string>(std::distance(begin, end)));
+            std::to_string(std::distance(begin, end)));
     boost::sort::spreadsort::string_sort(begin, end, '\0');
 }
 
