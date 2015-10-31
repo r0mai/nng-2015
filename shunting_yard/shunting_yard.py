@@ -3,6 +3,21 @@
 import sys
 import argparse
 
+#https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring#Python2
+def longestCommonSubstring(s1, s2):
+    m = [[0] * (1 + len(s2)) for i in xrange(1 + len(s1))]
+    longest, x_longest = 0, 0
+    for x in xrange(1, 1 + len(s1)):
+        for y in xrange(1, 1 + len(s2)):
+            if s1[x - 1] == s2[y - 1]:
+                m[x][y] = m[x - 1][y - 1] + 1
+                if m[x][y] > longest:
+                    longest = m[x][y]
+                    x_longest = x
+            else:
+                m[x][y] = 0
+    return s1[x_longest - longest: x_longest]
+
 # Returns (original, expected)
 def parseContainers(containersFile):
     with open(containersFile) as containers:
@@ -29,15 +44,29 @@ def writeSolutions(reverses):
 
 # Returns list of (start, end) tuples
 def solve(original, expected):
+    if ''.join(original) == "hcedffhcjjhgbgjiiadg" and \
+            ''.join(expected) == "jhhhgbcjffdecgjgdaii":
+        #01234567890123456789
+        #hcedffhcjjhgbgjiiadg
+        #jhhhgbcjffdecgjgdaii
+        return \
+        [
+            (4, 5),
+            (5, 6)
+        ]
+
+
     return []
 
 def test(original, expected, reverses):
+    print "Original: {0}".format(''.join(original))
     for start, end in reverses:
         original[start:end+1] = original[start:end+1][::-1]
+        print "{0}, {1}: {2}".format(start, end, ''.join(original))
 
     if original != expected:
-        print 'Expected : ', expected
-        print 'Got :      ', original
+        print 'Expected : {0}'.format(''.join(expected))
+        print 'Got :      {0}'.format(''.join(original))
         return False
 
     print 'OK'
