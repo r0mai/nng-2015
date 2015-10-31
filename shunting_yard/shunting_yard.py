@@ -22,6 +22,15 @@ def parseSolutions(solutionFile):
 
         return [tuple(map(int, c.split())) for c in content[1:]]
 
+def writeSolutions(reverses):
+    print len(reverses)
+    for start, end in reverses:
+        print start, end
+
+# Returns list of (start, end) tuples
+def solve(original, expected):
+    return []
+
 def test(original, expected, reverses):
     for start, end in reverses:
         original[start:end+1] = original[start:end+1][::-1]
@@ -57,3 +66,13 @@ if args.test is not None:
     original, expected = parseContainers(args.containers)
     reverses = parseSolutions(args.test)
     sys.exit(0 if test(original, expected, reverses) else 1)
+elif args.solve:
+    original, expected = parseContainers(args.containers)
+    reverses = solve(original, expected)
+    writeSolutions(reverses)
+    if test(original, expected, reverses):
+        print "OK solution found. Length =", len(reverses)
+        sys.exit(0)
+    else:
+        print "Wrong solution found. Length =", len(reverses)
+        sys.exit(1)
