@@ -46,6 +46,15 @@ def writeSolutions(reverses):
     for start, end in reverses:
         print start, end
 
+def getDiffCount(original, expected):
+    i = 0
+    c = 0
+    while i < len(original):
+        if original[i] != expected[i]:
+            c += 1
+        i += 1
+    return c
+
 def getCandidate(original, expected):
     if original == expected:
         return None
@@ -54,31 +63,44 @@ def getCandidate(original, expected):
     os, es, l = longestCommonSubstring(original, expected)
     ros, res, rl = longestCommonSubstring(original, expected[::-1])
 
+    # Adjust, because the string was reversed
+    res = len(expected) - res - rl
+
     # forward case
-    if True or (l > rl and os != es):
+    if l > 1 and l > rl and os != es:
         step1 = (min(os, es), max(os + l, es + l) - 1)
         step2 = (es, es + l - 1)
         return [step1, step2]
     # backward case
-    else:
-        return None
+    elif rl > 1:
+        step = (min(ros, res), max(ros + rl, res + rl) - 1)
+        return [step]
+
+    return None
+
+def applySteps(original, steps):
+    for start, end in steps:
+        original[start:end+1] = original[start:end+1][::-1]
+
+    return original
+
 
 # Returns list of (start, end) tuples
 def solve(original, expected):
-    return getCandidate(original, expected)
-    #if ''.join(original) == "hcedffhcjjhgbgjiiadg" and \
-    #        ''.join(expected) == "jhhhgbcjffdecgjgdaii":
-    #    #01234567890123456789
-    #    #hcedffhcjjhgbgjiiadg
-    #    #jhhhgbcjffdecgjgdaii
-    #    return \
-    #    [
-    #        (4, 5),
-    #        (5, 6)
-    #    ]
+    result = []
+    while True:
+        steps = getCandidate(original, expected)
+        if steps is None:
+            break
+        beforeDiff = getDiffCount(original, expected)
+        original = applySteps(original, steps)
+        afterDiff = getDiffCount(original, expected)
+        if beforeDiff <= afterDiff:
+            break
+        result += steps
 
-
-    return []
+    print "Diff after longest substring matching: ", getDiffCount(original, expected)
+    return result
 
 def test(original, expected, reverses):
     print "Expected:\t{0}".format(''.join(expected))
