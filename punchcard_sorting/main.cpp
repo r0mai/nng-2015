@@ -5,6 +5,7 @@
 
 #include <algorithm>
 #include <chrono>
+#include <iterator>
 #include <string>
 
 #include <future>
@@ -48,6 +49,81 @@ struct DataPrintIterator
 
     LineFacade operator*() { return LineFacade{}; }
 };
+
+template <typename OutputIterator, typename Iterator>
+OutputIterator threeWayMerge(OutputIterator outputIterator, Iterator begin1,
+                             Iterator end1, Iterator begin2, Iterator end2,
+                             Iterator begin3, Iterator end3) {
+    for (; begin1 != end1; ++outputIterator) {
+        if (begin2 == end2) {
+            return std::merge(begin1, end1, begin3, end3, outputIterator);
+        }
+
+        if (begin3 == end3) {
+            return std::merge(begin1, end1, begin2, end2, outputIterator);
+        }
+
+        auto one = *begin1;
+        auto two = *begin2;
+        auto three = *begin3;
+
+        if (one <= two && one <= three) {
+            *outputIterator = one;
+            ++begin1;
+        } else if (two <= one && two <= three) {
+            *outputIterator = two;
+            ++begin2;
+        } else {
+            *outputIterator = three;
+            ++begin3;
+        }
+    }
+    return std::merge(begin2, end2, begin3, end3, outputIterator);
+}
+
+template <typename OutputIterator, typename Iterator>
+OutputIterator fourWayMerge(OutputIterator outputIterator, Iterator begin1,
+                            Iterator end1, Iterator begin2, Iterator end2,
+                            Iterator begin3, Iterator end3, Iterator begin4,
+                            Iterator end4) {
+    for (; begin1 != end1; ++outputIterator) {
+        if (begin2 == end2) {
+            return threeWayMerge(outputIterator, begin1, end1, begin3, end3,
+                                 begin4, end4);
+        }
+
+        if (begin3 == end3) {
+            return threeWayMerge(outputIterator, begin1, end1, begin2, end2,
+                                 begin4, end4);
+        }
+
+        if (begin4 == end4) {
+            return threeWayMerge(outputIterator, begin1, end1, begin2, end2,
+                                 begin3, end3);
+        }
+
+        auto one = *begin1;
+        auto two = *begin2;
+        auto three = *begin3;
+        auto four = *begin4;
+
+        if (one <= two && one <= three && one <= four) {
+            *outputIterator = one;
+            ++begin1;
+        } else if ( two <= one && two <= three && two <= four ) {
+            *outputIterator = two;
+            ++begin2;
+        } else if (three <= one && three <= two && three <= four) {
+            *outputIterator = three;
+            ++begin3;
+        } else {
+            *outputIterator = four;
+            ++begin4;
+        }
+    }
+    return threeWayMerge(outputIterator, begin2, end2, begin3, end3, begin4,
+                         end4);
+}
 
 void sortAndPrintLines(std::vector<Line>& lines) {
     Timer t("Time to sort and print lines");
