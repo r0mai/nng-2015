@@ -60,27 +60,28 @@ void sortAndPrintLines(std::vector<Line>& lines) {
             sortRange(lines.begin(), firstPartition);
         });
 
-    auto secondHandle = std::async(std::launch::async, [&lines, firstPartition, secondPartition]() {
+    auto secondHandle = std::async(std::launch::async,
+                                   [&lines, firstPartition, secondPartition]() {
         sortRange(firstPartition, secondPartition);
     });
 
-    auto thirdHandle = std::async(std::launch::async, [&lines, secondPartition, thirdPartition]() {
+    auto thirdHandle = std::async(std::launch::async,
+                                  [&lines, secondPartition, thirdPartition]() {
         sortRange(secondPartition, thirdPartition);
     });
 
-    auto forthHandle = std::async(std::launch::async, [&lines, thirdPartition]() {
-        sortRange(thirdPartition, lines.end());
-    });
-
+    auto forthHandle = std::async(
+        std::launch::async,
+        [&lines, thirdPartition]() { sortRange(thirdPartition, lines.end()); });
 
     DataPrintIterator outIterator;
 
     std::vector<Line> firstMerge;
     firstMerge.reserve(lines.size()/2+1);
 
-    auto firstMergeHandle =
-        std::async(std::launch::async,
-                   [&firstHandle, &secondHandle, &lines, &firstMerge, firstPartition, secondPartition]() {
+    auto firstMergeHandle = std::async(
+        std::launch::async, [&firstHandle, &secondHandle, &lines, &firstMerge,
+                             firstPartition, secondPartition]() {
             firstHandle.get();
             secondHandle.get();
             std::merge(lines.begin(), firstPartition, firstPartition,
