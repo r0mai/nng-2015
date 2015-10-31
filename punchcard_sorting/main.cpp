@@ -63,9 +63,9 @@ OutputIterator threeWayMerge(OutputIterator outputIterator, Iterator begin1,
             return std::merge(begin1, end1, begin2, end2, outputIterator);
         }
 
-        auto one = *begin1;
-        auto two = *begin2;
-        auto three = *begin3;
+        const auto& one = *begin1;
+        const auto& two = *begin2;
+        const auto& three = *begin3;
 
         if (one <= two && one <= three) {
             *outputIterator = one;
@@ -102,10 +102,10 @@ OutputIterator fourWayMerge(OutputIterator outputIterator, Iterator begin1,
                                  begin3, end3);
         }
 
-        auto one = *begin1;
-        auto two = *begin2;
-        auto three = *begin3;
-        auto four = *begin4;
+        const auto& one = *begin1;
+        const auto& two = *begin2;
+        const auto& three = *begin3;
+        const auto& four = *begin4;
 
         if (one <= two && one <= three && one <= four) {
             *outputIterator = one;
