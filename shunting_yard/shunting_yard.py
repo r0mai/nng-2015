@@ -3,12 +3,15 @@
 import sys
 import argparse
 
-def test(containersFile, solutionFile):
+# Returns (original, expected)
+def parseContainers(containersFile):
     with open(containersFile) as containers:
         content = containers.read().splitlines()
         original = list(content[0])
         expected = list(content[1])
+        return (original, expected)
 
+def test(original, expected, solutionFile):
     with open(solutionFile) as solution:
         content = solution.read().splitlines()
         count = int(content[0])
@@ -41,7 +44,6 @@ parser.add_argument('-s', '--solve', action='store_true',
 
 args = parser.parse_args()
 
-print args
 if args.test is None and not args.solve:
     print 'Specify either --solve or --test'
     sys.exit(1)
@@ -51,4 +53,5 @@ if args.test is not None and args.solve:
     sys.exit(1)
 
 if args.test is not None:
-    sys.exit(0 if test(args.containers, args.test) else 1)
+    original, expected = parseContainers(args.containers)
+    sys.exit(0 if test(original, expected, args.test) else 1)
