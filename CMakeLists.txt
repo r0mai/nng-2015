@@ -17,13 +17,15 @@ endmacro()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-#find_package(Boost COMPONENTS
-#    regex
-#    system
-#    program_options
-#    thread)
+find_package(Boost COMPONENTS
+    regex
+    system
+    program_options
+    thread)
 
-#include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
+find_package(Threads)
+
+include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -O2")
 
@@ -35,6 +37,7 @@ foreach(SUBDIR ${SUBDIRS})
         aux_source_directory(${SUBDIR} SOURCES)
         set(EXEC_NAME ${SUBDIR})
         add_executable(${EXEC_NAME} ${SOURCES})
+        target_link_libraries(${EXEC_NAME} "${CMAKE_THREAD_LIBS_INIT}")
         #target_link_libraries(${EXEC_NAME} ${Boost_LIBRARIES})
     endif()
 endforeach()
