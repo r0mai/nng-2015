@@ -27,6 +27,7 @@ struct Timer {
 };
 
 void printLines(const std::vector<Line>& lines) {
+    Timer t("Time to print lines");
     for (const auto& line : lines) {
         std::cout << line.data() << '\n';
     }
