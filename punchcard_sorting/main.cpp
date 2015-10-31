@@ -31,7 +31,8 @@ struct Timer {
     std::string message;
 };
 
-void sortRange(std::vector<Line>::iterator begin, std::vector<Line>::iterator end) {
+void sortRange(std::vector<Line>::iterator begin,
+               std::vector<Line>::iterator end) {
     Timer t("Time to sort subrange of size " +
             boost::lexical_cast<std::string>(std::distance(begin, end)));
     boost::sort::spreadsort::string_sort(begin, end, '\0');
@@ -51,21 +52,59 @@ struct DataPrintIterator
 
 void sortAndPrintLines(std::vector<Line>& lines) {
     Timer t("Time to sort and print lines");
-    auto partition = lines.begin() + lines.size() / 2;
+    auto firstPartition = lines.begin() + lines.size() / 4;
+    auto secondPartition = firstPartition + lines.size() / 4;
+    auto thirdPartition = secondPartition + lines.size() / 4;
 
-    auto firstHandle = std::async(std::launch::async, [&lines, partition]() {
-        sortRange(lines.begin(), partition);
+    auto firstHandle =
+        std::async(std::launch::async, [&lines, firstPartition]() {
+            sortRange(lines.begin(), firstPartition);
+        });
+
+    auto secondHandle = std::async(std::launch::async, [&lines, firstPartition, secondPartition]() {
+        sortRange(firstPartition, secondPartition);
     });
 
-    auto lastHandle = std::async(std::launch::async, [&lines, partition]() {
-        sortRange(partition, lines.end());
+    auto thirdHandle = std::async(std::launch::async, [&lines, secondPartition, thirdPartition]() {
+        sortRange(secondPartition, thirdPartition);
     });
+
+    auto forthHandle = std::async(std::launch::async, [&lines, thirdPartition]() {
+        sortRange(thirdPartition, lines.end());
+    });
+
 
     DataPrintIterator outIterator;
 
-    firstHandle.get();
-    lastHandle.get();
-    std::merge(lines.begin(), partition, partition, lines.end(), outIterator);
+    std::vector<Line> firstMerge;
+    firstMerge.reserve(lines.size()/2+1);
+
+    auto firstMergeHandle =
+        std::async(std::launch::async,
+                   [&firstHandle, &secondHandle, &lines, &firstMerge, firstPartition, secondPartition]() {
+            firstHandle.get();
+            secondHandle.get();
+            std::merge(lines.begin(), firstPartition, firstPartition,
+                       secondPartition, std::back_inserter(firstMerge));
+        });
+
+    std::vector<Line> secondMerge;
+    secondMerge.reserve(lines.size()/2+1);
+
+    auto secondMergeHandle = std::async(
+        std::launch::async, [&thirdHandle, &forthHandle, &lines, &secondMerge,
+                             secondPartition, thirdPartition]() {
+            thirdHandle.get();
+            forthHandle.get();
+            std::merge(secondPartition, thirdPartition, thirdPartition,
+                       lines.end(), std::back_inserter(secondMerge));
+        });
+
+    firstMergeHandle.get();
+    secondMergeHandle.get();
+
+    std::merge(firstMerge.begin(), firstMerge.end(), secondMerge.begin(),
+               secondMerge.end(), outIterator);
 }
 
 void readLine(Line& line) { std::cin >> line.data(); }
