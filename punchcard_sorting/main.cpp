@@ -7,7 +7,9 @@
 #include <chrono>
 #include <string>
 
-constexpr std::size_t maxLength = 64;
+#include <boost/sort/sort.hpp>
+
+constexpr std::size_t maxLength = 63;
 
 using Line = std::array<char, maxLength + 1>;
 
@@ -35,10 +37,7 @@ void printLines(const std::vector<Line>& lines) {
 
 void sortLines(std::vector<Line>& lines) {
     Timer t("Time to sort lines");
-    std::sort(lines.begin(), lines.end(), [](const Line& lhs, const Line& rhs) {
-        return std::lexicographical_compare(lhs.begin(), lhs.end(), rhs.begin(),
-                                            rhs.end());
-    });
+    boost::sort::spreadsort::string_sort(lines.begin(), lines.end(), '\0');
 }
 
 void readLine(Line& line) { std::cin >> line.data(); }

@@ -17,13 +17,13 @@ endmacro()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-#find_package(Boost COMPONENTS
-#    regex
-#    system
-#    program_options
-#    thread)
+find_package(Boost COMPONENTS
+    regex
+    system
+    program_options
+    thread)
 
-#include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
+include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1y -O2")
 
