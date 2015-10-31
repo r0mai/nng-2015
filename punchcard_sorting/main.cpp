@@ -7,7 +7,10 @@
 #include <chrono>
 #include <string>
 
+#include <future>
+
 #include <boost/sort/sort.hpp>
+#include <boost/lexical_cast.hpp>
 
 constexpr std::size_t maxLength = 64;
 
@@ -35,9 +38,32 @@ void printLines(const std::vector<Line>& lines) {
     }
 }
 
+void sortRange(std::vector<Line>::iterator begin, std::vector<Line>::iterator end) {
+    Timer t("Time to sort subrange of size " +
+            boost::lexical_cast<std::string>(std::distance(begin, end)));
+    boost::sort::spreadsort::string_sort(begin, end, '\0');
+}
+
 void sortLines(std::vector<Line>& lines) {
     Timer t("Time to sort lines");
-    boost::sort::spreadsort::string_sort(lines.begin(), lines.end(), '\0');
+    auto partition = lines.begin() + lines.size() / 2;
+
+    auto firstHandle = std::async(std::launch::async, [&lines, partition]() {
+        sortRange(lines.begin(), partition);
+    });
+
+    auto lastHandle = std::async(std::launch::async, [&lines, partition]() {
+        sortRange(partition, lines.end());
+    });
+
+    std::vector<Line> output;
+    output.reserve(lines.size());
+
+    firstHandle.get();
+    lastHandle.get();
+    std::merge(lines.begin(), partition, partition, lines.end(),
+               std::back_inserter(output));
+    std::swap(output, lines);
 }
 
 void readLine(Line& line) { std::cin >> line.data(); }
