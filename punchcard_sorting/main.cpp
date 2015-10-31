@@ -31,21 +31,26 @@ struct Timer {
     std::string message;
 };
 
-void printLines(const std::vector<Line>& lines) {
-    Timer t("Time to print lines");
-    for (const auto& line : lines) {
-        std::cout << line.data() << '\n';
-    }
-}
-
 void sortRange(std::vector<Line>::iterator begin, std::vector<Line>::iterator end) {
     Timer t("Time to sort subrange of size " +
             boost::lexical_cast<std::string>(std::distance(begin, end)));
     boost::sort::spreadsort::string_sort(begin, end, '\0');
 }
 
-void sortLines(std::vector<Line>& lines) {
-    Timer t("Time to sort lines");
+struct LineFacade {
+    void operator=(const Line& line) { std::cout << line.data() << '\n'; }
+};
+
+struct DataPrintIterator
+    : public std::iterator<std::output_iterator_tag, LineFacade> {
+    DataPrintIterator& operator++() { return *this; }
+    DataPrintIterator& operator++(int) { return *this; }
+
+    LineFacade operator*() { return LineFacade{}; }
+};
+
+void sortAndPrintLines(std::vector<Line>& lines) {
+    Timer t("Time to sort and print lines");
     auto partition = lines.begin() + lines.size() / 2;
 
     auto firstHandle = std::async(std::launch::async, [&lines, partition]() {
@@ -56,14 +61,11 @@ void sortLines(std::vector<Line>& lines) {
         sortRange(partition, lines.end());
     });
 
-    std::vector<Line> output;
-    output.reserve(lines.size());
+    DataPrintIterator outIterator;
 
     firstHandle.get();
     lastHandle.get();
-    std::merge(lines.begin(), partition, partition, lines.end(),
-               std::back_inserter(output));
-    std::swap(output, lines);
+    std::merge(lines.begin(), partition, partition, lines.end(), outIterator);
 }
 
 void readLine(Line& line) { std::cin >> line.data(); }
@@ -89,6 +91,5 @@ int main() {
 
     auto lines = readLines(numberOfLines);
 
-    sortLines(lines);
-    printLines(lines);
+    sortAndPrintLines(lines);
 }
