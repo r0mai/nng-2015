@@ -95,15 +95,6 @@ def swapSteps(i, j):
         (low + 1, high - 1)
     ]
 
-def searchForExactMismatch(original, expected, offset, inOrig, inExpected):
-    j = offset
-    while j < len(original):
-        if original[j] == inOrig and expected[j] == inExpected:
-            return j
-        j += 1
-
-    return None
-
 def getSwapCandidate(original, expected):
     if original == expected:
         return None
@@ -112,10 +103,11 @@ def getSwapCandidate(original, expected):
     i = 0
     while i < len(original):
         if original[i] != expected[i]:
-            mismatch = searchForExactMismatch(original, expected, i+1, expected[i], original[i])
-            if mismatch is not None:
-                return swapSteps(i, mismatch)
-
+            j = i + 1
+            while j < len(original):
+                if original[j] == expected[i] and original[i] == expected[j]:
+                    return swapSteps(i, j)
+                j += 1
         i += 1
 
     # Search for N way swaps
