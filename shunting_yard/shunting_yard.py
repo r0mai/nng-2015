@@ -104,7 +104,7 @@ def searchForExactMismatch(original, expected, offset, inOrig, inExpected):
 
     return None
 
-def get2SwapCandidate(original, expected):
+def getSwapCandidate(original, expected):
     if original == expected:
         return None
 
@@ -117,12 +117,6 @@ def get2SwapCandidate(original, expected):
                 return swapSteps(i, mismatch)
 
         i += 1
-
-    return None
-
-def getNSwapCandidate(original, expected):
-    if original == expected:
-        return None
 
     # Search for N way swaps
     i = 0
@@ -163,24 +157,14 @@ def solve(original, expected):
     print "Diff after longest substring matching: ", getDiffCount(original, expected)
 
     while True:
-        steps = get2SwapCandidate(original, expected)
+        steps = getSwapCandidate(original, expected)
         if steps is None:
             break
 
         original = applySteps(original, steps)
         result += steps
 
-    print "Diff after 2 swapping: ", getDiffCount(original, expected)
-
-    while True:
-        steps = getNSwapCandidate(original, expected)
-        if steps is None:
-            break
-
-        original = applySteps(original, steps)
-        result += steps
-
-    print "Diff after N swapping: ", getDiffCount(original, expected)
+    print "Diff after swapping: ", getDiffCount(original, expected)
 
     return result
 
