@@ -36,24 +36,20 @@ int main() {
     for (const auto& convict : aggressions) {
         for (auto& round : rounds) {
             if (canWeAddConvict(round, convict)) {
-                std::cerr << "We can add convict: " << convict << std::endl;
                 round.push_back(convict);
                 goto nextConvict;
             }
         }
-        std::cerr << "We had to add a new round for convict: " << convict
-                  << std::endl;
         rounds.push_back({convict});
     nextConvict:
         continue;
     }
 
-    std::cerr << "Did it in: " << rounds.size() << " rounds." << std::endl;
+    std::cout << rounds.size() << std::endl;
 
     for (const auto& round : rounds) {
-        std::cerr << "{";
         std::copy(round.begin(), round.end(),
-                  std::ostream_iterator<Aggression>(std::cerr, ", "));
-        std::cerr << "}" << std::endl;
+                  std::ostream_iterator<Aggression>(std::cout, " "));
+        std::cout << std::endl;
     }
 }
