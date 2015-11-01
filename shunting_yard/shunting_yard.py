@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import copy
 import argparse
 
 #Based on https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring#Python2
@@ -55,7 +56,7 @@ def getDiffCount(original, expected):
         i += 1
     return c
 
-def getCandidate(original, expected):
+def getLCSSCandidate(original, expected):
     if original == expected:
         return None
 
@@ -78,7 +79,66 @@ def getCandidate(original, expected):
 
     return None
 
-def applySteps(original, steps):
+def swapSteps(i, j):
+    if i == j:
+        print "Warning swap with itself"
+        return []
+
+    low = min(i, j)
+    high = max(i, j)
+
+    if low + 1 == high or low + 2 == high:
+        return [(i, j)]
+
+    return [
+        (low, high),
+        (low + 1, high - 1)
+    ]
+
+def searchForExactMismatch(original, expected, offset, inOrig, inExpected):
+    j = offset
+    while j < len(original):
+        if original[j] == inOrig and expected[j] == inExpected:
+            return j
+        j += 1
+
+    return None
+
+def get2SwapCandidate(original, expected):
+    if original == expected:
+        return None
+
+    # Search for 2 way swaps
+    i = 0
+    while i < len(original):
+        if original[i] != expected[i]:
+            mismatch = searchForExactMismatch(original, expected, i+1, expected[i], original[i])
+            if mismatch is not None:
+                return swapSteps(i, mismatch)
+
+        i += 1
+
+    return None
+
+def getNSwapCandidate(original, expected):
+    if original == expected:
+        return None
+
+    # Search for N way swaps
+    i = 0
+    while i < len(original):
+        if original[i] != expected[i]:
+            j = i+1
+            while j < len(original):
+                if original[j] != expected[j] and original[i] == expected[j]:
+                    return swapSteps(i, j)
+                j += 1
+        i += 1
+
+    return None
+
+def applySteps(originalCopy, steps):
+    original = copy.copy(originalCopy)
     for start, end in steps:
         original[start:end+1] = original[start:end+1][::-1]
 
@@ -88,24 +148,49 @@ def applySteps(original, steps):
 # Returns list of (start, end) tuples
 def solve(original, expected):
     result = []
-    while True:
-        steps = getCandidate(original, expected)
+    while False:
+        steps = getLCSSCandidate(original, expected)
         if steps is None:
             break
         beforeDiff = getDiffCount(original, expected)
-        original = applySteps(original, steps)
-        afterDiff = getDiffCount(original, expected)
+        originalTmp = applySteps(original, steps)
+        afterDiff = getDiffCount(originalTmp, expected)
         if beforeDiff <= afterDiff:
             break
         result += steps
+        original = copy.copy(originalTmp)
 
     print "Diff after longest substring matching: ", getDiffCount(original, expected)
+
+    while True:
+        steps = get2SwapCandidate(original, expected)
+        if steps is None:
+            break
+
+        original = applySteps(original, steps)
+        result += steps
+
+    print "Diff after 2 swapping: ", getDiffCount(original, expected)
+
+    while True:
+        steps = getNSwapCandidate(original, expected)
+        if steps is None:
+            break
+
+        original = applySteps(original, steps)
+        result += steps
+
+    print "Diff after N swapping: ", getDiffCount(original, expected)
+
     return result
 
 def test(original, expected, reverses):
     print "Expected:\t{0}".format(''.join(expected))
     print "Original:\t{0}".format(''.join(original))
     for start, end in reverses:
+        if start >= end:
+            print "Error: start = {0} > end = {1}".format(start, end)
+            return False
         original[start:end+1] = original[start:end+1][::-1]
         print "{0}, {1}:\t\t{2}".format(start, end, ''.join(original))
 
