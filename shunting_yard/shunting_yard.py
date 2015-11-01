@@ -129,6 +129,10 @@ def getGreedyCandidate(originalCopy, expected):
     if original == expected:
         return None
 
+    # too slow
+    if len(originalCopy) > 900:
+        return None
+
     bestDiff = 0
     best = None
     i = 0
