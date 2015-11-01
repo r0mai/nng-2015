@@ -192,7 +192,7 @@ def test(original, expected, reverses):
             print "Error: start = {0} > end = {1}".format(start, end)
             return False
         original[start:end+1] = original[start:end+1][::-1]
-        print "{0}, {1}:\t\t{2}".format(start, end, ''.join(original))
+        # print "{0}, {1}:\t\t{2}".format(start, end, ''.join(original))
 
     if original != expected:
         print 'Expected : {0}'.format(''.join(expected))
