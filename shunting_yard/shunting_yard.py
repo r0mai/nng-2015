@@ -123,6 +123,31 @@ def getSwapCandidate(original, expected):
 
     return None
 
+def getGreedyCandidate(originalCopy, expected):
+    original = copy.copy(originalCopy)
+    if original == expected:
+        return None
+
+    bestDiff = 0
+    best = None
+    i = 0
+    while i < len(original):
+        j = i + 1
+        while j < len(original):
+            beforeDiff = getDiffCount(original, expected)
+            originalTmp = applySteps(original, [(i, j)])
+            afterDiff = getDiffCount(originalTmp, expected)
+            if beforeDiff - afterDiff > bestDiff:
+                bestDiff = beforeDiff - afterDiff
+                best = [(i, j)]
+            j += 1
+        i += 1
+
+    if bestDiff > 1:
+        return best
+
+    return None
+
 def applySteps(originalCopy, steps):
     original = copy.copy(originalCopy)
     for start, end in steps:
@@ -147,6 +172,16 @@ def solve(original, expected):
         original = copy.copy(originalTmp)
 
     print "Diff after longest substring matching: ", getDiffCount(original, expected)
+
+    while True:
+        steps = getGreedyCandidate(original, expected)
+        if steps is None:
+            break
+
+        original = applySteps(original, steps)
+        result += steps
+
+    print "Diff after greedy algo: ", getDiffCount(original, expected)
 
     while True:
         steps = getSwapCandidate(original, expected)
