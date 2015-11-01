@@ -134,7 +134,7 @@ def applySteps(originalCopy, steps):
 # Returns list of (start, end) tuples
 def solve(original, expected):
     result = []
-    while False:
+    while True:
         steps = getLCSSCandidate(original, expected)
         if steps is None:
             break
