@@ -42,10 +42,11 @@ def parseSolutions(solutionFile):
 
         return [tuple(map(int, c.split())) for c in content[1:]]
 
-def writeSolutions(reverses):
-    print len(reverses)
-    for start, end in reverses:
-        print start, end
+def writeSolutions(solutionFile, reverses):
+    with open(solutionFile, 'w') as solution:
+        print >> solution, len(reverses)
+        for start, end in reverses:
+            print >> solution, start, end
 
 def getDiffCount(original, expected):
     i = 0
@@ -219,16 +220,16 @@ parser.add_argument('-c', '--containers', dest='containers',
     help='Containers txt', required=True)
 parser.add_argument('-t', '--test', dest='test',
     help='Solution txt (to check solution)')
-parser.add_argument('-s', '--solve', action='store_true',
-    help='Solve solution')
+parser.add_argument('-s', '--solve', dest='solve',
+    help='Solve solution to file')
 
 args = parser.parse_args()
 
-if args.test is None and not args.solve:
+if args.test is None and args.solve is None:
     print 'Specify either --solve or --test'
     sys.exit(1)
 
-if args.test is not None and args.solve:
+if args.test is not None and args.solve is not None:
     print 'Specify only one of --solve and --test'
     sys.exit(1)
 
@@ -236,10 +237,10 @@ if args.test is not None:
     original, expected = parseContainers(args.containers)
     reverses = parseSolutions(args.test)
     sys.exit(0 if test(original, expected, reverses) else 1)
-elif args.solve:
+elif args.solve is not None:
     original, expected = parseContainers(args.containers)
     reverses = solve(original, expected)
-    writeSolutions(reverses)
+    writeSolutions(args.solve, reverses)
     if test(original, expected, reverses):
         print "OK solution found. Length =", len(reverses)
         sys.exit(0)
