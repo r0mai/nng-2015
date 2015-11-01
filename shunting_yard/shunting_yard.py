@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import copy
 import argparse
 
 #Based on https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring#Python2
@@ -41,10 +42,11 @@ def parseSolutions(solutionFile):
 
         return [tuple(map(int, c.split())) for c in content[1:]]
 
-def writeSolutions(reverses):
-    print len(reverses)
-    for start, end in reverses:
-        print start, end
+def writeSolutions(solutionFile, reverses):
+    with open(solutionFile, 'w') as solution:
+        print >> solution, len(reverses)
+        for start, end in reverses:
+            print >> solution, start, end
 
 def getDiffCount(original, expected):
     i = 0
@@ -55,7 +57,7 @@ def getDiffCount(original, expected):
         i += 1
     return c
 
-def getCandidate(original, expected):
+def getLCSSCandidate(original, expected):
     if original == expected:
         return None
 
@@ -78,7 +80,81 @@ def getCandidate(original, expected):
 
     return None
 
-def applySteps(original, steps):
+def swapSteps(i, j):
+    if i == j:
+        print "Warning swap with itself"
+        return []
+
+    low = min(i, j)
+    high = max(i, j)
+
+    if low + 1 == high or low + 2 == high:
+        return [(i, j)]
+
+    return [
+        (low, high),
+        (low + 1, high - 1)
+    ]
+
+def getSwapCandidate(original, expected):
+    if original == expected:
+        return None
+
+    # Search for 2 way swaps
+    i = 0
+    while i < len(original):
+        if original[i] != expected[i]:
+            j = i + 1
+            while j < len(original):
+                if original[j] == expected[i] and original[i] == expected[j]:
+                    return swapSteps(i, j)
+                j += 1
+        i += 1
+
+    # Search for N way swaps
+    i = 0
+    while i < len(original):
+        if original[i] != expected[i]:
+            j = i+1
+            while j < len(original):
+                if original[j] != expected[j] and original[i] == expected[j]:
+                    return swapSteps(i, j)
+                j += 1
+        i += 1
+
+    return None
+
+def getGreedyCandidate(originalCopy, expected):
+    original = copy.copy(originalCopy)
+    if original == expected:
+        return None
+
+    # too slow
+    if len(originalCopy) > 900:
+        return None
+
+    bestDiff = 0
+    best = None
+    i = 0
+    while i < len(original):
+        j = i + 1
+        while j < len(original):
+            beforeDiff = getDiffCount(original, expected)
+            originalTmp = applySteps(original, [(i, j)])
+            afterDiff = getDiffCount(originalTmp, expected)
+            if beforeDiff - afterDiff > bestDiff:
+                bestDiff = beforeDiff - afterDiff
+                best = [(i, j)]
+            j += 1
+        i += 1
+
+    if bestDiff > 1:
+        return best
+
+    return None
+
+def applySteps(originalCopy, steps):
+    original = copy.copy(originalCopy)
     for start, end in steps:
         original[start:end+1] = original[start:end+1][::-1]
 
@@ -89,25 +165,50 @@ def applySteps(original, steps):
 def solve(original, expected):
     result = []
     while True:
-        steps = getCandidate(original, expected)
+        steps = getLCSSCandidate(original, expected)
         if steps is None:
             break
         beforeDiff = getDiffCount(original, expected)
-        original = applySteps(original, steps)
-        afterDiff = getDiffCount(original, expected)
+        originalTmp = applySteps(original, steps)
+        afterDiff = getDiffCount(originalTmp, expected)
         if beforeDiff <= afterDiff:
             break
         result += steps
+        original = copy.copy(originalTmp)
 
     print "Diff after longest substring matching: ", getDiffCount(original, expected)
+
+    while True:
+        steps = getGreedyCandidate(original, expected)
+        if steps is None:
+            break
+
+        original = applySteps(original, steps)
+        result += steps
+
+    print "Diff after greedy algo: ", getDiffCount(original, expected)
+
+    while True:
+        steps = getSwapCandidate(original, expected)
+        if steps is None:
+            break
+
+        original = applySteps(original, steps)
+        result += steps
+
+    print "Diff after swapping: ", getDiffCount(original, expected)
+
     return result
 
 def test(original, expected, reverses):
     print "Expected:\t{0}".format(''.join(expected))
     print "Original:\t{0}".format(''.join(original))
     for start, end in reverses:
+        if start >= end:
+            print "Error: start = {0} > end = {1}".format(start, end)
+            return False
         original[start:end+1] = original[start:end+1][::-1]
-        print "{0}, {1}:\t\t{2}".format(start, end, ''.join(original))
+        # print "{0}, {1}:\t\t{2}".format(start, end, ''.join(original))
 
     if original != expected:
         print 'Expected : {0}'.format(''.join(expected))
@@ -123,16 +224,16 @@ parser.add_argument('-c', '--containers', dest='containers',
     help='Containers txt', required=True)
 parser.add_argument('-t', '--test', dest='test',
     help='Solution txt (to check solution)')
-parser.add_argument('-s', '--solve', action='store_true',
-    help='Solve solution')
+parser.add_argument('-s', '--solve', dest='solve',
+    help='Solve solution to file')
 
 args = parser.parse_args()
 
-if args.test is None and not args.solve:
+if args.test is None and args.solve is None:
     print 'Specify either --solve or --test'
     sys.exit(1)
 
-if args.test is not None and args.solve:
+if args.test is not None and args.solve is not None:
     print 'Specify only one of --solve and --test'
     sys.exit(1)
 
@@ -140,10 +241,10 @@ if args.test is not None:
     original, expected = parseContainers(args.containers)
     reverses = parseSolutions(args.test)
     sys.exit(0 if test(original, expected, reverses) else 1)
-elif args.solve:
+elif args.solve is not None:
     original, expected = parseContainers(args.containers)
     reverses = solve(original, expected)
-    writeSolutions(reverses)
+    writeSolutions(args.solve, reverses)
     if test(original, expected, reverses):
         print "OK solution found. Length =", len(reverses)
         sys.exit(0)
