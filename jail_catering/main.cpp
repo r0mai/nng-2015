@@ -1,34 +1,22 @@
 #include <iostream>
 
+#include <cassert>
+#include <iterator>
 #include <map>
 #include <vector>
 
 using Aggression = int;
 
-bool canAFightBreakOut(const std::vector<Aggression>& aggressions) {
-    for(std::size_t i=0; i<aggressions.size(); ++i) {
-        for (std::size_t j = 0; j < aggressions.size(); ++j) {
-            if(i == j) {
-                continue;
-            }
-
-            for(std::size_t k=0; k<aggressions.size(); ++k) {
-                if(i == k) {
-                    continue;
-                }
-                if(j == k) {
-                    continue;
-                }
-
-                if(aggressions[i] + aggressions[j] == aggressions[k]) {
-                    return true;
-                }
-
+bool canWeAddConvict(const std::vector<Aggression>& others,
+                     Aggression convict) {
+    for (std::size_t a = 0; a < others.size() - 1; ++a) {
+        for (std::size_t b = a + 1; b < others.size(); ++b) {
+            if (others[a] + others[b] == convict) {
+                return false;
             }
         }
     }
-
-    return false;
+    return true;
 }
 
 int main() {
@@ -43,7 +31,29 @@ int main() {
         aggressions.push_back(aggresion);
     }
 
-    std::cerr
-        << "If we all put all convicts in one go a fight will break out: ";
-    std::cerr << std::boolalpha << canAFightBreakOut(aggressions) << std::endl;
+    std::vector<std::vector<Aggression>> rounds;
+
+    for (const auto& convict : aggressions) {
+        for (auto& round : rounds) {
+            if (canWeAddConvict(round, convict)) {
+                std::cerr << "We can add convict: " << convict << std::endl;
+                round.push_back(convict);
+                goto nextConvict;
+            }
+        }
+        std::cerr << "We had to add a new round for convict: " << convict
+                  << std::endl;
+        rounds.push_back({convict});
+    nextConvict:
+        continue;
+    }
+
+    std::cerr << "Did it in: " << rounds.size() << " rounds." << std::endl;
+
+    for (const auto& round : rounds) {
+        std::cerr << "{";
+        std::copy(round.begin(), round.end(),
+                  std::ostream_iterator<Aggression>(std::cerr, ", "));
+        std::cerr << "}" << std::endl;
+    }
 }
