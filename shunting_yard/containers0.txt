@@ -1,2 +1,2 @@
-aabbcc
+cabbca
 acbabc
