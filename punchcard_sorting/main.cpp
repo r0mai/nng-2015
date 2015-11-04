@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 
 #include <array>
 #include <vector>
@@ -183,23 +184,32 @@ void sortAndPrintLines(std::vector<Line>& lines) {
                secondMerge.end(), outIterator);
 }
 
-void readLine(Line& line) { std::cin.getline(line.data(), maxLength+1); }
-
 std::vector<Line> readLines(std::size_t numberOfLines) {
     std::vector<Line> lines;
-    lines.resize(numberOfLines);
+    lines.reserve(numberOfLines);
 
     Timer t("Time to read lines");
 
     for (std::size_t lineIndex = 0; lineIndex < numberOfLines; ++lineIndex) {
-        readLine(lines[lineIndex]);
+        lines.push_back({});
+        auto& line = lines.back();
+        std::size_t pos = 0;
+        char c = '\0';
+        std::fread(&c, 1, 1, stdin);
+        for (;; ++pos) {
+            if (c == '\n') {
+                line[pos] = '\0';
+                break;
+            }
+            line[pos] = c;
+            std::fread(&c, 1, 1, stdin);
+        }
     }
 
     return lines;
 }
 
 int main() {
-    std::ios::sync_with_stdio(false);
 
     std::size_t numberOfLines = 0;
 
@@ -210,5 +220,6 @@ int main() {
 
     auto lines = readLines(numberOfLines);
 
+    std::ios::sync_with_stdio(false);
     sortAndPrintLines(lines);
 }
