@@ -93,7 +93,7 @@
 #     define BOOST_HAS_UNISTD_H
 #  endif
 
-#  include <boost/config/posix_features.hpp>
+#include "prezicsson_boost/config/posix_features.hpp"
 
 #  endif
 
@@ -125,7 +125,7 @@
 #  include "boost/config/platform/symbian.hpp" 
 #  include "boost/config/platform/cray.hpp" 
 #  include "boost/config/platform/vms.hpp" 
-#  include <boost/config/posix_features.hpp>
+#include "prezicsson_boost/config/posix_features.hpp"
 
 
 

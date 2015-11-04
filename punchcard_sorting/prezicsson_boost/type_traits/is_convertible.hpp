@@ -31,7 +31,7 @@
 #include "prezicsson_boost/type_traits/remove_reference.hpp"
 #endif
 #if !defined(BOOST_NO_SFINAE_EXPR) && !defined(BOOST_NO_CXX11_RVALUE_REFERENCES)
-#  include <boost/utility/declval.hpp>
+#include "prezicsson_boost/utility/declval.hpp"
 #endif
 #endif // BOOST_IS_CONVERTIBLE
 

@@ -23,8 +23,8 @@
 #endif
 #include "prezicsson_boost/type_traits/config.hpp"
 #if defined(BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION) 
-#  include <boost/type_traits/is_class.hpp>
-#  include <boost/type_traits/is_union.hpp>
+#include "prezicsson_boost/type_traits/is_class.hpp"
+#include "prezicsson_boost/type_traits/is_union.hpp"
 #endif
 #endif
 

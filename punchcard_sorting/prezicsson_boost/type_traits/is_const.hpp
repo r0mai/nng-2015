@@ -24,12 +24,12 @@
 #include "prezicsson_boost/config.hpp"
 #include "prezicsson_boost/detail/workaround.hpp"
 
-#   include <boost/type_traits/detail/cv_traits_impl.hpp>
+#include "prezicsson_boost/type_traits/detail/cv_traits_impl.hpp"
 #   ifdef __GNUC__
-#       include <boost/type_traits/is_reference.hpp>
+#include "prezicsson_boost/type_traits/is_reference.hpp"
 #   endif
 #   if BOOST_WORKAROUND(BOOST_MSVC, < 1400)
-#       include <boost/type_traits/remove_bounds.hpp>
+#include "prezicsson_boost/type_traits/remove_bounds.hpp"
 #   endif
 
 // should be the last #include

@@ -13,24 +13,24 @@
 #include "prezicsson_boost/type_traits/config.hpp"
 #include "prezicsson_boost/type_traits/intrinsics.hpp"
 #ifndef BOOST_IS_CLASS
-#   include <boost/type_traits/is_union.hpp>
-#   include <boost/type_traits/detail/ice_and.hpp>
-#   include <boost/type_traits/detail/ice_not.hpp>
+#include "prezicsson_boost/type_traits/is_union.hpp"
+#include "prezicsson_boost/type_traits/detail/ice_and.hpp"
+#include "prezicsson_boost/type_traits/detail/ice_not.hpp"
 
 #ifdef BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION
-#   include <boost/type_traits/detail/yes_no_type.hpp>
+#include "prezicsson_boost/type_traits/detail/yes_no_type.hpp"
 #else
-#   include <boost/type_traits/is_scalar.hpp>
-#   include <boost/type_traits/is_array.hpp>
-#   include <boost/type_traits/is_reference.hpp>
-#   include <boost/type_traits/is_void.hpp>
-#   include <boost/type_traits/is_function.hpp>
+#include "prezicsson_boost/type_traits/is_scalar.hpp"
+#include "prezicsson_boost/type_traits/is_array.hpp"
+#include "prezicsson_boost/type_traits/is_reference.hpp"
+#include "prezicsson_boost/type_traits/is_void.hpp"
+#include "prezicsson_boost/type_traits/is_function.hpp"
 #endif
 
 #endif // BOOST_IS_CLASS
 
 #ifdef __EDG_VERSION__
-#   include <boost/type_traits/remove_cv.hpp>
+#include "prezicsson_boost/type_traits/remove_cv.hpp"
 #endif
 
 // should be the last #include

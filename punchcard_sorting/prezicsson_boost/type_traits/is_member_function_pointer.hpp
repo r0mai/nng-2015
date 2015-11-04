@@ -20,15 +20,15 @@
    // __stdcall etc function types, where as the partial specialisation
    // version does not do so.
    //
-#   include <boost/type_traits/detail/is_mem_fun_pointer_impl.hpp>
-#   include <boost/type_traits/remove_cv.hpp>
+#include "prezicsson_boost/type_traits/detail/is_mem_fun_pointer_impl.hpp"
+#include "prezicsson_boost/type_traits/remove_cv.hpp"
 #else
-#   include <boost/type_traits/is_reference.hpp>
-#   include <boost/type_traits/is_array.hpp>
-#   include <boost/type_traits/detail/yes_no_type.hpp>
-#   include <boost/type_traits/detail/false_result.hpp>
-#   include <boost/type_traits/detail/ice_or.hpp>
-#   include <boost/type_traits/detail/is_mem_fun_pointer_tester.hpp>
+#include "prezicsson_boost/type_traits/is_reference.hpp"
+#include "prezicsson_boost/type_traits/is_array.hpp"
+#include "prezicsson_boost/type_traits/detail/yes_no_type.hpp"
+#include "prezicsson_boost/type_traits/detail/false_result.hpp"
+#include "prezicsson_boost/type_traits/detail/ice_or.hpp"
+#include "prezicsson_boost/type_traits/detail/is_mem_fun_pointer_tester.hpp"
 #endif
 
 // should be the last #include

@@ -18,9 +18,9 @@
 #include "prezicsson_boost/type_traits/config.hpp"
 
 #if defined(BOOST_TT_PREPROCESSING_MODE)
-#   include <boost/preprocessor/iterate.hpp>
-#   include <boost/preprocessor/enum_params.hpp>
-#   include <boost/preprocessor/comma_if.hpp>
+#include "prezicsson_boost/preprocessor/iterate.hpp"
+#include "prezicsson_boost/preprocessor/enum_params.hpp"
+#include "prezicsson_boost/preprocessor/comma_if.hpp"
 #endif
 
 namespace boost {
