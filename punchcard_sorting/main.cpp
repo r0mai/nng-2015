@@ -10,7 +10,7 @@
 
 #include <future>
 
-#include <boost/sort/sort.hpp>
+#include "prezicsson_boost/sort/sort.hpp"
 
 const std::size_t maxLength = 64;
 
