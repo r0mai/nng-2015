@@ -1,0 +1,6 @@
+#!/bin/bash
+
+package="punchcard.zip"
+rm "${package}"
+
+zip -r "${package}" boost/ *.cc *.cpp
