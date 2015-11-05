@@ -191,20 +191,37 @@ void readLine(Line& line) { std::cin.getline(line.data(), maxLength+1); }
 
 std::vector<Line> readLines(std::size_t numberOfLines) {
     std::vector<Line> lines;
-    lines.resize(numberOfLines);
+    lines.reserve(numberOfLines);
 
     Timer t("Time to read lines");
 
-    for (std::size_t lineIndex = 0; lineIndex < numberOfLines; ++lineIndex) {
-        readLine(lines[lineIndex]);
+    char* buffer = new char[numberOfLines * (maxLength + 1)];
+
+    std::size_t length =
+        std::fread(buffer, 1, numberOfLines * (maxLength + 1), stdin);
+
+    std::size_t currentLineBegin = 0;
+
+    for (std::size_t c_ = 0; c_ < length; ++c_) {
+        if (buffer[c_] != '\n') {
+            continue;
+        }
+
+        lines.push_back({});
+        auto& line = lines.back();
+
+        buffer[c_] = '\0';
+
+        std::memcpy(line.data(), buffer + currentLineBegin,
+                    c_ - currentLineBegin);
+        currentLineBegin = c_ + 1;
     }
+
 
     return lines;
 }
 
 int main() {
-    std::ios::sync_with_stdio(false);
-
     std::size_t numberOfLines = 0;
 
     std::array<char, 16> numberOfLinesAsString;
