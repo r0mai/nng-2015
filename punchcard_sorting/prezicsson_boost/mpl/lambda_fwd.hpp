@@ -14,15 +14,15 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//mpl/void_fwd.hpp"
-#include "prezicsson_boost//mpl/aux_/na.hpp"
-#include "prezicsson_boost//mpl/aux_/config/lambda.hpp"
+#include "prezicsson_boost/mpl/void_fwd.hpp"
+#include "prezicsson_boost/mpl/aux_/na.hpp"
+#include "prezicsson_boost/mpl/aux_/config/lambda.hpp"
 
 #if !defined(BOOST_MPL_CFG_NO_FULL_LAMBDA_SUPPORT)
 
-#include "prezicsson_boost//mpl/int.hpp"
-#include "prezicsson_boost//mpl/aux_/lambda_arity_param.hpp"
-#include "prezicsson_boost//mpl/aux_/template_arity_fwd.hpp"
+#include "prezicsson_boost/mpl/int.hpp"
+#include "prezicsson_boost/mpl/aux_/lambda_arity_param.hpp"
+#include "prezicsson_boost/mpl/aux_/template_arity_fwd.hpp"
 
 namespace boost { namespace mpl {
 
@@ -39,7 +39,7 @@ struct lambda;
 
 #else // BOOST_MPL_CFG_NO_FULL_LAMBDA_SUPPORT
 
-#include "prezicsson_boost//mpl/bool.hpp"
+#include "prezicsson_boost/mpl/bool.hpp"
 
 namespace boost { namespace mpl {
 

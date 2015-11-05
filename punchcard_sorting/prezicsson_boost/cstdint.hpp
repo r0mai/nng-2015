@@ -33,7 +33,7 @@
 #  define __STDC_CONSTANT_MACROS
 #endif
 
-#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost/config.hpp"
 
 //
 // Note that GLIBC is a bit inconsistent about whether int64_t is defined or not
@@ -190,7 +190,7 @@ namespace boost {
 
 #else  // BOOST_HAS_STDINT_H
 
-#include "prezicsson_boost//limits.hpp"
+#include "prezicsson_boost/limits.hpp"
 # include <limits.h>         // needed for limits macros
 
 

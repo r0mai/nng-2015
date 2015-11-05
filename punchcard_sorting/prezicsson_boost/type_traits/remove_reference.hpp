@@ -9,11 +9,11 @@
 #ifndef BOOST_TT_REMOVE_REFERENCE_HPP_INCLUDED
 #define BOOST_TT_REMOVE_REFERENCE_HPP_INCLUDED
 
-#include "prezicsson_boost//config.hpp"
-#include "prezicsson_boost//detail/workaround.hpp"
+#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost/detail/workaround.hpp"
 
 // should be the last #include
-#include "prezicsson_boost//type_traits/detail/type_trait_def.hpp"
+#include "prezicsson_boost/type_traits/detail/type_trait_def.hpp"
 
 namespace boost {
 
@@ -54,6 +54,6 @@ BOOST_TT_AUX_TYPE_TRAIT_PARTIAL_SPEC1_1(typename T,remove_reference,T& const vol
 
 } // namespace boost
 
-#include "prezicsson_boost//type_traits/detail/type_trait_undef.hpp"
+#include "prezicsson_boost/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_TT_REMOVE_REFERENCE_HPP_INCLUDED

@@ -14,11 +14,11 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//mpl/bool.hpp"
-#include "prezicsson_boost//mpl/aux_/nttp_decl.hpp"
-#include "prezicsson_boost//mpl/aux_/nested_type_wknd.hpp"
-#include "prezicsson_boost//mpl/aux_/na_spec.hpp"
-#include "prezicsson_boost//mpl/aux_/lambda_support.hpp"
+#include "prezicsson_boost/mpl/bool.hpp"
+#include "prezicsson_boost/mpl/aux_/nttp_decl.hpp"
+#include "prezicsson_boost/mpl/aux_/nested_type_wknd.hpp"
+#include "prezicsson_boost/mpl/aux_/na_spec.hpp"
+#include "prezicsson_boost/mpl/aux_/lambda_support.hpp"
 
 namespace boost { namespace mpl {
 

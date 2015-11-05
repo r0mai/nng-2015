@@ -14,9 +14,9 @@
 # ifndef BOOST_PREPROCESSOR_LOGICAL_AND_HPP
 # define BOOST_PREPROCESSOR_LOGICAL_AND_HPP
 #
-#include "prezicsson_boost//preprocessor/config/config.hpp"
-#include "prezicsson_boost//preprocessor/logical/bool.hpp"
-#include "prezicsson_boost//preprocessor/logical/bitand.hpp"
+#include "prezicsson_boost/preprocessor/config/config.hpp"
+#include "prezicsson_boost/preprocessor/logical/bool.hpp"
+#include "prezicsson_boost/preprocessor/logical/bitand.hpp"
 #
 # /* BOOST_PP_AND */
 #

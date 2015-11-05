@@ -9,16 +9,16 @@
 #ifndef BOOST_TT_IS_STATELESS_HPP_INCLUDED
 #define BOOST_TT_IS_STATELESS_HPP_INCLUDED
 
-#include "prezicsson_boost//type_traits/has_trivial_constructor.hpp"
-#include "prezicsson_boost//type_traits/has_trivial_copy.hpp"
-#include "prezicsson_boost//type_traits/has_trivial_destructor.hpp"
-#include "prezicsson_boost//type_traits/is_class.hpp"
-#include "prezicsson_boost//type_traits/is_empty.hpp"
-#include "prezicsson_boost//type_traits/detail/ice_and.hpp"
-#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost/type_traits/has_trivial_constructor.hpp"
+#include "prezicsson_boost/type_traits/has_trivial_copy.hpp"
+#include "prezicsson_boost/type_traits/has_trivial_destructor.hpp"
+#include "prezicsson_boost/type_traits/is_class.hpp"
+#include "prezicsson_boost/type_traits/is_empty.hpp"
+#include "prezicsson_boost/type_traits/detail/ice_and.hpp"
+#include "prezicsson_boost/config.hpp"
 
 // should be the last #include
-#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -43,6 +43,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_stateless,T,::boost::detail::is_stateless_impl<T
 
 } // namespace boost
 
-#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_STATELESS_HPP_INCLUDED

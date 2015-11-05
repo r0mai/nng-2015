@@ -9,7 +9,7 @@
 #ifndef BOOST_TYPE_TRAITS_COMMON_TYPE_HPP
 #define BOOST_TYPE_TRAITS_COMMON_TYPE_HPP
 
-#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost/config.hpp"
 
 #if defined(__SUNPRO_CC) && !defined(BOOST_COMMON_TYPE_DONT_USE_TYPEOF)
 #  define BOOST_COMMON_TYPE_DONT_USE_TYPEOF
@@ -25,19 +25,19 @@
 
 //----------------------------------------------------------------------------//
 #if defined(BOOST_NO_CXX11_DECLTYPE) && !defined(BOOST_COMMON_TYPE_DONT_USE_TYPEOF)
-#include "prezicsson_boost//typeof/typeof.hpp"
+#include "prezicsson_boost/typeof/typeof.hpp"
 #endif
 
 //----------------------------------------------------------------------------//
 #ifndef BOOST_NO_CXX11_STATIC_ASSERT
 #define BOOST_COMMON_TYPE_STATIC_ASSERT(CND, MSG, TYPES) static_assert(CND,MSG)
 #elif defined(BOOST_COMMON_TYPE_USES_MPL_ASSERT)
-#include "prezicsson_boost//mpl/assert.hpp"
-#include "prezicsson_boost//mpl/bool.hpp"
+#include "prezicsson_boost/mpl/assert.hpp"
+#include "prezicsson_boost/mpl/bool.hpp"
 #define BOOST_COMMON_TYPE_STATIC_ASSERT(CND, MSG, TYPES)                                 \
     BOOST_MPL_ASSERT_MSG(boost::mpl::bool_< (CND) >::type::value, MSG, TYPES)
 #else
-#include "prezicsson_boost//static_assert.hpp"
+#include "prezicsson_boost/static_assert.hpp"
 #define BOOST_COMMON_TYPE_STATIC_ASSERT(CND, MSG, TYPES) BOOST_STATIC_ASSERT(CND)
 #endif
 
@@ -46,12 +46,12 @@
 #endif
 
 #if defined(BOOST_NO_CXX11_DECLTYPE) && defined(BOOST_COMMON_TYPE_DONT_USE_TYPEOF)
-#include "prezicsson_boost//type_traits/detail/common_type_imp.hpp"
-#include "prezicsson_boost//type_traits/remove_cv.hpp"
+#include "prezicsson_boost/type_traits/detail/common_type_imp.hpp"
+#include "prezicsson_boost/type_traits/remove_cv.hpp"
 #endif
-#include "prezicsson_boost//mpl/if.hpp"
-#include "prezicsson_boost//utility/declval.hpp"
-#include "prezicsson_boost//type_traits/add_rvalue_reference.hpp"
+#include "prezicsson_boost/mpl/if.hpp"
+#include "prezicsson_boost/utility/declval.hpp"
+#include "prezicsson_boost/type_traits/add_rvalue_reference.hpp"
 
 //----------------------------------------------------------------------------//
 //                                                                            //

@@ -14,10 +14,10 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//mpl/aux_/config/msvc.hpp"
-#include "prezicsson_boost//mpl/aux_/config/intel.hpp"
-#include "prezicsson_boost//mpl/aux_/config/gcc.hpp"
-#include "prezicsson_boost//mpl/aux_/config/workaround.hpp"
+#include "prezicsson_boost/mpl/aux_/config/msvc.hpp"
+#include "prezicsson_boost/mpl/aux_/config/intel.hpp"
+#include "prezicsson_boost/mpl/aux_/config/gcc.hpp"
+#include "prezicsson_boost/mpl/aux_/config/workaround.hpp"
 
 // agurt, 25/apr/04: technically, the ADL workaround is only needed for GCC,
 // but putting everything expect public, user-specializable metafunctions into

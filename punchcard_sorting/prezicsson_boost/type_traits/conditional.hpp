@@ -10,7 +10,7 @@
 #ifndef BOOST_TT_CONDITIONAL_HPP_INCLUDED
 #define BOOST_TT_CONDITIONAL_HPP_INCLUDED
 
-#include "prezicsson_boost//mpl/if.hpp"
+#include "prezicsson_boost/mpl/if.hpp"
 
 namespace boost {
 

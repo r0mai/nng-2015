@@ -9,16 +9,16 @@
 #
 # /* See http://www.boost.org for most recent version. */
 #
-#include "prezicsson_boost//preprocessor/config/config.hpp"
+#include "prezicsson_boost/preprocessor/config/config.hpp"
 #
 # if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_DMC()
-#include "prezicsson_boost//preprocessor/detail/dmc/auto_rec.hpp"
+#include "prezicsson_boost/preprocessor/detail/dmc/auto_rec.hpp"
 # else
 #
 # ifndef BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
 # define BOOST_PREPROCESSOR_DETAIL_AUTO_REC_HPP
 #
-#include "prezicsson_boost//preprocessor/control/iif.hpp"
+#include "prezicsson_boost/preprocessor/control/iif.hpp"
 #
 # /* BOOST_PP_AUTO_REC */
 #

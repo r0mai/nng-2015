@@ -15,24 +15,24 @@
 // $Revision$
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
-#include "prezicsson_boost//mpl/lambda_fwd.hpp"
-#include "prezicsson_boost//mpl/int.hpp"
-#include "prezicsson_boost//mpl/bool.hpp"
-#include "prezicsson_boost//mpl/aux_/na.hpp"
-#include "prezicsson_boost//mpl/aux_/arity.hpp"
-#include "prezicsson_boost//mpl/aux_/template_arity_fwd.hpp"
+#include "prezicsson_boost/mpl/lambda_fwd.hpp"
+#include "prezicsson_boost/mpl/int.hpp"
+#include "prezicsson_boost/mpl/bool.hpp"
+#include "prezicsson_boost/mpl/aux_/na.hpp"
+#include "prezicsson_boost/mpl/aux_/arity.hpp"
+#include "prezicsson_boost/mpl/aux_/template_arity_fwd.hpp"
 #endif
 
-#include "prezicsson_boost//mpl/aux_/preprocessor/params.hpp"
-#include "prezicsson_boost//mpl/aux_/preprocessor/enum.hpp"
-#include "prezicsson_boost//mpl/aux_/preprocessor/def_params_tail.hpp"
-#include "prezicsson_boost//mpl/aux_/lambda_arity_param.hpp"
-#include "prezicsson_boost//mpl/aux_/config/dtp.hpp"
-#include "prezicsson_boost//mpl/aux_/config/eti.hpp"
-#include "prezicsson_boost//mpl/aux_/nttp_decl.hpp"
-#include "prezicsson_boost//mpl/aux_/config/ttp.hpp"
-#include "prezicsson_boost//mpl/aux_/config/lambda.hpp"
-#include "prezicsson_boost//mpl/aux_/config/overload_resolution.hpp"
+#include "prezicsson_boost/mpl/aux_/preprocessor/params.hpp"
+#include "prezicsson_boost/mpl/aux_/preprocessor/enum.hpp"
+#include "prezicsson_boost/mpl/aux_/preprocessor/def_params_tail.hpp"
+#include "prezicsson_boost/mpl/aux_/lambda_arity_param.hpp"
+#include "prezicsson_boost/mpl/aux_/config/dtp.hpp"
+#include "prezicsson_boost/mpl/aux_/config/eti.hpp"
+#include "prezicsson_boost/mpl/aux_/nttp_decl.hpp"
+#include "prezicsson_boost/mpl/aux_/config/ttp.hpp"
+#include "prezicsson_boost/mpl/aux_/config/lambda.hpp"
+#include "prezicsson_boost/mpl/aux_/config/overload_resolution.hpp"
 
 
 #define BOOST_MPL_AUX_NA_PARAMS(i) \

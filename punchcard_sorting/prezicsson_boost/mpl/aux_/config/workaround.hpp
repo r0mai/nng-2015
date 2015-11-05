@@ -14,6 +14,6 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//detail/workaround.hpp"
+#include "prezicsson_boost/detail/workaround.hpp"
 
 #endif // BOOST_MPL_AUX_CONFIG_WORKAROUND_HPP_INCLUDED

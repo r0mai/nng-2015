@@ -11,10 +11,10 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//type_traits/detail/template_arity_spec.hpp"
-#include "prezicsson_boost//type_traits/integral_constant.hpp"
-#include "prezicsson_boost//mpl/aux_/lambda_support.hpp"
-#include "prezicsson_boost//mpl/size_t.hpp"
+#include "prezicsson_boost/type_traits/detail/template_arity_spec.hpp"
+#include "prezicsson_boost/type_traits/integral_constant.hpp"
+#include "prezicsson_boost/mpl/aux_/lambda_support.hpp"
+#include "prezicsson_boost/mpl/size_t.hpp"
 
 #include <cstddef>
 

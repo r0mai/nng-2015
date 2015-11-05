@@ -9,16 +9,16 @@
 #ifndef BOOST_TT_IS_COPY_CONSTRUCTIBLE_HPP_INCLUDED
 #define BOOST_TT_IS_COPY_CONSTRUCTIBLE_HPP_INCLUDED
 
-#include "prezicsson_boost//config.hpp"
-#include "prezicsson_boost//type_traits/detail/yes_no_type.hpp"
-#include "prezicsson_boost//type_traits/is_base_and_derived.hpp"
-#include "prezicsson_boost//type_traits/add_reference.hpp"
-#include "prezicsson_boost//type_traits/is_rvalue_reference.hpp"
-#include "prezicsson_boost//utility/declval.hpp"
-#include "prezicsson_boost//noncopyable.hpp"
+#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost/type_traits/detail/yes_no_type.hpp"
+#include "prezicsson_boost/type_traits/is_base_and_derived.hpp"
+#include "prezicsson_boost/type_traits/add_reference.hpp"
+#include "prezicsson_boost/type_traits/is_rvalue_reference.hpp"
+#include "prezicsson_boost/utility/declval.hpp"
+#include "prezicsson_boost/noncopyable.hpp"
 
 // should be the last #include
-#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -120,6 +120,6 @@ BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_copy_constructible,void volatile,false)
 
 } // namespace boost
 
-#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_COPY_CONSTRUCTIBLE_HPP_INCLUDED

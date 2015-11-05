@@ -14,10 +14,10 @@
 # ifndef BOOST_PREPROCESSOR_LIST_TRANSFORM_HPP
 # define BOOST_PREPROCESSOR_LIST_TRANSFORM_HPP
 #
-#include "prezicsson_boost//preprocessor/config/config.hpp"
-#include "prezicsson_boost//preprocessor/list/fold_right.hpp"
-#include "prezicsson_boost//preprocessor/tuple/elem.hpp"
-#include "prezicsson_boost//preprocessor/tuple/rem.hpp"
+#include "prezicsson_boost/preprocessor/config/config.hpp"
+#include "prezicsson_boost/preprocessor/list/fold_right.hpp"
+#include "prezicsson_boost/preprocessor/tuple/elem.hpp"
+#include "prezicsson_boost/preprocessor/tuple/rem.hpp"
 #
 # /* BOOST_PP_LIST_TRANSFORM */
 #

@@ -14,8 +14,8 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//mpl/aux_/config/msvc.hpp"
-#include "prezicsson_boost//mpl/aux_/config/workaround.hpp"
+#include "prezicsson_boost/mpl/aux_/config/msvc.hpp"
+#include "prezicsson_boost/mpl/aux_/config/workaround.hpp"
 
 // MSVC 6.5 ICE-s on the code as simple as this (see "aux_/nttp_decl.hpp"
 // for a workaround):

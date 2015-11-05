@@ -14,10 +14,10 @@
 # ifndef BOOST_PREPROCESSOR_LIST_DETAIL_FOLD_LEFT_HPP
 # define BOOST_PREPROCESSOR_LIST_DETAIL_FOLD_LEFT_HPP
 #
-#include "prezicsson_boost//preprocessor/control/expr_iif.hpp"
-#include "prezicsson_boost//preprocessor/control/iif.hpp"
-#include "prezicsson_boost//preprocessor/list/adt.hpp"
-#include "prezicsson_boost//preprocessor/tuple/eat.hpp"
+#include "prezicsson_boost/preprocessor/control/expr_iif.hpp"
+#include "prezicsson_boost/preprocessor/control/iif.hpp"
+#include "prezicsson_boost/preprocessor/list/adt.hpp"
+#include "prezicsson_boost/preprocessor/tuple/eat.hpp"
 #
 # define BOOST_PP_LIST_FOLD_LEFT_1(o, s, l) BOOST_PP_IIF(BOOST_PP_LIST_IS_CONS(l), BOOST_PP_LIST_FOLD_LEFT_2, s BOOST_PP_TUPLE_EAT_3)(o, BOOST_PP_EXPR_IIF(BOOST_PP_LIST_IS_CONS(l), o)(2, s, BOOST_PP_LIST_FIRST(l)), BOOST_PP_LIST_REST(l))
 # define BOOST_PP_LIST_FOLD_LEFT_2(o, s, l) BOOST_PP_IIF(BOOST_PP_LIST_IS_CONS(l), BOOST_PP_LIST_FOLD_LEFT_3, s BOOST_PP_TUPLE_EAT_3)(o, BOOST_PP_EXPR_IIF(BOOST_PP_LIST_IS_CONS(l), o)(3, s, BOOST_PP_LIST_FIRST(l)), BOOST_PP_LIST_REST(l))

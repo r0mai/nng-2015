@@ -19,12 +19,12 @@ Phil Endecott and Frank Gennari
 #include <cstring>
 #include <limits>
 #include <functional>
-#include "prezicsson_boost//static_assert.hpp"
-#include "prezicsson_boost//serialization/static_warning.hpp"
-#include "prezicsson_boost//utility/enable_if.hpp"
-#include "prezicsson_boost//sort/spreadsort/detail/constants.hpp"
-#include "prezicsson_boost//sort/spreadsort/detail/spreadsort_common.hpp"
-#include "prezicsson_boost//cstdint.hpp"
+#include "prezicsson_boost/static_assert.hpp"
+#include "prezicsson_boost/serialization/static_warning.hpp"
+#include "prezicsson_boost/utility/enable_if.hpp"
+#include "prezicsson_boost/sort/spreadsort/detail/constants.hpp"
+#include "prezicsson_boost/sort/spreadsort/detail/spreadsort_common.hpp"
+#include "prezicsson_boost/cstdint.hpp"
 
 namespace boost {
 namespace sort {

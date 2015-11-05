@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_EMPTY_HPP
 # define BOOST_PREPROCESSOR_EMPTY_HPP
 #
-#include "prezicsson_boost//preprocessor/facilities/empty.hpp"
+#include "prezicsson_boost/preprocessor/facilities/empty.hpp"
 #
 # endif

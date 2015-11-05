@@ -9,13 +9,13 @@
 #ifndef BOOST_TT_HAS_TRIVIAL_CONSTRUCTOR_HPP_INCLUDED
 #define BOOST_TT_HAS_TRIVIAL_CONSTRUCTOR_HPP_INCLUDED
 
-#include "prezicsson_boost//type_traits/config.hpp"
-#include "prezicsson_boost//type_traits/intrinsics.hpp"
-#include "prezicsson_boost//type_traits/is_pod.hpp"
-#include "prezicsson_boost//type_traits/detail/ice_or.hpp"
+#include "prezicsson_boost/type_traits/config.hpp"
+#include "prezicsson_boost/type_traits/intrinsics.hpp"
+#include "prezicsson_boost/type_traits/is_pod.hpp"
+#include "prezicsson_boost/type_traits/detail/ice_or.hpp"
 
 // should be the last #include
-#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -46,6 +46,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(has_trivial_default_constructor,T,::boost::detail::
 
 } // namespace boost
 
-#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_HAS_TRIVIAL_CONSTRUCTOR_HPP_INCLUDED

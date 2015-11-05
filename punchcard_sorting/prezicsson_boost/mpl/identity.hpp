@@ -14,8 +14,8 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//mpl/aux_/na_spec.hpp"
-#include "prezicsson_boost//mpl/aux_/lambda_support.hpp"
+#include "prezicsson_boost/mpl/aux_/na_spec.hpp"
+#include "prezicsson_boost/mpl/aux_/lambda_support.hpp"
 
 namespace boost { namespace mpl {
 

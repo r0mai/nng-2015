@@ -14,6 +14,6 @@
 Cumulative include for the Boost Sort library
 */
 
-#include "prezicsson_boost//sort/spreadsort/spreadsort.hpp"
+#include "prezicsson_boost/sort/spreadsort/spreadsort.hpp"
 
 #endif

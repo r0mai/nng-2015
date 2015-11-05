@@ -14,8 +14,8 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//mpl/aux_/config/msvc.hpp"
-#include "prezicsson_boost//mpl/aux_/config/workaround.hpp"
+#include "prezicsson_boost/mpl/aux_/config/msvc.hpp"
+#include "prezicsson_boost/mpl/aux_/config/workaround.hpp"
 
 #if    !defined(BOOST_MPL_CFG_BCC_INTEGRAL_CONSTANTS) \
     && !defined(BOOST_MPL_PREPROCESSING_MODE) \

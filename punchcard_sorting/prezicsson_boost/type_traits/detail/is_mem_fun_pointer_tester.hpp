@@ -14,13 +14,13 @@
 #ifndef BOOST_TT_DETAIL_IS_MEM_FUN_POINTER_TESTER_HPP_INCLUDED
 #define BOOST_TT_DETAIL_IS_MEM_FUN_POINTER_TESTER_HPP_INCLUDED
 
-#include "prezicsson_boost//type_traits/detail/yes_no_type.hpp"
-#include "prezicsson_boost//type_traits/config.hpp"
+#include "prezicsson_boost/type_traits/detail/yes_no_type.hpp"
+#include "prezicsson_boost/type_traits/config.hpp"
 
 #if defined(BOOST_TT_PREPROCESSING_MODE)
-#include "prezicsson_boost//preprocessor/iterate.hpp"
-#include "prezicsson_boost//preprocessor/enum_params.hpp"
-#include "prezicsson_boost//preprocessor/comma_if.hpp"
+#include "prezicsson_boost/preprocessor/iterate.hpp"
+#include "prezicsson_boost/preprocessor/enum_params.hpp"
+#include "prezicsson_boost/preprocessor/comma_if.hpp"
 #endif
 
 namespace boost {

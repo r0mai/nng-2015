@@ -6,9 +6,9 @@
 #ifndef BOOST_TYPE_TRAITS_INTEGRAL_CONSTANT_HPP
 #define BOOST_TYPE_TRAITS_INTEGRAL_CONSTANT_HPP
 
-#include "prezicsson_boost//config.hpp"
-#include "prezicsson_boost//mpl/bool.hpp"
-#include "prezicsson_boost//mpl/integral_c.hpp"
+#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost/mpl/bool.hpp"
+#include "prezicsson_boost/mpl/integral_c.hpp"
 
 namespace boost{
 

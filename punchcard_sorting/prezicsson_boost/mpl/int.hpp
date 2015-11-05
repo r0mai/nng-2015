@@ -14,9 +14,9 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//mpl/int_fwd.hpp"
+#include "prezicsson_boost/mpl/int_fwd.hpp"
 
 #define AUX_WRAPPER_VALUE_TYPE int
-#include "prezicsson_boost//mpl/aux_/integral_wrapper.hpp"
+#include "prezicsson_boost/mpl/aux_/integral_wrapper.hpp"
 
 #endif // BOOST_MPL_INT_HPP_INCLUDED

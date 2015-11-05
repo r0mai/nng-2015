@@ -21,15 +21,15 @@
 #ifndef BOOST_TT_IS_POINTER_HPP_INCLUDED
 #define BOOST_TT_IS_POINTER_HPP_INCLUDED
 
-#include "prezicsson_boost//type_traits/is_member_pointer.hpp"
-#include "prezicsson_boost//type_traits/detail/ice_and.hpp"
-#include "prezicsson_boost//type_traits/detail/ice_not.hpp"
-#include "prezicsson_boost//type_traits/config.hpp"
-#include "prezicsson_boost//type_traits/remove_cv.hpp"
+#include "prezicsson_boost/type_traits/is_member_pointer.hpp"
+#include "prezicsson_boost/type_traits/detail/ice_and.hpp"
+#include "prezicsson_boost/type_traits/detail/ice_not.hpp"
+#include "prezicsson_boost/type_traits/config.hpp"
+#include "prezicsson_boost/type_traits/remove_cv.hpp"
 
 
 // should be the last #include
-#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -83,6 +83,6 @@ BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC1_1(typename T,is_pointer,T& const volatile,
 
 } // namespace boost
 
-#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_POINTER_HPP_INCLUDED

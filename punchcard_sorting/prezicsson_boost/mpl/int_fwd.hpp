@@ -14,8 +14,8 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//mpl/aux_/adl_barrier.hpp"
-#include "prezicsson_boost//mpl/aux_/nttp_decl.hpp"
+#include "prezicsson_boost/mpl/aux_/adl_barrier.hpp"
+#include "prezicsson_boost/mpl/aux_/nttp_decl.hpp"
 
 BOOST_MPL_AUX_ADL_BARRIER_NAMESPACE_OPEN
 

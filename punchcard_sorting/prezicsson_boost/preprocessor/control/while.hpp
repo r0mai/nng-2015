@@ -14,13 +14,13 @@
 # ifndef BOOST_PREPROCESSOR_CONTROL_WHILE_HPP
 # define BOOST_PREPROCESSOR_CONTROL_WHILE_HPP
 #
-#include "prezicsson_boost//preprocessor/cat.hpp"
-#include "prezicsson_boost//preprocessor/config/config.hpp"
-#include "prezicsson_boost//preprocessor/debug/error.hpp"
-#include "prezicsson_boost//preprocessor/detail/auto_rec.hpp"
-#include "prezicsson_boost//preprocessor/list/fold_left.hpp"
-#include "prezicsson_boost//preprocessor/list/fold_right.hpp"
-#include "prezicsson_boost//preprocessor/logical/bitand.hpp"
+#include "prezicsson_boost/preprocessor/cat.hpp"
+#include "prezicsson_boost/preprocessor/config/config.hpp"
+#include "prezicsson_boost/preprocessor/debug/error.hpp"
+#include "prezicsson_boost/preprocessor/detail/auto_rec.hpp"
+#include "prezicsson_boost/preprocessor/list/fold_left.hpp"
+#include "prezicsson_boost/preprocessor/list/fold_right.hpp"
+#include "prezicsson_boost/preprocessor/logical/bitand.hpp"
 #
 # /* BOOST_PP_WHILE */
 #
@@ -39,13 +39,13 @@
 # define BOOST_PP_WHILE_F(d, _) 0
 #
 # if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_EDG()
-#include "prezicsson_boost//preprocessor/control/detail/edg/while.hpp"
+#include "prezicsson_boost/preprocessor/control/detail/edg/while.hpp"
 # elif BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MSVC()
-#include "prezicsson_boost//preprocessor/control/detail/msvc/while.hpp"
+#include "prezicsson_boost/preprocessor/control/detail/msvc/while.hpp"
 # elif BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_DMC()
-#include "prezicsson_boost//preprocessor/control/detail/dmc/while.hpp"
+#include "prezicsson_boost/preprocessor/control/detail/dmc/while.hpp"
 # else
-#include "prezicsson_boost//preprocessor/control/detail/while.hpp"
+#include "prezicsson_boost/preprocessor/control/detail/while.hpp"
 # endif
 #
 # define BOOST_PP_WHILE_257(p, o, s) BOOST_PP_ERROR(0x0001)

@@ -19,29 +19,29 @@
 
 // if we don't have a user config, then use the default location:
 #if !defined(BOOST_USER_CONFIG) && !defined(BOOST_NO_USER_CONFIG)
-#  define BOOST_USER_CONFIG "prezicsson_boost/config/user.hpp"
+#  define BOOST_USER_CONFIG <boost/config/user.hpp>
 #if 0
 // For dependency trackers:
-#include "prezicsson_boost//config/user.hpp"
+#include "prezicsson_boost/config/user.hpp"
 #endif
 #endif
 // include it first:
 #ifdef BOOST_USER_CONFIG
-#  include BOOST_USER_CONFIG
+#include "prezicsson_boost/config/user.hpp"
 #endif
 
 // if we don't have a compiler config set, try and find one:
 #if !defined(BOOST_COMPILER_CONFIG) && !defined(BOOST_NO_COMPILER_CONFIG) && !defined(BOOST_NO_CONFIG)
-#include "prezicsson_boost//config/select_compiler_config.hpp"
+#include "prezicsson_boost/config/select_compiler_config.hpp"
 #endif
 // if we have a compiler config, include it now:
 #ifdef BOOST_COMPILER_CONFIG
-#  include BOOST_COMPILER_CONFIG
+#include "prezicsson_boost/config/compiler/visualc.hpp"
 #endif
 
 // if we don't have a std library config set, try and find one:
 #if !defined(BOOST_STDLIB_CONFIG) && !defined(BOOST_NO_STDLIB_CONFIG) && !defined(BOOST_NO_CONFIG) && defined(__cplusplus)
-#include "prezicsson_boost//config/select_stdlib_config.hpp"
+#include "prezicsson_boost/config/select_stdlib_config.hpp"
 #endif
 // if we have a std library config, include it now:
 #ifdef BOOST_STDLIB_CONFIG
@@ -50,7 +50,7 @@
 
 // if we don't have a platform config set, try and find one:
 #if !defined(BOOST_PLATFORM_CONFIG) && !defined(BOOST_NO_PLATFORM_CONFIG) && !defined(BOOST_NO_CONFIG)
-#include "prezicsson_boost//config/select_platform_config.hpp"
+#include "prezicsson_boost/config/select_platform_config.hpp"
 #endif
 // if we have a platform config, include it now:
 #ifdef BOOST_PLATFORM_CONFIG
@@ -58,7 +58,7 @@
 #endif
 
 // get config suffix code:
-#include "prezicsson_boost//config/suffix.hpp"
+#include "prezicsson_boost/config/suffix.hpp"
 
 #ifdef BOOST_HAS_PRAGMA_ONCE
 #pragma once

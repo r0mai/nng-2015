@@ -8,19 +8,19 @@
 #ifndef BOOST_TT_TYPE_WITH_ALIGNMENT_INCLUDED
 #define BOOST_TT_TYPE_WITH_ALIGNMENT_INCLUDED
 
-#include "prezicsson_boost//mpl/if.hpp"
-#include "prezicsson_boost//preprocessor/list/for_each_i.hpp"
-#include "prezicsson_boost//preprocessor/tuple/to_list.hpp"
-#include "prezicsson_boost//preprocessor/cat.hpp"
-#include "prezicsson_boost//preprocessor/list/transform.hpp"
-#include "prezicsson_boost//preprocessor/list/append.hpp"
-#include "prezicsson_boost//type_traits/alignment_of.hpp"
-#include "prezicsson_boost//type_traits/is_pod.hpp"
-#include "prezicsson_boost//static_assert.hpp"
-#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost/mpl/if.hpp"
+#include "prezicsson_boost/preprocessor/list/for_each_i.hpp"
+#include "prezicsson_boost/preprocessor/tuple/to_list.hpp"
+#include "prezicsson_boost/preprocessor/cat.hpp"
+#include "prezicsson_boost/preprocessor/list/transform.hpp"
+#include "prezicsson_boost/preprocessor/list/append.hpp"
+#include "prezicsson_boost/type_traits/alignment_of.hpp"
+#include "prezicsson_boost/type_traits/is_pod.hpp"
+#include "prezicsson_boost/static_assert.hpp"
+#include "prezicsson_boost/config.hpp"
 
 // should be the last #include
-#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
 
 #include <cstddef>
 
@@ -350,7 +350,7 @@ template <> struct type_with_alignment<16>{ typedef tt_align_ns::a16 type; };
 #   pragma warning(pop)
 #endif
 
-#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_TYPE_WITH_ALIGNMENT_INCLUDED
 

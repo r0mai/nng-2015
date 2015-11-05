@@ -93,7 +93,7 @@
 #     define BOOST_HAS_UNISTD_H
 #  endif
 
-#include "prezicsson_boost//config/posix_features.hpp"
+#include "prezicsson_boost/config/posix_features.hpp"
 
 #  endif
 
@@ -109,23 +109,23 @@
 //
 // This section allows dependency scanners to find all the files we *might* include:
 //
-#include "prezicsson_boost//config/platform/linux.hpp"
-#include "prezicsson_boost//config/platform/bsd.hpp"
-#include "prezicsson_boost//config/platform/solaris.hpp"
-#include "prezicsson_boost//config/platform/irix.hpp"
-#include "prezicsson_boost//config/platform/hpux.hpp"
-#include "prezicsson_boost//config/platform/cygwin.hpp"
-#include "prezicsson_boost//config/platform/win32.hpp"
-#include "prezicsson_boost//config/platform/beos.hpp"
-#include "prezicsson_boost//config/platform/macos.hpp"
-#include "prezicsson_boost//config/platform/aix.hpp"
-#include "prezicsson_boost//config/platform/amigaos.hpp"
-#include "prezicsson_boost//config/platform/qnxnto.hpp"
-#include "prezicsson_boost//config/platform/vxworks.hpp"
-#include "prezicsson_boost//config/platform/symbian.hpp"
-#include "prezicsson_boost//config/platform/cray.hpp"
-#include "prezicsson_boost//config/platform/vms.hpp"
-#include "prezicsson_boost//config/posix_features.hpp"
+#include "prezicsson_boost/config/platform/linux.hpp"
+#include "prezicsson_boost/config/platform/bsd.hpp"
+#include "prezicsson_boost/config/platform/solaris.hpp"
+#include "prezicsson_boost/config/platform/irix.hpp"
+#include "prezicsson_boost/config/platform/hpux.hpp"
+#include "prezicsson_boost/config/platform/cygwin.hpp"
+#include "prezicsson_boost/config/platform/win32.hpp"
+#include "prezicsson_boost/config/platform/beos.hpp"
+#include "prezicsson_boost/config/platform/macos.hpp"
+#include "prezicsson_boost/config/platform/aix.hpp"
+#include "prezicsson_boost/config/platform/amigaos.hpp"
+#include "prezicsson_boost/config/platform/qnxnto.hpp"
+#include "prezicsson_boost/config/platform/vxworks.hpp"
+#include "prezicsson_boost/config/platform/symbian.hpp"
+#include "prezicsson_boost/config/platform/cray.hpp"
+#include "prezicsson_boost/config/platform/vms.hpp"
+#include "prezicsson_boost/config/posix_features.hpp"
 
 
 

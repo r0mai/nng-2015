@@ -14,7 +14,7 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//mpl/aux_/config/lambda.hpp"
+#include "prezicsson_boost/mpl/aux_/config/lambda.hpp"
 
 #if !defined(BOOST_MPL_CFG_NO_FULL_LAMBDA_SUPPORT)
 
@@ -23,18 +23,18 @@
 
 #else
 
-#include "prezicsson_boost//mpl/int_fwd.hpp"
-#include "prezicsson_boost//mpl/aux_/yes_no.hpp"
-#include "prezicsson_boost//mpl/aux_/na_fwd.hpp"
-#include "prezicsson_boost//mpl/aux_/preprocessor/params.hpp"
-#include "prezicsson_boost//mpl/aux_/preprocessor/enum.hpp"
-#include "prezicsson_boost//mpl/aux_/config/msvc.hpp"
-#include "prezicsson_boost//mpl/aux_/config/workaround.hpp"
+#include "prezicsson_boost/mpl/int_fwd.hpp"
+#include "prezicsson_boost/mpl/aux_/yes_no.hpp"
+#include "prezicsson_boost/mpl/aux_/na_fwd.hpp"
+#include "prezicsson_boost/mpl/aux_/preprocessor/params.hpp"
+#include "prezicsson_boost/mpl/aux_/preprocessor/enum.hpp"
+#include "prezicsson_boost/mpl/aux_/config/msvc.hpp"
+#include "prezicsson_boost/mpl/aux_/config/workaround.hpp"
 
-#include "prezicsson_boost//preprocessor/tuple/to_list.hpp"
-#include "prezicsson_boost//preprocessor/list/for_each_i.hpp"
-#include "prezicsson_boost//preprocessor/inc.hpp"
-#include "prezicsson_boost//preprocessor/cat.hpp"
+#include "prezicsson_boost/preprocessor/tuple/to_list.hpp"
+#include "prezicsson_boost/preprocessor/list/for_each_i.hpp"
+#include "prezicsson_boost/preprocessor/inc.hpp"
+#include "prezicsson_boost/preprocessor/cat.hpp"
 
 #   define BOOST_MPL_AUX_LAMBDA_SUPPORT_ARG_TYPEDEF_FUNC(R,typedef_,i,param) \
     typedef_ param BOOST_PP_CAT(arg,BOOST_PP_INC(i)); \

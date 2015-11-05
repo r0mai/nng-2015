@@ -21,10 +21,10 @@ Scott McMurray
 #include <cstring>
 #include <string>
 #include <limits>
-#include "prezicsson_boost//type_traits.hpp"
-#include "prezicsson_boost//sort/spreadsort/integer_sort.hpp"
-#include "prezicsson_boost//sort/spreadsort/float_sort.hpp"
-#include "prezicsson_boost//sort/spreadsort/string_sort.hpp"
+#include "prezicsson_boost/type_traits.hpp"
+#include "prezicsson_boost/sort/spreadsort/integer_sort.hpp"
+#include "prezicsson_boost/sort/spreadsort/float_sort.hpp"
+#include "prezicsson_boost/sort/spreadsort/string_sort.hpp"
 
 namespace boost {
 namespace sort {

@@ -9,9 +9,9 @@
 #ifndef BOOST_TT_FUNCTION_TRAITS_HPP_INCLUDED
 #define BOOST_TT_FUNCTION_TRAITS_HPP_INCLUDED
 
-#include "prezicsson_boost//config.hpp"
-#include "prezicsson_boost//type_traits/is_function.hpp"
-#include "prezicsson_boost//type_traits/add_pointer.hpp"
+#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost/type_traits/is_function.hpp"
+#include "prezicsson_boost/type_traits/add_pointer.hpp"
 
 namespace boost {
 

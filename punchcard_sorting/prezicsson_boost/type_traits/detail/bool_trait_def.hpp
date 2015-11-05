@@ -11,11 +11,11 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost//type_traits/detail/template_arity_spec.hpp"
-#include "prezicsson_boost//type_traits/integral_constant.hpp"
-#include "prezicsson_boost//mpl/bool.hpp"
-#include "prezicsson_boost//mpl/aux_/lambda_support.hpp"
-#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost/type_traits/detail/template_arity_spec.hpp"
+#include "prezicsson_boost/type_traits/integral_constant.hpp"
+#include "prezicsson_boost/mpl/bool.hpp"
+#include "prezicsson_boost/mpl/aux_/lambda_support.hpp"
+#include "prezicsson_boost/config.hpp"
 
 //
 // Unfortunately some libraries have started using this header without

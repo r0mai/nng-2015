@@ -29,7 +29,7 @@
                    (Robert Ramey)
 */
 
-#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost/config.hpp"
 
 //
 // Implementation
@@ -63,10 +63,10 @@
 //    mpl::print<>.  The previous one was found to fail for functions
 //    under recent versions of gcc and intel compilers - Robert Ramey
 
-#include "prezicsson_boost//mpl/bool.hpp"
-#include "prezicsson_boost//mpl/print.hpp"
-#include "prezicsson_boost//mpl/eval_if.hpp"
-#include "prezicsson_boost//static_assert.hpp"
+#include "prezicsson_boost/mpl/bool.hpp"
+#include "prezicsson_boost/mpl/print.hpp"
+#include "prezicsson_boost/mpl/eval_if.hpp"
+#include "prezicsson_boost/static_assert.hpp"
 
 namespace boost {
 namespace serialization {

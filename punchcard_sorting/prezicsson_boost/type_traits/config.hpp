@@ -10,10 +10,10 @@
 #define BOOST_TT_CONFIG_HPP_INCLUDED
 
 #ifndef BOOST_CONFIG_HPP
-#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost/config.hpp"
 #endif
 
-#include "prezicsson_boost//detail/workaround.hpp"
+#include "prezicsson_boost/detail/workaround.hpp"
 
 //
 // whenever we have a conversion function with ellipses

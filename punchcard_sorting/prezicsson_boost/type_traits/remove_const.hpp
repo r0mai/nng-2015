@@ -11,15 +11,15 @@
 #ifndef BOOST_TT_REMOVE_CONST_HPP_INCLUDED
 #define BOOST_TT_REMOVE_CONST_HPP_INCLUDED
 
-#include "prezicsson_boost//type_traits/is_volatile.hpp"
-#include "prezicsson_boost//type_traits/detail/cv_traits_impl.hpp"
-#include "prezicsson_boost//config.hpp"
-#include "prezicsson_boost//detail/workaround.hpp"
+#include "prezicsson_boost/type_traits/is_volatile.hpp"
+#include "prezicsson_boost/type_traits/detail/cv_traits_impl.hpp"
+#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost/detail/workaround.hpp"
 
 #include <cstddef>
 
 // should be the last #include
-#include "prezicsson_boost//type_traits/detail/type_trait_def.hpp"
+#include "prezicsson_boost/type_traits/detail/type_trait_def.hpp"
 
 namespace boost {
 
@@ -74,6 +74,6 @@ BOOST_TT_AUX_TYPE_TRAIT_PARTIAL_SPEC1_2(typename T,std::size_t N,remove_const,T 
 
 } // namespace boost
 
-#include "prezicsson_boost//type_traits/detail/type_trait_undef.hpp"
+#include "prezicsson_boost/type_traits/detail/type_trait_undef.hpp"
 
 #endif // BOOST_TT_REMOVE_CONST_HPP_INCLUDED

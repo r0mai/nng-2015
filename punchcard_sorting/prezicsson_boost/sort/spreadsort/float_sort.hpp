@@ -20,9 +20,9 @@ Scott McMurray
 #include <vector>
 #include <cstring>
 #include <limits>
-#include "prezicsson_boost//static_assert.hpp"
-#include "prezicsson_boost//sort/spreadsort/detail/constants.hpp"
-#include "prezicsson_boost//sort/spreadsort/detail/float_sort.hpp"
+#include "prezicsson_boost/static_assert.hpp"
+#include "prezicsson_boost/sort/spreadsort/detail/constants.hpp"
+#include "prezicsson_boost/sort/spreadsort/detail/float_sort.hpp"
 
 namespace boost {
 namespace sort {
