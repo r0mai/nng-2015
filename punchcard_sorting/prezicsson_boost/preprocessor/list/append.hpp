@@ -14,8 +14,8 @@
 # ifndef BOOST_PREPROCESSOR_LIST_APPEND_HPP
 # define BOOST_PREPROCESSOR_LIST_APPEND_HPP
 #
-#include "prezicsson_boost/preprocessor/config/config.hpp"
-#include "prezicsson_boost/preprocessor/list/fold_right.hpp"
+#include "prezicsson_boost//preprocessor/config/config.hpp"
+#include "prezicsson_boost//preprocessor/list/fold_right.hpp"
 #
 # /* BOOST_PP_LIST_APPEND */
 #

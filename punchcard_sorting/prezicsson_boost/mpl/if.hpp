@@ -14,13 +14,13 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/aux_/value_wknd.hpp"
-#include "prezicsson_boost/mpl/aux_/static_cast.hpp"
-#include "prezicsson_boost/mpl/aux_/na_spec.hpp"
-#include "prezicsson_boost/mpl/aux_/lambda_support.hpp"
-#include "prezicsson_boost/mpl/aux_/config/integral.hpp"
-#include "prezicsson_boost/mpl/aux_/config/ctps.hpp"
-#include "prezicsson_boost/mpl/aux_/config/workaround.hpp"
+#include "prezicsson_boost//mpl/aux_/value_wknd.hpp"
+#include "prezicsson_boost//mpl/aux_/static_cast.hpp"
+#include "prezicsson_boost//mpl/aux_/na_spec.hpp"
+#include "prezicsson_boost//mpl/aux_/lambda_support.hpp"
+#include "prezicsson_boost//mpl/aux_/config/integral.hpp"
+#include "prezicsson_boost//mpl/aux_/config/ctps.hpp"
+#include "prezicsson_boost//mpl/aux_/config/workaround.hpp"
 
 namespace boost { namespace mpl {
 

@@ -9,16 +9,16 @@
 #ifndef BOOST_TT_IS_POD_HPP_INCLUDED
 #define BOOST_TT_IS_POD_HPP_INCLUDED
 
-#include "prezicsson_boost/type_traits/config.hpp"
-#include "prezicsson_boost/type_traits/is_void.hpp"
-#include "prezicsson_boost/type_traits/is_scalar.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_or.hpp"
-#include "prezicsson_boost/type_traits/intrinsics.hpp"
+#include "prezicsson_boost//type_traits/config.hpp"
+#include "prezicsson_boost//type_traits/is_void.hpp"
+#include "prezicsson_boost//type_traits/is_scalar.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_or.hpp"
+#include "prezicsson_boost//type_traits/intrinsics.hpp"
 
 #include <cstddef>
 
 // should be the last #include
-#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
 
 #ifndef BOOST_IS_POD
 #define BOOST_INTERNAL_IS_POD(T) false
@@ -72,7 +72,7 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_POD,T,::boost::is_pod<T>::value)
 
 } // namespace boost
 
-#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
 
 #undef BOOST_INTERNAL_IS_POD
 

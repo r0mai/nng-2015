@@ -14,10 +14,10 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/bool.hpp"
-#include "prezicsson_boost/mpl/aux_/na_fwd.hpp"
-#include "prezicsson_boost/mpl/aux_/config/msvc.hpp"
-#include "prezicsson_boost/mpl/aux_/config/ctps.hpp"
+#include "prezicsson_boost//mpl/bool.hpp"
+#include "prezicsson_boost//mpl/aux_/na_fwd.hpp"
+#include "prezicsson_boost//mpl/aux_/config/msvc.hpp"
+#include "prezicsson_boost//mpl/aux_/config/ctps.hpp"
 
 namespace boost { namespace mpl {
 

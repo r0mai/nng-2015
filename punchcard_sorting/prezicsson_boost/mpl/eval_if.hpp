@@ -14,12 +14,12 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/if.hpp"
-#include "prezicsson_boost/mpl/aux_/na_spec.hpp"
-#include "prezicsson_boost/mpl/aux_/lambda_support.hpp"
-#include "prezicsson_boost/mpl/aux_/config/msvc.hpp"
-#include "prezicsson_boost/mpl/aux_/config/gcc.hpp"
-#include "prezicsson_boost/mpl/aux_/config/workaround.hpp"
+#include "prezicsson_boost//mpl/if.hpp"
+#include "prezicsson_boost//mpl/aux_/na_spec.hpp"
+#include "prezicsson_boost//mpl/aux_/lambda_support.hpp"
+#include "prezicsson_boost//mpl/aux_/config/msvc.hpp"
+#include "prezicsson_boost//mpl/aux_/config/gcc.hpp"
+#include "prezicsson_boost//mpl/aux_/config/workaround.hpp"
 
 namespace boost { namespace mpl {
 

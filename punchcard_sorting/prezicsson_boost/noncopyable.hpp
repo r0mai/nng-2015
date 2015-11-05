@@ -12,6 +12,6 @@
 // The header file at this path is deprecated;
 // use boost/core/noncopyable.hpp instead.
 
-#include "prezicsson_boost/core/noncopyable.hpp"
+#include "prezicsson_boost//core/noncopyable.hpp"
 
 #endif

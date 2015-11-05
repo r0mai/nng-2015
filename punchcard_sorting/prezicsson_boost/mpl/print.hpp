@@ -15,8 +15,8 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/aux_/config/msvc.hpp"
-#include "prezicsson_boost/mpl/identity.hpp"
+#include "prezicsson_boost//mpl/aux_/config/msvc.hpp"
+#include "prezicsson_boost//mpl/identity.hpp"
 
 namespace boost { namespace mpl {
   

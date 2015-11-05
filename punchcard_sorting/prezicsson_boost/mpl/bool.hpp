@@ -14,9 +14,9 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/bool_fwd.hpp"
-#include "prezicsson_boost/mpl/integral_c_tag.hpp"
-#include "prezicsson_boost/mpl/aux_/config/static_constant.hpp"
+#include "prezicsson_boost//mpl/bool_fwd.hpp"
+#include "prezicsson_boost//mpl/integral_c_tag.hpp"
+#include "prezicsson_boost//mpl/aux_/config/static_constant.hpp"
 
 BOOST_MPL_AUX_ADL_BARRIER_NAMESPACE_OPEN
 

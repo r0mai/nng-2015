@@ -14,11 +14,11 @@
 # ifndef BOOST_PREPROCESSOR_REPETITION_FOR_HPP
 # define BOOST_PREPROCESSOR_REPETITION_FOR_HPP
 #
-#include "prezicsson_boost/preprocessor/cat.hpp"
-#include "prezicsson_boost/preprocessor/debug/error.hpp"
-#include "prezicsson_boost/preprocessor/facilities/empty.hpp"
-#include "prezicsson_boost/preprocessor/logical/bool.hpp"
-#include "prezicsson_boost/preprocessor/detail/auto_rec.hpp"
+#include "prezicsson_boost//preprocessor/cat.hpp"
+#include "prezicsson_boost//preprocessor/debug/error.hpp"
+#include "prezicsson_boost//preprocessor/facilities/empty.hpp"
+#include "prezicsson_boost//preprocessor/logical/bool.hpp"
+#include "prezicsson_boost//preprocessor/detail/auto_rec.hpp"
 #
 # /* BOOST_PP_FOR */
 #
@@ -35,13 +35,13 @@
 # define BOOST_PP_FOR_SR_M(r, s) BOOST_PP_NIL
 #
 # if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_EDG()
-#include "prezicsson_boost/preprocessor/repetition/detail/edg/for.hpp"
+#include "prezicsson_boost//preprocessor/repetition/detail/edg/for.hpp"
 # elif BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_MSVC()
-#include "prezicsson_boost/preprocessor/repetition/detail/msvc/for.hpp"
+#include "prezicsson_boost//preprocessor/repetition/detail/msvc/for.hpp"
 # elif BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_DMC()
-#include "prezicsson_boost/preprocessor/repetition/detail/dmc/for.hpp"
+#include "prezicsson_boost//preprocessor/repetition/detail/dmc/for.hpp"
 # else
-#include "prezicsson_boost/preprocessor/repetition/detail/for.hpp"
+#include "prezicsson_boost//preprocessor/repetition/detail/for.hpp"
 # endif
 #
 # if BOOST_PP_CONFIG_FLAGS() & BOOST_PP_CONFIG_DMC()

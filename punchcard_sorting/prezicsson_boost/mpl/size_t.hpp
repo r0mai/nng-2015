@@ -14,12 +14,12 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/size_t_fwd.hpp"
+#include "prezicsson_boost//mpl/size_t_fwd.hpp"
 
 #define AUX_WRAPPER_VALUE_TYPE std::size_t
 #define AUX_WRAPPER_NAME size_t
 #define AUX_WRAPPER_PARAMS(N) std::size_t N
 
-#include "prezicsson_boost/mpl/aux_/integral_wrapper.hpp"
+#include "prezicsson_boost//mpl/aux_/integral_wrapper.hpp"
 
 #endif // BOOST_MPL_SIZE_T_HPP_INCLUDED

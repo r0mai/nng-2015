@@ -14,12 +14,12 @@
 # ifndef BOOST_PREPROCESSOR_LIST_LIST_FOR_EACH_I_HPP
 # define BOOST_PREPROCESSOR_LIST_LIST_FOR_EACH_I_HPP
 #
-#include "prezicsson_boost/preprocessor/arithmetic/inc.hpp"
-#include "prezicsson_boost/preprocessor/config/config.hpp"
-#include "prezicsson_boost/preprocessor/list/adt.hpp"
-#include "prezicsson_boost/preprocessor/repetition/for.hpp"
-#include "prezicsson_boost/preprocessor/tuple/elem.hpp"
-#include "prezicsson_boost/preprocessor/tuple/rem.hpp"
+#include "prezicsson_boost//preprocessor/arithmetic/inc.hpp"
+#include "prezicsson_boost//preprocessor/config/config.hpp"
+#include "prezicsson_boost//preprocessor/list/adt.hpp"
+#include "prezicsson_boost//preprocessor/repetition/for.hpp"
+#include "prezicsson_boost//preprocessor/tuple/elem.hpp"
+#include "prezicsson_boost//preprocessor/tuple/rem.hpp"
 #
 # /* BOOST_PP_LIST_FOR_EACH_I */
 #

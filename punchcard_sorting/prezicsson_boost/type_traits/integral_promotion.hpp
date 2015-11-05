@@ -6,18 +6,18 @@
 #ifndef FILE_boost_type_traits_integral_promotion_hpp_INCLUDED
 #define FILE_boost_type_traits_integral_promotion_hpp_INCLUDED
 
-#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost//config.hpp"
 
-#include "prezicsson_boost/mpl/eval_if.hpp"
-#include "prezicsson_boost/mpl/identity.hpp"
-#include "prezicsson_boost/type_traits/integral_constant.hpp"
-#include "prezicsson_boost/type_traits/is_const.hpp"
-#include "prezicsson_boost/type_traits/is_enum.hpp"
-#include "prezicsson_boost/type_traits/is_volatile.hpp"
-#include "prezicsson_boost/type_traits/remove_cv.hpp"
+#include "prezicsson_boost//mpl/eval_if.hpp"
+#include "prezicsson_boost//mpl/identity.hpp"
+#include "prezicsson_boost//type_traits/integral_constant.hpp"
+#include "prezicsson_boost//type_traits/is_const.hpp"
+#include "prezicsson_boost//type_traits/is_enum.hpp"
+#include "prezicsson_boost//type_traits/is_volatile.hpp"
+#include "prezicsson_boost//type_traits/remove_cv.hpp"
 
 // Should be the last #include
-#include "prezicsson_boost/type_traits/detail/type_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/type_trait_def.hpp"
 
 namespace boost {
 
@@ -188,7 +188,7 @@ BOOST_TT_AUX_TYPE_TRAIT_DEF1(
     )
 }
 
-#include "prezicsson_boost/type_traits/detail/type_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/type_trait_undef.hpp"
 
 #endif // #ifndef FILE_boost_type_traits_integral_promotion_hpp_INCLUDED
 

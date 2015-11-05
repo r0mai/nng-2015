@@ -10,13 +10,13 @@
 #ifndef BOOST_TT_IS_UNSIGNED_HPP_INCLUDED
 #define BOOST_TT_IS_UNSIGNED_HPP_INCLUDED
 
-#include "prezicsson_boost/type_traits/is_integral.hpp"
-#include "prezicsson_boost/type_traits/is_enum.hpp"
-#include "prezicsson_boost/type_traits/remove_cv.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_or.hpp"
+#include "prezicsson_boost//type_traits/is_integral.hpp"
+#include "prezicsson_boost//type_traits/is_enum.hpp"
+#include "prezicsson_boost//type_traits/remove_cv.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_or.hpp"
 
 // should be the last #include
-#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -130,6 +130,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_unsigned,T,::boost::detail::is_unsigned_imp<T>::
 
 } // namespace boost
 
-#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_MEMBER_FUNCTION_POINTER_HPP_INCLUDED

@@ -12,8 +12,8 @@
 #define BOOST_TT_DETAIL_CV_TRAITS_IMPL_HPP_INCLUDED
 
 #include <cstddef>
-#include "prezicsson_boost/config.hpp"
-#include "prezicsson_boost/detail/workaround.hpp"
+#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost//detail/workaround.hpp"
 
 
 // implementation helper:

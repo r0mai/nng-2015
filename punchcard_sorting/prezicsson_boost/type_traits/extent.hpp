@@ -11,7 +11,7 @@
 #define BOOST_TT_EXTENT_HPP_INCLUDED
 
 // should be the last #include
-#include "prezicsson_boost/type_traits/detail/size_t_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/size_t_trait_def.hpp"
 
 namespace boost {
 
@@ -136,6 +136,6 @@ struct extent
 
 } // namespace boost
 
-#include "prezicsson_boost/type_traits/detail/size_t_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/size_t_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_MEMBER_FUNCTION_POINTER_HPP_INCLUDED

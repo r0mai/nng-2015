@@ -11,8 +11,8 @@
 #ifndef BOOST_TT_IS_MEMBER_FUNCTION_POINTER_HPP_INCLUDED
 #define BOOST_TT_IS_MEMBER_FUNCTION_POINTER_HPP_INCLUDED
 
-#include "prezicsson_boost/type_traits/config.hpp"
-#include "prezicsson_boost/detail/workaround.hpp"
+#include "prezicsson_boost//type_traits/config.hpp"
+#include "prezicsson_boost//detail/workaround.hpp"
 
 #if !BOOST_WORKAROUND(__BORLANDC__, < 0x600) && !defined(BOOST_TT_TEST_MS_FUNC_SIGS)
    //
@@ -20,19 +20,19 @@
    // __stdcall etc function types, where as the partial specialisation
    // version does not do so.
    //
-#include "prezicsson_boost/type_traits/detail/is_mem_fun_pointer_impl.hpp"
-#include "prezicsson_boost/type_traits/remove_cv.hpp"
+#include "prezicsson_boost//type_traits/detail/is_mem_fun_pointer_impl.hpp"
+#include "prezicsson_boost//type_traits/remove_cv.hpp"
 #else
-#include "prezicsson_boost/type_traits/is_reference.hpp"
-#include "prezicsson_boost/type_traits/is_array.hpp"
-#include "prezicsson_boost/type_traits/detail/yes_no_type.hpp"
-#include "prezicsson_boost/type_traits/detail/false_result.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_or.hpp"
-#include "prezicsson_boost/type_traits/detail/is_mem_fun_pointer_tester.hpp"
+#include "prezicsson_boost//type_traits/is_reference.hpp"
+#include "prezicsson_boost//type_traits/is_array.hpp"
+#include "prezicsson_boost//type_traits/detail/yes_no_type.hpp"
+#include "prezicsson_boost//type_traits/detail/false_result.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_or.hpp"
+#include "prezicsson_boost//type_traits/detail/is_mem_fun_pointer_tester.hpp"
 #endif
 
 // should be the last #include
-#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -128,6 +128,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_member_function_pointer,T,::boost::detail::is_me
 
 } // namespace boost
 
-#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_MEMBER_FUNCTION_POINTER_HPP_INCLUDED

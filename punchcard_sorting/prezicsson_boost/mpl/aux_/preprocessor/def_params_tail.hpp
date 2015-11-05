@@ -14,14 +14,14 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/limits/arity.hpp"
-#include "prezicsson_boost/mpl/aux_/config/dtp.hpp"
-#include "prezicsson_boost/mpl/aux_/config/preprocessor.hpp"
+#include "prezicsson_boost//mpl/limits/arity.hpp"
+#include "prezicsson_boost//mpl/aux_/config/dtp.hpp"
+#include "prezicsson_boost//mpl/aux_/config/preprocessor.hpp"
 
-#include "prezicsson_boost/preprocessor/comma_if.hpp"
-#include "prezicsson_boost/preprocessor/logical/and.hpp"
-#include "prezicsson_boost/preprocessor/identity.hpp"
-#include "prezicsson_boost/preprocessor/empty.hpp"
+#include "prezicsson_boost//preprocessor/comma_if.hpp"
+#include "prezicsson_boost//preprocessor/logical/and.hpp"
+#include "prezicsson_boost//preprocessor/identity.hpp"
+#include "prezicsson_boost//preprocessor/empty.hpp"
 
 // BOOST_MPL_PP_DEF_PARAMS_TAIL(1,T,value): , T1 = value, .., Tn = value
 // BOOST_MPL_PP_DEF_PARAMS_TAIL(2,T,value): , T2 = value, .., Tn = value
@@ -29,8 +29,8 @@
 
 #if !defined(BOOST_MPL_CFG_NO_OWN_PP_PRIMITIVES)
 
-#include "prezicsson_boost/mpl/aux_/preprocessor/filter_params.hpp"
-#include "prezicsson_boost/mpl/aux_/preprocessor/sub.hpp"
+#include "prezicsson_boost//mpl/aux_/preprocessor/filter_params.hpp"
+#include "prezicsson_boost//mpl/aux_/preprocessor/sub.hpp"
 
 #   define BOOST_MPL_PP_DEF_PARAMS_TAIL_IMPL(i, param, value_func) \
     BOOST_MPL_PP_DEF_PARAMS_TAIL_DELAY_1( \
@@ -63,12 +63,12 @@
 
 #else
 
-#include "prezicsson_boost/preprocessor/arithmetic/add.hpp"
-#include "prezicsson_boost/preprocessor/arithmetic/sub.hpp"
-#include "prezicsson_boost/preprocessor/inc.hpp"
-#include "prezicsson_boost/preprocessor/tuple/elem.hpp"
-#include "prezicsson_boost/preprocessor/repeat.hpp"
-#include "prezicsson_boost/preprocessor/cat.hpp"
+#include "prezicsson_boost//preprocessor/arithmetic/add.hpp"
+#include "prezicsson_boost//preprocessor/arithmetic/sub.hpp"
+#include "prezicsson_boost//preprocessor/inc.hpp"
+#include "prezicsson_boost//preprocessor/tuple/elem.hpp"
+#include "prezicsson_boost//preprocessor/repeat.hpp"
+#include "prezicsson_boost//preprocessor/cat.hpp"
 
 #   define BOOST_MPL_PP_AUX_TAIL_PARAM_FUNC(unused, i, op) \
     , BOOST_PP_CAT( \

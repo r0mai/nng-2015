@@ -6,19 +6,19 @@
 #ifndef FILE_boost_type_traits_floating_point_promotion_hpp_INCLUDED
 #define FILE_boost_type_traits_floating_point_promotion_hpp_INCLUDED
 
-#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost//config.hpp"
 
 #ifdef BOOST_NO_CV_SPECIALIZATIONS
-#include "prezicsson_boost/mpl/at.hpp"
-#include "prezicsson_boost/mpl/int.hpp"
-#include "prezicsson_boost/mpl/multiplies.hpp"
-#include "prezicsson_boost/mpl/plus.hpp"
-#include "prezicsson_boost/mpl/vector.hpp"
-#include "prezicsson_boost/type_traits/is_same.hpp"
+#include "prezicsson_boost//mpl/at.hpp"
+#include "prezicsson_boost//mpl/int.hpp"
+#include "prezicsson_boost//mpl/multiplies.hpp"
+#include "prezicsson_boost//mpl/plus.hpp"
+#include "prezicsson_boost//mpl/vector.hpp"
+#include "prezicsson_boost//type_traits/is_same.hpp"
 #endif
 
 // Should be the last #include
-#include "prezicsson_boost/type_traits/detail/type_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/type_trait_def.hpp"
 
 namespace boost {
 
@@ -85,7 +85,7 @@ BOOST_TT_AUX_TYPE_TRAIT_DEF1(
     )
 }
 
-#include "prezicsson_boost/type_traits/detail/type_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/type_trait_undef.hpp"
 
 #endif // #ifndef FILE_boost_type_traits_floating_point_promotion_hpp_INCLUDED
 

@@ -11,10 +11,10 @@
 #ifndef BOOST_TT_ICE_HPP_INCLUDED
 #define BOOST_TT_ICE_HPP_INCLUDED
 
-#include "prezicsson_boost/type_traits/detail/yes_no_type.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_or.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_and.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_not.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_eq.hpp"
+#include "prezicsson_boost//type_traits/detail/yes_no_type.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_or.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_and.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_not.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_eq.hpp"
 
 #endif // BOOST_TT_ICE_HPP_INCLUDED

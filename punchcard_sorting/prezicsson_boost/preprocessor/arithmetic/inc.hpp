@@ -14,7 +14,7 @@
 # ifndef BOOST_PREPROCESSOR_ARITHMETIC_INC_HPP
 # define BOOST_PREPROCESSOR_ARITHMETIC_INC_HPP
 #
-#include "prezicsson_boost/preprocessor/config/config.hpp"
+#include "prezicsson_boost//preprocessor/config/config.hpp"
 #
 # /* BOOST_PP_INC */
 #

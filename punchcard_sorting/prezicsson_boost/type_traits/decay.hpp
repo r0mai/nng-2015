@@ -9,14 +9,14 @@
 #ifndef BOOST_TT_DECAY_HPP_INCLUDED
 #define BOOST_TT_DECAY_HPP_INCLUDED
 
-#include "prezicsson_boost/type_traits/config.hpp"
-#include "prezicsson_boost/type_traits/is_array.hpp"
-#include "prezicsson_boost/type_traits/is_function.hpp"
-#include "prezicsson_boost/type_traits/remove_bounds.hpp"
-#include "prezicsson_boost/type_traits/add_pointer.hpp"
-#include "prezicsson_boost/type_traits/remove_reference.hpp"
-#include "prezicsson_boost/mpl/eval_if.hpp"
-#include "prezicsson_boost/mpl/identity.hpp"
+#include "prezicsson_boost//type_traits/config.hpp"
+#include "prezicsson_boost//type_traits/is_array.hpp"
+#include "prezicsson_boost//type_traits/is_function.hpp"
+#include "prezicsson_boost//type_traits/remove_bounds.hpp"
+#include "prezicsson_boost//type_traits/add_pointer.hpp"
+#include "prezicsson_boost//type_traits/remove_reference.hpp"
+#include "prezicsson_boost//mpl/eval_if.hpp"
+#include "prezicsson_boost//mpl/identity.hpp"
 
 namespace boost 
 {

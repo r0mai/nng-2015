@@ -16,7 +16,7 @@
 
 #if !defined(BOOST_MPL_PREPROCESSING_MODE)
 // BOOST_STATIC_CONSTANT is defined here:
-#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost//config.hpp"
 #else
 // undef the macro for the preprocessing mode
 #   undef BOOST_STATIC_CONSTANT

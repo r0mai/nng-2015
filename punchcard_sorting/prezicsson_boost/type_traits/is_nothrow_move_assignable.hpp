@@ -11,19 +11,19 @@
 #ifndef BOOST_TT_IS_NOTHROW_MOVE_ASSIGNABLE_HPP_INCLUDED
 #define BOOST_TT_IS_NOTHROW_MOVE_ASSIGNABLE_HPP_INCLUDED
 
-#include "prezicsson_boost/config.hpp"
-#include "prezicsson_boost/type_traits/has_trivial_move_assign.hpp"
-#include "prezicsson_boost/type_traits/has_nothrow_assign.hpp"
-#include "prezicsson_boost/type_traits/is_array.hpp"
-#include "prezicsson_boost/type_traits/is_reference.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_and.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_or.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_not.hpp"
-#include "prezicsson_boost/utility/enable_if.hpp"
-#include "prezicsson_boost/utility/declval.hpp"
+#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost//type_traits/has_trivial_move_assign.hpp"
+#include "prezicsson_boost//type_traits/has_nothrow_assign.hpp"
+#include "prezicsson_boost//type_traits/is_array.hpp"
+#include "prezicsson_boost//type_traits/is_reference.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_and.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_or.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_not.hpp"
+#include "prezicsson_boost//utility/enable_if.hpp"
+#include "prezicsson_boost//utility/declval.hpp"
 
 // should be the last #include
-#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -103,6 +103,6 @@ BOOST_TT_AUX_BOOL_TRAIT_SPEC1(is_nothrow_move_assignable,void volatile,false)
 
 } // namespace boost
 
-#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_NOTHROW_MOVE_ASSIGNABLE_HPP_INCLUDED

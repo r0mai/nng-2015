@@ -14,15 +14,15 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/aux_/static_cast.hpp"
-#include "prezicsson_boost/mpl/aux_/config/integral.hpp"
-#include "prezicsson_boost/mpl/aux_/config/eti.hpp"
-#include "prezicsson_boost/mpl/aux_/config/workaround.hpp"
+#include "prezicsson_boost//mpl/aux_/static_cast.hpp"
+#include "prezicsson_boost//mpl/aux_/config/integral.hpp"
+#include "prezicsson_boost//mpl/aux_/config/eti.hpp"
+#include "prezicsson_boost//mpl/aux_/config/workaround.hpp"
 
 #if defined(BOOST_MPL_CFG_BCC_INTEGRAL_CONSTANTS) \
     || defined(BOOST_MPL_CFG_MSVC_60_ETI_BUG)
 
-#include "prezicsson_boost/mpl/int.hpp"
+#include "prezicsson_boost//mpl/int.hpp"
 
 namespace boost { namespace mpl { namespace aux {
 template< typename C_ > struct value_wknd

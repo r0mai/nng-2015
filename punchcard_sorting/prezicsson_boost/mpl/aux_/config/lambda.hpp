@@ -14,8 +14,8 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/aux_/config/ttp.hpp"
-#include "prezicsson_boost/mpl/aux_/config/ctps.hpp"
+#include "prezicsson_boost//mpl/aux_/config/ttp.hpp"
+#include "prezicsson_boost//mpl/aux_/config/ctps.hpp"
 
 // agurt, 15/jan/02: full-fledged implementation requires both 
 // template template parameters _and_ partial specialization

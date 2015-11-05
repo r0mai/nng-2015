@@ -18,9 +18,9 @@ Phil Endecott and Frank Gennari
 #include <vector>
 #include <cstring>
 #include <limits>
-#include <boost/static_assert.hpp>
-#include <boost/sort/spreadsort/detail/constants.hpp>
-#include <boost/sort/spreadsort/detail/string_sort.hpp>
+#include "prezicsson_boost//static_assert.hpp"
+#include "prezicsson_boost//sort/spreadsort/detail/constants.hpp"
+#include "prezicsson_boost//sort/spreadsort/detail/string_sort.hpp"
 
 namespace boost {
 namespace sort {

@@ -13,8 +13,8 @@
 # ifndef BOOST_PREPROCESSOR_VARIADIC_ELEM_HPP
 # define BOOST_PREPROCESSOR_VARIADIC_ELEM_HPP
 #
-#include "prezicsson_boost/preprocessor/cat.hpp"
-#include "prezicsson_boost/preprocessor/config/config.hpp"
+#include "prezicsson_boost//preprocessor/cat.hpp"
+#include "prezicsson_boost//preprocessor/config/config.hpp"
 #
 # /* BOOST_PP_VARIADIC_ELEM */
 #

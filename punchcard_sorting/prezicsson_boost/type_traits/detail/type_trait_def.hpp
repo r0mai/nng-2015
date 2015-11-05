@@ -11,8 +11,8 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/type_traits/detail/template_arity_spec.hpp"
-#include "prezicsson_boost/mpl/aux_/lambda_support.hpp"
+#include "prezicsson_boost//type_traits/detail/template_arity_spec.hpp"
+#include "prezicsson_boost//mpl/aux_/lambda_support.hpp"
 
 #define BOOST_TT_AUX_TYPE_TRAIT_DEF1(trait,T,result) \
 template< typename T > struct trait \

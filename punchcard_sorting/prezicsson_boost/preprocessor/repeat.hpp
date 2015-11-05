@@ -12,6 +12,6 @@
 # ifndef BOOST_PREPROCESSOR_REPEAT_HPP
 # define BOOST_PREPROCESSOR_REPEAT_HPP
 #
-#include "prezicsson_boost/preprocessor/repetition/repeat.hpp"
+#include "prezicsson_boost//preprocessor/repetition/repeat.hpp"
 #
 # endif

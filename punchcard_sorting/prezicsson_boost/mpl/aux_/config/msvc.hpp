@@ -16,6 +16,6 @@
 
 
 // BOOST_MSVC is defined here:
-#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost//config.hpp"
 
 #endif // BOOST_MPL_AUX_CONFIG_MSVC_HPP_INCLUDED

@@ -6,23 +6,23 @@
 //
 //  See http://www.boost.org/libs/type_traits for most recent version including documentation.
 
-#include "prezicsson_boost/config.hpp"
-#include "prezicsson_boost/type_traits/ice.hpp"
-#include "prezicsson_boost/type_traits/integral_constant.hpp"
-#include "prezicsson_boost/type_traits/is_base_of.hpp"
-#include "prezicsson_boost/type_traits/is_const.hpp"
-#include "prezicsson_boost/type_traits/is_convertible.hpp"
-#include "prezicsson_boost/type_traits/is_fundamental.hpp"
-#include "prezicsson_boost/type_traits/is_integral.hpp"
-#include "prezicsson_boost/type_traits/is_pointer.hpp"
-#include "prezicsson_boost/type_traits/is_same.hpp"
-#include "prezicsson_boost/type_traits/is_void.hpp"
-#include "prezicsson_boost/type_traits/remove_cv.hpp"
-#include "prezicsson_boost/type_traits/remove_pointer.hpp"
-#include "prezicsson_boost/type_traits/remove_reference.hpp"
+#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost//type_traits/ice.hpp"
+#include "prezicsson_boost//type_traits/integral_constant.hpp"
+#include "prezicsson_boost//type_traits/is_base_of.hpp"
+#include "prezicsson_boost//type_traits/is_const.hpp"
+#include "prezicsson_boost//type_traits/is_convertible.hpp"
+#include "prezicsson_boost//type_traits/is_fundamental.hpp"
+#include "prezicsson_boost//type_traits/is_integral.hpp"
+#include "prezicsson_boost//type_traits/is_pointer.hpp"
+#include "prezicsson_boost//type_traits/is_same.hpp"
+#include "prezicsson_boost//type_traits/is_void.hpp"
+#include "prezicsson_boost//type_traits/remove_cv.hpp"
+#include "prezicsson_boost//type_traits/remove_pointer.hpp"
+#include "prezicsson_boost//type_traits/remove_reference.hpp"
 
 // should be the last #include
-#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
 
 // cannot include this header without getting warnings of the kind:
 // gcc:
@@ -226,4 +226,4 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF3(BOOST_TT_TRAIT_NAME, Lhs, Rhs=Lhs, Ret=::boost::det
 #   pragma warning ( pop )
 #endif
 
-#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"

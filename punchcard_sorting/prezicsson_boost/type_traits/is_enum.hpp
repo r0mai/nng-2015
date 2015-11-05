@@ -11,25 +11,25 @@
 #ifndef BOOST_TT_IS_ENUM_HPP_INCLUDED
 #define BOOST_TT_IS_ENUM_HPP_INCLUDED
 
-#include "prezicsson_boost/type_traits/intrinsics.hpp"
+#include "prezicsson_boost//type_traits/intrinsics.hpp"
 #ifndef BOOST_IS_ENUM
-#include "prezicsson_boost/type_traits/add_reference.hpp"
-#include "prezicsson_boost/type_traits/is_arithmetic.hpp"
-#include "prezicsson_boost/type_traits/is_reference.hpp"
-#include "prezicsson_boost/type_traits/is_convertible.hpp"
-#include "prezicsson_boost/type_traits/is_array.hpp"
+#include "prezicsson_boost//type_traits/add_reference.hpp"
+#include "prezicsson_boost//type_traits/is_arithmetic.hpp"
+#include "prezicsson_boost//type_traits/is_reference.hpp"
+#include "prezicsson_boost//type_traits/is_convertible.hpp"
+#include "prezicsson_boost//type_traits/is_array.hpp"
 #ifdef __GNUC__
-#include "prezicsson_boost/type_traits/is_function.hpp"
+#include "prezicsson_boost//type_traits/is_function.hpp"
 #endif
-#include "prezicsson_boost/type_traits/config.hpp"
+#include "prezicsson_boost//type_traits/config.hpp"
 #if defined(BOOST_TT_HAS_CONFORMING_IS_CLASS_IMPLEMENTATION) 
-#include "prezicsson_boost/type_traits/is_class.hpp"
-#include "prezicsson_boost/type_traits/is_union.hpp"
+#include "prezicsson_boost//type_traits/is_class.hpp"
+#include "prezicsson_boost//type_traits/is_union.hpp"
 #endif
 #endif
 
 // should be the last #include
-#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -183,6 +183,6 @@ BOOST_TT_AUX_BOOL_TRAIT_DEF1(is_enum,T,BOOST_IS_ENUM(T))
 
 } // namespace boost
 
-#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_ENUM_HPP_INCLUDED

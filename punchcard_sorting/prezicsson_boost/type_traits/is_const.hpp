@@ -21,19 +21,19 @@
 #ifndef BOOST_TT_IS_CONST_HPP_INCLUDED
 #define BOOST_TT_IS_CONST_HPP_INCLUDED
 
-#include "prezicsson_boost/config.hpp"
-#include "prezicsson_boost/detail/workaround.hpp"
+#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost//detail/workaround.hpp"
 
-#include "prezicsson_boost/type_traits/detail/cv_traits_impl.hpp"
+#include "prezicsson_boost//type_traits/detail/cv_traits_impl.hpp"
 #   ifdef __GNUC__
-#include "prezicsson_boost/type_traits/is_reference.hpp"
+#include "prezicsson_boost//type_traits/is_reference.hpp"
 #   endif
 #   if BOOST_WORKAROUND(BOOST_MSVC, < 1400)
-#include "prezicsson_boost/type_traits/remove_bounds.hpp"
+#include "prezicsson_boost//type_traits/remove_bounds.hpp"
 #   endif
 
 // should be the last #include
-#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -84,7 +84,7 @@ BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC1_1(typename T,is_const,T& const volatile,fa
 
 } // namespace boost
 
-#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_CONST_HPP_INCLUDED
 

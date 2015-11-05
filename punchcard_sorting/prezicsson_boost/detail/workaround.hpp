@@ -38,7 +38,7 @@
 
 # ifndef BOOST_STRICT_CONFIG
 
-#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost//config.hpp"
 
 #ifndef __BORLANDC__
 #define __BORLANDC___WORKAROUND_GUARD 1

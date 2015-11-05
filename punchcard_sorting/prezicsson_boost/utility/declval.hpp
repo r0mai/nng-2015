@@ -8,11 +8,11 @@
 #ifndef BOOST_UTILITY_DECLVAL_HPP
 #define BOOST_UTILITY_DECLVAL_HPP
 
-#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost//config.hpp"
 
 //----------------------------------------------------------------------------//
 
-#include "prezicsson_boost/type_traits/add_rvalue_reference.hpp"
+#include "prezicsson_boost//type_traits/add_rvalue_reference.hpp"
 
 //----------------------------------------------------------------------------//
 //                                                                            //

@@ -9,7 +9,7 @@
 #ifndef BOOST_CORE_NONCOPYABLE_HPP
 #define BOOST_CORE_NONCOPYABLE_HPP
 
-#include "prezicsson_boost/config.hpp"
+#include "prezicsson_boost//config.hpp"
 
 namespace boost {
 

@@ -9,19 +9,19 @@
 #ifndef BOOST_TT_IS_BASE_AND_DERIVED_HPP_INCLUDED
 #define BOOST_TT_IS_BASE_AND_DERIVED_HPP_INCLUDED
 
-#include "prezicsson_boost/type_traits/intrinsics.hpp"
+#include "prezicsson_boost//type_traits/intrinsics.hpp"
 #ifndef BOOST_IS_BASE_OF
-#include "prezicsson_boost/type_traits/is_class.hpp"
-#include "prezicsson_boost/type_traits/is_same.hpp"
-#include "prezicsson_boost/type_traits/is_convertible.hpp"
-#include "prezicsson_boost/type_traits/detail/ice_and.hpp"
-#include "prezicsson_boost/config.hpp"
-#include "prezicsson_boost/static_assert.hpp"
+#include "prezicsson_boost//type_traits/is_class.hpp"
+#include "prezicsson_boost//type_traits/is_same.hpp"
+#include "prezicsson_boost//type_traits/is_convertible.hpp"
+#include "prezicsson_boost//type_traits/detail/ice_and.hpp"
+#include "prezicsson_boost//config.hpp"
+#include "prezicsson_boost//static_assert.hpp"
 #endif
-#include "prezicsson_boost/type_traits/remove_cv.hpp"
+#include "prezicsson_boost//type_traits/remove_cv.hpp"
 
 // should be the last #include
-#include "prezicsson_boost/type_traits/detail/bool_trait_def.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_def.hpp"
 
 namespace boost {
 
@@ -247,6 +247,6 @@ BOOST_TT_AUX_BOOL_TRAIT_PARTIAL_SPEC2_1(typename Base,is_base_and_derived,Base,B
 
 } // namespace boost
 
-#include "prezicsson_boost/type_traits/detail/bool_trait_undef.hpp"
+#include "prezicsson_boost//type_traits/detail/bool_trait_undef.hpp"
 
 #endif // BOOST_TT_IS_BASE_AND_DERIVED_HPP_INCLUDED

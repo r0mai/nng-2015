@@ -14,8 +14,8 @@
 // $Date$
 // $Revision$
 
-#include "prezicsson_boost/mpl/aux_/adl_barrier.hpp"
-#include <boost/config.hpp> // make sure 'size_t' is placed into 'std'
+#include "prezicsson_boost//mpl/aux_/adl_barrier.hpp"
+#include "prezicsson_boost//config.hpp"
 #include <cstddef>
 
 BOOST_MPL_AUX_ADL_BARRIER_NAMESPACE_OPEN
