@@ -15,7 +15,7 @@
 
 #if defined __CUDACC__
 //  NVIDIA CUDA C++ compiler for GPU
-#   include "boost/config/compiler/nvcc.hpp"
+#include "prezicsson_boost/config/compiler/nvcc.hpp"
 
 #endif
 
@@ -122,27 +122,27 @@
 //
 // This section allows dependency scanners to find all the headers we *might* include:
 //
-#include "boost/config/compiler/gcc_xml.hpp"
-#include "boost/config/compiler/cray.hpp"
-#include "boost/config/compiler/comeau.hpp"
-#include "boost/config/compiler/pathscale.hpp"
-#include "boost/config/compiler/intel.hpp"
-#include "boost/config/compiler/clang.hpp"
-#include "boost/config/compiler/digitalmars.hpp"
-#include "boost/config/compiler/gcc.hpp"
-#include "boost/config/compiler/kai.hpp"
-#include "boost/config/compiler/sgi_mipspro.hpp"
-#include "boost/config/compiler/compaq_cxx.hpp"
-#include "boost/config/compiler/greenhills.hpp"
-#include "boost/config/compiler/codegear.hpp"
-#include "boost/config/compiler/borland.hpp"
-#include "boost/config/compiler/metrowerks.hpp"
-#include "boost/config/compiler/sunpro_cc.hpp"
-#include "boost/config/compiler/hp_acc.hpp"
-#include "boost/config/compiler/mpw.hpp"
-#include "boost/config/compiler/vacpp.hpp"
-#include "boost/config/compiler/pgi.hpp"
-#include "boost/config/compiler/visualc.hpp"
+#include "prezicsson_boost/config/compiler/gcc_xml.hpp"
+#include "prezicsson_boost/config/compiler/cray.hpp"
+#include "prezicsson_boost/config/compiler/comeau.hpp"
+#include "prezicsson_boost/config/compiler/pathscale.hpp"
+#include "prezicsson_boost/config/compiler/intel.hpp"
+#include "prezicsson_boost/config/compiler/clang.hpp"
+#include "prezicsson_boost/config/compiler/digitalmars.hpp"
+#include "prezicsson_boost/config/compiler/gcc.hpp"
+#include "prezicsson_boost/config/compiler/kai.hpp"
+#include "prezicsson_boost/config/compiler/sgi_mipspro.hpp"
+#include "prezicsson_boost/config/compiler/compaq_cxx.hpp"
+#include "prezicsson_boost/config/compiler/greenhills.hpp"
+#include "prezicsson_boost/config/compiler/codegear.hpp"
+#include "prezicsson_boost/config/compiler/borland.hpp"
+#include "prezicsson_boost/config/compiler/metrowerks.hpp"
+#include "prezicsson_boost/config/compiler/sunpro_cc.hpp"
+#include "prezicsson_boost/config/compiler/hp_acc.hpp"
+#include "prezicsson_boost/config/compiler/mpw.hpp"
+#include "prezicsson_boost/config/compiler/vacpp.hpp"
+#include "prezicsson_boost/config/compiler/pgi.hpp"
+#include "prezicsson_boost/config/compiler/visualc.hpp"
 
 #endif
 

@@ -91,15 +91,15 @@
 //
 // This section allows dependency scanners to find all the files we *might* include:
 //
-#  include "boost/config/stdlib/stlport.hpp"
-#  include "boost/config/stdlib/libcomo.hpp"
-#  include "boost/config/stdlib/roguewave.hpp"
-#  include "boost/config/stdlib/libcpp.hpp"
-#  include "boost/config/stdlib/libstdcpp3.hpp"
-#  include "boost/config/stdlib/sgi.hpp"
-#  include "boost/config/stdlib/msl.hpp"
-#  include "boost/config/stdlib/vacpp.hpp"
-#  include "boost/config/stdlib/modena.hpp"
-#  include "boost/config/stdlib/dinkumware.hpp"
+#include "prezicsson_boost/config/stdlib/stlport.hpp"
+#include "prezicsson_boost/config/stdlib/libcomo.hpp"
+#include "prezicsson_boost/config/stdlib/roguewave.hpp"
+#include "prezicsson_boost/config/stdlib/libcpp.hpp"
+#include "prezicsson_boost/config/stdlib/libstdcpp3.hpp"
+#include "prezicsson_boost/config/stdlib/sgi.hpp"
+#include "prezicsson_boost/config/stdlib/msl.hpp"
+#include "prezicsson_boost/config/stdlib/vacpp.hpp"
+#include "prezicsson_boost/config/stdlib/modena.hpp"
+#include "prezicsson_boost/config/stdlib/dinkumware.hpp"
 #endif
 
