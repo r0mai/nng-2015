@@ -54,7 +54,7 @@
 #endif
 // if we have a platform config, include it now:
 #ifdef BOOST_PLATFORM_CONFIG
-#  include BOOST_PLATFORM_CONFIG
+#include "prezicsson_boost/config/platform/win32.hpp"
 #endif
 
 // get config suffix code:
