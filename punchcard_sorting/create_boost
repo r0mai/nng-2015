@@ -5,15 +5,15 @@ set -e
 function fix_include_thingies() {
     file="$1"
 
-    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*[<"]boost\\(.*\\)[>"].*$/#include "prezicsson_boost\\1"/g' "$file"
-    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_USER_CONFIG.*$/#include "prezicsson_boost\\/config\\/user.hpp"/g' "$file"
-    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_COMPILER_CONFIG*$/#include "prezicsson_boost\\/config\\/compiler\\/visualc.hpp"/g' "$file"
-    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_STDLIB_CONFIG*$/#include "prezicsson_boost\\/config\\/stdlib\\/dinkumware.hpp"/g' "$file"
-    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_PLATFORM_CONFIG*$/#include "prezicsson_boost\\/config\\/platform\\/win32.hpp"/g' "$file"
+    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*[<"]boost\\(.*\\)[>"].*$/#include "boost\\1"/g' "$file"
+    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_USER_CONFIG.*$/#include "boost\\/config\\/user.hpp"/g' "$file"
+    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_COMPILER_CONFIG*$/#include "boost\\/config\\/compiler\\/visualc.hpp"/g' "$file"
+    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_STDLIB_CONFIG*$/#include "boost\\/config\\/stdlib\\/dinkumware.hpp"/g' "$file"
+    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_PLATFORM_CONFIG*$/#include "boost\\/config\\/platform\\/win32.hpp"/g' "$file"
 }
 
 boost_root='/Users/r0mai/build/boost/build-1_59/include/boost'
-boost_dir='prezicsson_boost'
+boost_dir='boost'
 
 files="$(cat include_list | grep boost | sed 's/^1>.*boost_1_59_0\\boost//g' | sort | uniq)"
 
