@@ -5,7 +5,7 @@ set -e
 function fix_include_thingies() {
     file="$1"
 
-    sed -i '' $'s/^#[ \t]*include[ \t]*<boost\/\\(.*\\)>$/#include "prezicsson_boost\/\\1"/g' "$file"
+    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*<boost\/\\(.*\\)>$/#include "prezicsson_boost\/\\1"/g' "$file"
 }
 
 boost_root='/Users/r0mai/build/boost/build-1_59/include/boost'

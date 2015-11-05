@@ -21,10 +21,10 @@
 #include "prezicsson_boost/utility/declval.hpp"
 #else
    //For compilers without decltype
-   #include <boost/type_traits/is_const.hpp>
-   #include <boost/type_traits/is_array.hpp>
-   #include <boost/type_traits/add_reference.hpp>
-   #include <boost/type_traits/remove_reference.hpp>
+#include "prezicsson_boost/type_traits/is_const.hpp"
+#include "prezicsson_boost/type_traits/is_array.hpp"
+#include "prezicsson_boost/type_traits/add_reference.hpp"
+#include "prezicsson_boost/type_traits/remove_reference.hpp"
 #endif
 
 
