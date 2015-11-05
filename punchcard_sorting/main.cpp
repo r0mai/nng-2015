@@ -10,7 +10,7 @@
 
 #include <future>
 
-#include <boost/sort/sort.hpp>
+#include "string_sort.hpp"
 
 constexpr std::size_t maxLength = 64;
 
