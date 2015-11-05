@@ -8,6 +8,7 @@ function fix_include_thingies() {
     sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*[<"]boost\\(.*\\)[>"].*$/#include "prezicsson_boost\\1"/g' "$file"
     sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_USER_CONFIG.*$/#include "prezicsson_boost\\/config\\/user.hpp"/g' "$file"
     sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_COMPILER_CONFIG*$/#include "prezicsson_boost\\/config\\/compiler\\/visualc.hpp"/g' "$file"
+    sed -i '' $'s/^[ \t]*#[ \t]*include[ \t]*BOOST_STDLIB_CONFIG*$/#include "prezicsson_boost\\/config\\/stdlib\\/dinkumware.hpp"/g' "$file"
 }
 
 boost_root='/Users/r0mai/build/boost/build-1_59/include/boost'

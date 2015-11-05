@@ -45,7 +45,7 @@
 #endif
 // if we have a std library config, include it now:
 #ifdef BOOST_STDLIB_CONFIG
-#  include BOOST_STDLIB_CONFIG
+#include "prezicsson_boost/config/stdlib/dinkumware.hpp"
 #endif
 
 // if we don't have a platform config set, try and find one:
