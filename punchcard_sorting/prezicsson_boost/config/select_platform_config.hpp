@@ -122,9 +122,9 @@
 #include "prezicsson_boost/config/platform/amigaos.hpp"
 #include "prezicsson_boost/config/platform/qnxnto.hpp"
 #include "prezicsson_boost/config/platform/vxworks.hpp"
-#  include "boost/config/platform/symbian.hpp" 
-#  include "boost/config/platform/cray.hpp" 
-#  include "boost/config/platform/vms.hpp" 
+#include "prezicsson_boost/config/platform/symbian.hpp"
+#include "prezicsson_boost/config/platform/cray.hpp"
+#include "prezicsson_boost/config/platform/vms.hpp"
 #include "prezicsson_boost/config/posix_features.hpp"
 
 
