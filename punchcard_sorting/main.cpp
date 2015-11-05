@@ -21,9 +21,13 @@ const std::size_t maxLength = 64;
 using Line = std::array<char, maxLength + 1>;
 
 struct Timer {
-    Timer(std::string message)
+#if !defined(_DEBUG)
+    Timer(const std::string &) {}
+    ~Timer() {}
+#else
+    Timer(const std::string& message)
         : start(std::chrono::system_clock::now()),
-          message(std::move(message)) {}
+          message(message) {}
 
     ~Timer() {
         auto end = std::chrono::system_clock::now();
@@ -33,6 +37,7 @@ struct Timer {
 
     std::chrono::system_clock::time_point start;
     std::string message;
+#endif
 };
 
 void sortRange(std::vector<Line>::iterator begin,
