@@ -1,13 +1,14 @@
 #!/usr/bin/python
 
 import copy
+import itertools
 import os
 import sys
 
 MAX_SIZE = None
 
-EMPTY = 0
-FULL = 1
+EMPTY = " "
+FULL = "X"
 
 TWO_PIECE = [
     [[FULL]*4],
@@ -39,10 +40,10 @@ def pad_to_size(shape, size):
     return padded
 
 
-def pretty_print_shape(shape):
+def shape_to_string(shape):
     shape_string = os.linesep.join(["".join([str(elem) for elem in row])
                                     for row in shape])
-    print(shape_string)
+    return shape_string
 
 
 def is_valid_coordinate(coordinate):
@@ -60,7 +61,7 @@ def neighbours(coordinate):
 
 def empty_neighbours(coordinate, shape):
     return [(r, c) for (r, c) in neighbours(coordinate)
-            if shape[r][c] == 0]
+            if shape[r][c] == EMPTY]
 
 
 def has_full_neighbour(coordinate, shape):
@@ -74,7 +75,7 @@ def find_free_places(shape):
     free_places = []
     for row_index, row in enumerate(shape):
         for column_index, elem in enumerate(row):
-            if elem == 0 and \
+            if elem == EMPTY and \
                has_full_neighbour((row_index, column_index), shape):
                 good_neighbours = empty_neighbours((row_index, column_index),
                                                    shape)
@@ -98,7 +99,7 @@ def get_empty_places(shape):
     empty_places = []
     for row_index, row in enumerate(shape):
         for column_index, elem in enumerate(row):
-            if elem == 0:
+            if elem == EMPTY:
                 empty_places.append((row_index, column_index))
 
     return empty_places
@@ -159,6 +160,15 @@ def create_shapes(brick_number):
     return shapes
 
 
+def write_shapes_to_file(shapes, brick_number):
+    file_name = "tetris-{}.txt".format(brick_number)
+    shape_number = len(shapes)
+    with open(file_name, 'w') as handler:
+        handler.write("{} {}{}".format(shape_number, MAX_SIZE, os.linesep))
+        for shape in shapes:
+            handler.write(shape_to_string(shape))
+            handler.write(os.linesep)
+
 if __name__ == '__main__':
     try:
         number_of_bricks = int(sys.argv[1])
@@ -168,7 +178,5 @@ if __name__ == '__main__':
 
     MAX_SIZE = number_of_bricks*2
     shapes = create_shapes(number_of_bricks)
-    for shape in shapes:
-        pretty_print_shape(shape)
-        print(os.linesep)
-    print(len(shapes))
+    write_shapes_to_file(shapes, number_of_bricks)
+    print("Number of shapes generated to file: {}".format(len(shapes)))
