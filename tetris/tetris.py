@@ -128,12 +128,45 @@ def has_hole(shape):
     return True
 
 
+def move_to_start(shape):
+    last_row_index = MAX_SIZE
+    for row_index, row in enumerate(shape):
+        if row == [EMPTY]*MAX_SIZE:
+            last_row_index = row_index
+            break
+    bottom_cropped = shape[:last_row_index]
+    column_indexes = [0]*len(bottom_cropped)
+    for row_index, row in enumerate(bottom_cropped):
+        column_indexes[row_index] = row.index(FULL)
+
+    first_column_index = min(column_indexes)
+
+    return [row[first_column_index:] for row in bottom_cropped]
+
+
+def rotate_right(shape):
+    new_shape = create_homogenous_shape(EMPTY, MAX_SIZE)
+    for row_index, row in enumerate(shape):
+        for column_index, elem in enumerate(row):
+            new_shape[row_index][column_index] = \
+                    shape[MAX_SIZE - column_index - 1][row_index]
+
+    return pad_to_size(move_to_start(new_shape), MAX_SIZE)
+
+
 def add_brick(shape, result):
     new_shapes = []
     free_places = find_free_places(shape)
     for place1, place2 in free_places:
         filled_shape = fill_places(place1, place2, shape)
-        if not has_hole(filled_shape) and filled_shape not in (result + new_shapes):
+        right = rotate_right(filled_shape)
+        upside_down = rotate_right(right)
+        left = rotate_right(upside_down)
+        if not has_hole(filled_shape) and \
+           filled_shape not in (result + new_shapes) and \
+           right not in (result + new_shapes) and \
+           upside_down not in (result + new_shapes) and \
+           left not in (result + new_shapes):
             new_shapes.append(filled_shape)
 
     return new_shapes
@@ -168,6 +201,7 @@ def write_shapes_to_file(shapes, brick_number):
         for shape in shapes:
             handler.write(shape_to_string(shape))
             handler.write(os.linesep)
+
 
 if __name__ == '__main__':
     try:
