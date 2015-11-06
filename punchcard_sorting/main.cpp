@@ -17,6 +17,10 @@ constexpr std::size_t maxLength = 64;
 using Line = std::array<char, maxLength + 1>;
 
 struct Timer {
+#if !defined(_DEBUG)
+    Timer(std::string) {}
+    ~Timer() {}
+#else
     Timer(std::string message)
         : start(std::chrono::system_clock::now()),
           message(std::move(message)) {}
@@ -29,6 +33,7 @@ struct Timer {
 
     std::chrono::system_clock::time_point start;
     std::string message;
+#endif
 };
 
 void sortRange(std::vector<Line>::iterator begin,
