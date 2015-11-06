@@ -125,31 +125,12 @@ OutputIterator fourWayMerge(OutputIterator outputIterator, Iterator begin1,
                          end4);
 }
 
-void sortAndPrintLines(std::vector<Line>& lines) {
+template <typename Handle, typename Partition>
+void sortAndPrintLines(std::vector<Line>& lines, Handle firstHandle,
+                       Handle secondHandle, Handle thirdHandle,
+                       Handle forthHandle, Partition firstPartition,
+                       Partition secondPartition, Partition thirdPartition) {
     Timer t("Time to sort and print lines");
-    auto firstPartition = lines.begin() + lines.size() / 4;
-    auto secondPartition = firstPartition + lines.size() / 4;
-    auto thirdPartition = secondPartition + lines.size() / 4;
-
-    auto firstHandle =
-        std::async(std::launch::async, [&lines, firstPartition]() {
-            sortRange(lines.begin(), firstPartition);
-        });
-
-    auto secondHandle = std::async(std::launch::async,
-                                   [&lines, firstPartition, secondPartition]() {
-        sortRange(firstPartition, secondPartition);
-    });
-
-    auto thirdHandle = std::async(std::launch::async,
-                                  [&lines, secondPartition, thirdPartition]() {
-        sortRange(secondPartition, thirdPartition);
-    });
-
-    auto forthHandle = std::async(
-        std::launch::async,
-        [&lines, thirdPartition]() { sortRange(thirdPartition, lines.end()); });
-
     DataPrintIterator outIterator;
 
     std::vector<Line> firstMerge;
@@ -185,9 +166,16 @@ void sortAndPrintLines(std::vector<Line>& lines) {
 
 void readLine(Line& line) { std::cin.getline(line.data(), maxLength+1); }
 
-std::vector<Line> readLines(std::size_t numberOfLines) {
+std::vector<Line> readLines(std::size_t numberOfLines,
+                            std::future<void>& firstHandle,
+                            std::future<void>& secondHandle,
+                            std::future<void>& thirdHandle,
+                            std::future<void>& forthHandle,
+                            std::vector<Line>::iterator& firstPartition,
+                            std::vector<Line>::iterator& secondPartition,
+                            std::vector<Line>::iterator& thirdPartition) {
     std::vector<Line> lines;
-    lines.reserve(numberOfLines);
+    lines.resize(numberOfLines);
 
     Timer t("Time to read lines");
 
@@ -198,21 +186,47 @@ std::vector<Line> readLines(std::size_t numberOfLines) {
 
     std::size_t currentLineBegin = 0;
 
+    long linesRead = 0;
+
+    firstPartition = lines.begin() + numberOfLines / 4;
+    secondPartition = firstPartition + numberOfLines / 4;
+    thirdPartition = secondPartition + numberOfLines / 4;
+
     for (std::size_t c_ = 0; c_ < length; ++c_) {
         if (buffer[c_] != '\n') {
             continue;
         }
 
-        lines.push_back({});
-        auto& line = lines.back();
+        auto& line = lines[linesRead];
 
         buffer[c_] = '\0';
 
         std::memcpy(line.data(), buffer + currentLineBegin,
                     c_ - currentLineBegin);
         currentLineBegin = c_ + 1;
+        ++linesRead;
+
+        if (linesRead == std::distance(lines.begin(), firstPartition)) {
+            firstHandle =
+                std::async(std::launch::async, [&lines, firstPartition]() {
+                    sortRange(lines.begin(), firstPartition);
+                });
+        } else if (linesRead == std::distance(lines.begin(), secondPartition)) {
+            secondHandle = std::async(
+                std::launch::async, [firstPartition, secondPartition]() {
+                    sortRange(firstPartition, secondPartition);
+                });
+        } else if (linesRead == std::distance(lines.begin(), thirdPartition)) {
+            thirdHandle = std::async(std::launch::async,
+                                     [secondPartition, thirdPartition]() {
+                sortRange(secondPartition, thirdPartition);
+            });
+        }
     }
 
+    forthHandle = std::async(std::launch::async, [&lines, thirdPartition]() {
+        sortRange(thirdPartition, lines.end());
+    });
 
     return lines;
 }
@@ -224,8 +238,22 @@ int main() {
     std::cin.getline(numberOfLinesAsString.data(), 16);
 
     numberOfLines = std::atoi(numberOfLinesAsString.data());
+    std::future<void> firstHandle;
+    std::future<void> secondHandle;
+    std::future<void> thirdHandle;
+    std::future<void> forthHandle;
 
-    auto lines = readLines(numberOfLines);
+    std::vector<Line>::iterator firstPartition;
+    std::vector<Line>::iterator secondPartition;
+    std::vector<Line>::iterator thirdPartition;
 
-    sortAndPrintLines(lines);
+    auto lines =
+        readLines(numberOfLines, firstHandle, secondHandle, thirdHandle,
+                  forthHandle, firstPartition, secondPartition, thirdPartition);
+
+    sortAndPrintLines(lines, std::move(firstHandle), std::move(secondHandle),
+                      std::move(thirdHandle), std::move(forthHandle),
+                      lines.begin() + numberOfLines / 4,
+                      lines.begin() + numberOfLines / 2,
+                      lines.begin() + numberOfLines / 2 + numberOfLines / 4);
 }
