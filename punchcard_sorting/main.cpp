@@ -18,12 +18,12 @@ using Line = std::array<char, maxLength + 1>;
 
 struct Timer {
 #if !defined(_DEBUG)
-    Timer(std::string) {}
+    Timer(const std::string &) {}
     ~Timer() {}
 #else
-    Timer(std::string message)
+    Timer(const std::string& message)
         : start(std::chrono::system_clock::now()),
-          message(std::move(message)) {}
+          message(message) {}
 
     ~Timer() {
         auto end = std::chrono::system_clock::now();
