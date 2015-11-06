@@ -25,8 +25,12 @@ TWO_PIECE = [
 ]
 
 
+def create_homogenous_shape(elem, size):
+    return [[elem for _ in range(size)] for _ in range(size)]
+
+
 def pad_to_size(shape, size):
-    padded = [[EMPTY for _ in range(size)] for _ in range(size)]
+    padded = create_homogenous_shape(EMPTY, size)
     for row_index, row in enumerate(shape):
         for column_index, elem in enumerate(row):
             padded[row_index][column_index] = elem
@@ -99,31 +103,51 @@ def get_empty_places(shape):
     return empty_places
 
 
+def flood(coordinate, shape):
+    row_index, column_index = coordinate
+    shape[row_index][column_index] = FULL
+    for neighbour in empty_neighbours(coordinate, shape):
+        flood(neighbour, shape)
+
+
+def fill_up(shape):
+    last = (MAX_SIZE - 1, MAX_SIZE - 1)
+    shape_copy = copy.deepcopy(shape)
+    flood(last, shape_copy)
+    return shape_copy
+
+
 def has_hole(shape):
-    return False
+    full = create_homogenous_shape(FULL, MAX_SIZE)
+    filled_up = fill_up(shape)
+    if filled_up == full:
+        return False
+
+    return True
 
 
-def add_brick(shape):
+def add_brick(shape, result):
     new_shapes = []
     free_places = find_free_places(shape)
     for place1, place2 in free_places:
         filled_shape = fill_places(place1, place2, shape)
-        new_shapes.append(filled_shape)
+        if not has_hole(filled_shape) and filled_shape not in result:
+            new_shapes.append(filled_shape)
 
     return new_shapes
 
 if __name__ == '__main__':
     shapes_3 = []
-    for shape in TWO_PIECE:
-        padded_shape = pad_to_size(shape, MAX_SIZE)
-        shapes_3 += add_brick(padded_shape)
+    for two_piece_shape in TWO_PIECE:
+        padded_shape = pad_to_size(two_piece_shape, MAX_SIZE)
+        shapes_3 += add_brick(padded_shape, shapes_3)
 
     shapes_4 = []
-    for shape in shapes_3:
-        shapes_4 += add_brick(shape)
+    for three_piece_shape in shapes_3:
+        shapes_4 += add_brick(three_piece_shape, shapes_4)
 
-    for shape in shapes_4:
-        pretty_print_shape(shape)
+    for four_piece_shape_shape in shapes_4:
+        pretty_print_shape(four_piece_shape_shape)
         print(os.linesep)
     print(len(shapes_3))
     print(len(shapes_4))
