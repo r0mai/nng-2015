@@ -2,8 +2,9 @@
 
 import copy
 import os
+import sys
 
-MAX_SIZE = 8
+MAX_SIZE = None
 
 EMPTY = 0
 FULL = 1
@@ -136,18 +137,38 @@ def add_brick(shape, result):
 
     return new_shapes
 
+
+def add_one_more_brick(shapes):
+    new_shapes = []
+    for shape in shapes:
+        padded_shape = pad_to_size(shape, MAX_SIZE)
+        new_shapes += add_brick(padded_shape, new_shapes)
+
+    return new_shapes
+
+
+def create_shapes(brick_number):
+    if brick_number < 2:
+        raise ValueError("Brick number must be at least 2")
+
+    shapes = TWO_PIECE
+    for i in range(2, brick_number):
+        shapes = add_one_more_brick(shapes)
+        print("{} piece done".format(i+1))
+
+    return shapes
+
+
 if __name__ == '__main__':
-    shapes_3 = []
-    for two_piece_shape in TWO_PIECE:
-        padded_shape = pad_to_size(two_piece_shape, MAX_SIZE)
-        shapes_3 += add_brick(padded_shape, shapes_3)
+    try:
+        number_of_bricks = int(sys.argv[1])
+    except:
+        print("Exactly one integer argument required")
+        sys.exit(1)
 
-    shapes_4 = []
-    for three_piece_shape in shapes_3:
-        shapes_4 += add_brick(three_piece_shape, shapes_4)
-
-    for four_piece_shape_shape in shapes_4:
-        pretty_print_shape(four_piece_shape_shape)
+    MAX_SIZE = number_of_bricks*2
+    shapes = create_shapes(number_of_bricks)
+    for shape in shapes:
+        pretty_print_shape(shape)
         print(os.linesep)
-    print(len(shapes_3))
-    print(len(shapes_4))
+    print(len(shapes))
