@@ -133,7 +133,7 @@ def add_brick(shape, result):
     free_places = find_free_places(shape)
     for place1, place2 in free_places:
         filled_shape = fill_places(place1, place2, shape)
-        if not has_hole(filled_shape) and filled_shape not in result:
+        if not has_hole(filled_shape) and filled_shape not in (result + new_shapes):
             new_shapes.append(filled_shape)
 
     return new_shapes
