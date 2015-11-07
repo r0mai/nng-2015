@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-tmpFile="a"
+tmpFile="/tmp/punchcard_sorting_output.txt"
 
 if [ -e $tmpFile ]; then
   echo "You already have a $tmpFile. Remove it before running" >&2
