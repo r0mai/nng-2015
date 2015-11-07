@@ -44,15 +44,31 @@ void sortRange(std::vector<Line>::iterator begin,
 }
 
 struct LineFacade {
-    void operator=(const Line& line) { std::cout << line.data() << '\n'; }
+    LineFacade(std::size_t numberOfLines)
+        : storage(new char[numberOfLines * (maxLength + 1)]), offset(storage) {}
+
+    void operator=(const Line& line) {
+        auto it = std::find(line.begin(), line.end(), '\0');
+
+        std::size_t count = std::distance(line.begin(), it);
+
+        std::memcpy(offset, line.data(), count);
+        offset += count;
+    }
+    char* storage;
+    char* offset;
 };
 
 struct DataPrintIterator
     : public std::iterator<std::output_iterator_tag, LineFacade> {
+
+    DataPrintIterator(std::size_t numberOfLines) : lineFacade(numberOfLines) { }
+
     DataPrintIterator& operator++() { return *this; }
     DataPrintIterator& operator++(int) { return *this; }
 
-    LineFacade operator*() { return LineFacade{}; }
+    LineFacade& operator*() { return lineFacade; }
+    LineFacade lineFacade;
 };
 
 template <typename OutputIterator, typename Iterator>
@@ -155,7 +171,7 @@ void sortAndPrintLines(std::vector<Line>& lines) {
         std::launch::async,
         [&lines, thirdPartition]() { sortRange(thirdPartition, lines.end()); });
 
-    DataPrintIterator outIterator;
+    DataPrintIterator outIterator(lines.size());
 
     std::vector<Line> firstMerge;
     firstMerge.reserve(lines.size()/2+1);
@@ -186,9 +202,9 @@ void sortAndPrintLines(std::vector<Line>& lines) {
 
     std::merge(firstMerge.begin(), firstMerge.end(), secondMerge.begin(),
                secondMerge.end(), outIterator);
-}
 
-void readLine(Line& line) { std::cin.getline(line.data(), maxLength+1); }
+    std::cout<<outIterator.lineFacade.storage;
+}
 
 std::vector<Line> readLines(std::size_t numberOfLines) {
     std::vector<Line> lines;
@@ -211,13 +227,10 @@ std::vector<Line> readLines(std::size_t numberOfLines) {
         lines.push_back({});
         auto& line = lines.back();
 
-        buffer[c_] = '\0';
-
         std::memcpy(line.data(), buffer + currentLineBegin,
-                    c_ - currentLineBegin);
+                    c_ - currentLineBegin + 1);
         currentLineBegin = c_ + 1;
     }
-
 
     return lines;
 }
