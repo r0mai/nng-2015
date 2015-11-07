@@ -152,8 +152,8 @@ OutputIterator fourWayMerge(OutputIterator outputIterator, Iterator begin1,
                          end4);
 }
 
-void sortAndPrintLines(std::vector<Line>& lines) {
-    Timer t("Time to sort and print lines");
+std::pair<char*, std::size_t> sortAndPrintLines(std::vector<Line>& lines) {
+    Timer t("Time to sort lines");
     auto firstPartition = lines.begin() + lines.size() / 4;
     auto secondPartition = firstPartition + lines.size() / 4;
     auto thirdPartition = secondPartition + lines.size() / 4;
@@ -212,7 +212,7 @@ void sortAndPrintLines(std::vector<Line>& lines) {
 
     std::size_t totalCount = lineFacade.offset - lineFacade.storage;
 
-    std::fwrite(lineFacade.storage, 1, totalCount, stdout);
+    return {lineFacade.storage, totalCount};
 
 }
 
@@ -255,5 +255,9 @@ int main() {
 
     auto lines = readLines(numberOfLines);
 
-    sortAndPrintLines(lines);
+    auto output = sortAndPrintLines(lines);
+    {
+        Timer t("Time to write results");
+        std::fwrite(output.first, 1, output.second, stdout);
+    }
 }
