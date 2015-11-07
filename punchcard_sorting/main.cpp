@@ -66,6 +66,14 @@ class DataPrintIterator
 public:
     DataPrintIterator(LineFacade& lineFacade) : lineFacade_(lineFacade) {}
 
+    DataPrintIterator(const DataPrintIterator& rhs)
+        : lineFacade_(rhs.lineFacade_) {}
+
+    DataPrintIterator& operator=(const DataPrintIterator& rhs) {
+        this->lineFacade_ = rhs.lineFacade_;
+        return *this;
+    }
+
     DataPrintIterator& operator++() { return *this; }
     DataPrintIterator& operator++(int) { return *this; }
 
