@@ -48,15 +48,45 @@ void sortRange(std::vector<Line>::iterator begin,
 }
 
 struct LineFacade {
-    void operator=(const Line& line) { std::cout << line.data() << '\n'; }
+    LineFacade(std::size_t numberOfLines)
+        : storage(new char[numberOfLines * (maxLength + 1)]), offset(storage) {}
+
+    void operator=(const Line& line) {
+        auto it = std::find(line.begin(), line.end(), '\0');
+
+        std::size_t count = std::distance(line.begin(), it);
+
+        std::memcpy(offset, line.data(), count);
+        offset += count;
+    }
+
+    char* storage;
+    char* offset;
 };
 
-struct DataPrintIterator
+class DataPrintIterator
     : public std::iterator<std::output_iterator_tag, LineFacade> {
+
+public:
+    DataPrintIterator(LineFacade& lineFacade) : lineFacade_(lineFacade) {}
+
+    DataPrintIterator(const DataPrintIterator& rhs)
+        : lineFacade_(rhs.lineFacade_) {}
+
+    DataPrintIterator& operator=(const DataPrintIterator& rhs) {
+        this->lineFacade_ = rhs.lineFacade_;
+        return *this;
+    }
+
     DataPrintIterator& operator++() { return *this; }
     DataPrintIterator& operator++(int) { return *this; }
 
-    LineFacade operator*() { return LineFacade{}; }
+    LineFacade& operator*() { return lineFacade_; }
+
+    const LineFacade& lineFacade() { return lineFacade_; }
+
+private:
+    LineFacade& lineFacade_;
 };
 
 template <typename OutputIterator, typename Iterator>
@@ -134,8 +164,8 @@ OutputIterator fourWayMerge(OutputIterator outputIterator, Iterator begin1,
                          end4);
 }
 
-void sortAndPrintLines(std::vector<Line>& lines) {
-    Timer t("Time to sort and print lines");
+std::pair<char*, std::size_t> sortAndPrintLines(std::vector<Line>& lines) {
+    Timer t("Time to sort lines");
     auto firstPartition = lines.begin() + lines.size() / 4;
     auto secondPartition = firstPartition + lines.size() / 4;
     auto thirdPartition = secondPartition + lines.size() / 4;
@@ -159,7 +189,8 @@ void sortAndPrintLines(std::vector<Line>& lines) {
         std::launch::async,
         [&lines, thirdPartition]() { sortRange(thirdPartition, lines.end()); });
 
-    DataPrintIterator outIterator;
+    LineFacade lineFacade(lines.size());
+    DataPrintIterator outIterator(lineFacade);
 
     std::vector<Line> firstMerge;
     firstMerge.reserve(lines.size()/2+1);
@@ -190,9 +221,12 @@ void sortAndPrintLines(std::vector<Line>& lines) {
 
     std::merge(firstMerge.begin(), firstMerge.end(), secondMerge.begin(),
                secondMerge.end(), outIterator);
-}
 
-void readLine(Line& line) { std::cin.getline(line.data(), maxLength+1); }
+    std::size_t totalCount = lineFacade.offset - lineFacade.storage;
+
+    return {lineFacade.storage, totalCount};
+
+}
 
 std::vector<Line> readLines(std::size_t numberOfLines) {
     std::vector<Line> lines;
@@ -215,13 +249,10 @@ std::vector<Line> readLines(std::size_t numberOfLines) {
         lines.push_back({});
         auto& line = lines.back();
 
-        buffer[c_] = '\0';
-
         std::memcpy(line.data(), buffer + currentLineBegin,
-                    c_ - currentLineBegin);
+                    c_ - currentLineBegin + 1);
         currentLineBegin = c_ + 1;
     }
-
 
     return lines;
 }
@@ -236,5 +267,9 @@ int main() {
 
     auto lines = readLines(numberOfLines);
 
-    sortAndPrintLines(lines);
+    auto output = sortAndPrintLines(lines);
+    {
+        Timer t("Time to write results");
+        std::fwrite(output.first, 1, output.second, stdout);
+    }
 }
