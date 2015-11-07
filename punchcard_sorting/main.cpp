@@ -55,20 +55,26 @@ struct LineFacade {
         std::memcpy(offset, line.data(), count);
         offset += count;
     }
+
     char* storage;
     char* offset;
 };
 
-struct DataPrintIterator
+class DataPrintIterator
     : public std::iterator<std::output_iterator_tag, LineFacade> {
 
-    DataPrintIterator(std::size_t numberOfLines) : lineFacade(numberOfLines) { }
+public:
+    DataPrintIterator(LineFacade& lineFacade) : lineFacade_(lineFacade) {}
 
     DataPrintIterator& operator++() { return *this; }
     DataPrintIterator& operator++(int) { return *this; }
 
-    LineFacade& operator*() { return lineFacade; }
-    LineFacade lineFacade;
+    LineFacade& operator*() { return lineFacade_; }
+
+    const LineFacade& lineFacade() { return lineFacade_; }
+
+private:
+    LineFacade& lineFacade_;
 };
 
 template <typename OutputIterator, typename Iterator>
@@ -171,7 +177,8 @@ void sortAndPrintLines(std::vector<Line>& lines) {
         std::launch::async,
         [&lines, thirdPartition]() { sortRange(thirdPartition, lines.end()); });
 
-    DataPrintIterator outIterator(lines.size());
+    LineFacade lineFacade(lines.size());
+    DataPrintIterator outIterator(lineFacade);
 
     std::vector<Line> firstMerge;
     firstMerge.reserve(lines.size()/2+1);
@@ -203,7 +210,10 @@ void sortAndPrintLines(std::vector<Line>& lines) {
     std::merge(firstMerge.begin(), firstMerge.end(), secondMerge.begin(),
                secondMerge.end(), outIterator);
 
-    std::cout<<outIterator.lineFacade.storage;
+    std::size_t totalCount = lineFacade.offset - lineFacade.storage;
+
+    std::fwrite(lineFacade.storage, 1, totalCount, stdout);
+
 }
 
 std::vector<Line> readLines(std::size_t numberOfLines) {
