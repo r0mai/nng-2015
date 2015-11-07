@@ -1,3 +1,14 @@
 #!/usr/bin/env bash
 
-diff <(build/punchcard_sorting < punchcard_sorting/sample.txt) <(tail -n+2 punchcard_sorting/sample.txt | sort)
+tmpFile="a"
+
+if [ -e $tmpFile ]; then
+  echo "You already have a $tmpFile. Remove it before running" >&2
+  exit 1
+fi
+
+time build/punchcard_sorting < punchcard_sorting/sample.txt > $tmpFile
+
+diff $tmpFile <(tail -n+2 punchcard_sorting/sample.txt | sort)
+
+rm $tmpFile
