@@ -254,6 +254,7 @@ std::vector<Line> readLines(std::size_t numberOfLines) {
 }
 
 int main() {
+    Timer t("Total time spent");
     std::size_t numberOfLines = 0;
 
     std::array<char, 16> numberOfLinesAsString;
