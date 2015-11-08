@@ -21,6 +21,12 @@ bool canWeAddConvict(const std::vector<Aggression>& others,
     return true;
 }
 
+std::size_t getBestRoundForConvict(
+    Aggression aggression, const std::vector<std::vector<Aggression>>& rounds,
+    std::vector<std::size_t> candidateRounds) {
+    return candidateRounds[0];
+}
+
 int main(int argc, char** argv) {
     if (argc != 2) {
         std::cerr << "Please add a timeout for how long to work" << std::endl;
@@ -54,15 +60,20 @@ int main(int argc, char** argv) {
         std::vector<std::vector<Aggression>> rounds;
         std::random_shuffle(aggressions.begin(), aggressions.end());
         for (const auto& convict : aggressions) {
-            for (auto& round : rounds) {
-                if (canWeAddConvict(round, convict)) {
-                    round.push_back(convict);
-                    goto nextConvict;
+            std::vector<std::size_t> candidateRounds;
+            for (std::size_t roundIndex = 0; roundIndex < rounds.size();
+                 ++roundIndex) {
+                if (canWeAddConvict(rounds[roundIndex], convict)) {
+                    candidateRounds.push_back(roundIndex);
                 }
             }
-            rounds.push_back({convict});
-        nextConvict:
-            continue;
+            if (!candidateRounds.empty()) {
+                const auto bestRound =
+                    getBestRoundForConvict(convict, rounds, candidateRounds);
+                rounds[bestRound].push_back(convict);
+            } else {
+                rounds.push_back({convict});
+            }
         }
 
         if (rounds.size() > bestRounds.size()) {
