@@ -31,7 +31,23 @@ std::size_t getBestRoundForConvict(
     Aggression aggression, const std::vector<std::vector<Aggression>>& rounds,
     const std::vector<std::size_t>& candidateRounds) {
 
-    return candidateRounds[0];
+    static std::random_device rd;
+    static std::mt19937 gen{rd()};
+
+    std::uniform_int_distribution<std::size_t> distribution(
+        0, candidateRounds.size() - 1);
+
+    for(const auto& roundIndex : candidateRounds) {
+        if(std::find(rounds[roundIndex].begin(), rounds[roundIndex].end(),
+                    aggression) != rounds[roundIndex].end()) {
+            return roundIndex;
+            // We have already assigned a convict with this particular
+            // aggression to this round, so assigning a similar one is good.
+        }
+    }
+
+    std::size_t index = candidateRounds[distribution(gen)];
+    return index;
 }
 
 int main(int argc, char** argv) {
@@ -73,14 +89,16 @@ int main(int argc, char** argv) {
             std::vector<std::size_t> candidateRounds;
             for (std::size_t roundIndex = 0; roundIndex < rounds.size();
                  ++roundIndex) {
-                if (canWeAddConvict(rounds[roundIndex], convict)) {
+                const auto& round = rounds[roundIndex];
+                if (canWeAddConvict(round, convict)) {
                     candidateRounds.push_back(roundIndex);
                 }
             }
             if (!candidateRounds.empty()) {
+
                 const auto bestRound =
                     getBestRoundForConvict(convict, rounds, candidateRounds);
-                assert(canWeAddConvict(rounds[bestRound], convict));
+
                 rounds[bestRound].push_back(convict);
             } else {
                 rounds.push_back({convict});
