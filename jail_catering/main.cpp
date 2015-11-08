@@ -16,6 +16,12 @@ bool canWeAddConvict(const std::vector<Aggression>& others,
             if (others[a] + others[b] == convict) {
                 return false;
             }
+            if (others[a] + convict == others[b]) {
+                return false;
+            }
+            if (others[b] + convict == others[a]) {
+                return false;
+            }
         }
     }
     return true;
@@ -23,7 +29,8 @@ bool canWeAddConvict(const std::vector<Aggression>& others,
 
 std::size_t getBestRoundForConvict(
     Aggression aggression, const std::vector<std::vector<Aggression>>& rounds,
-    std::vector<std::size_t> candidateRounds) {
+    const std::vector<std::size_t>& candidateRounds) {
+
     return candidateRounds[0];
 }
 
@@ -51,6 +58,9 @@ int main(int argc, char** argv) {
 
     std::vector<std::vector<Aggression>> bestRounds;
 
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
     for (;;) {
         if (std::chrono::system_clock::now().time_since_epoch() >=
             endTime.time_since_epoch()) {
@@ -58,7 +68,7 @@ int main(int argc, char** argv) {
         }
 
         std::vector<std::vector<Aggression>> rounds;
-        std::random_shuffle(aggressions.begin(), aggressions.end());
+        std::shuffle(aggressions.begin(), aggressions.end(), gen);
         for (const auto& convict : aggressions) {
             std::vector<std::size_t> candidateRounds;
             for (std::size_t roundIndex = 0; roundIndex < rounds.size();
@@ -70,13 +80,14 @@ int main(int argc, char** argv) {
             if (!candidateRounds.empty()) {
                 const auto bestRound =
                     getBestRoundForConvict(convict, rounds, candidateRounds);
+                assert(canWeAddConvict(rounds[bestRound], convict));
                 rounds[bestRound].push_back(convict);
             } else {
                 rounds.push_back({convict});
             }
         }
 
-        if (rounds.size() > bestRounds.size()) {
+        if (rounds.size() < bestRounds.size() || bestRounds.empty()) {
             std::swap(bestRounds, rounds);
         }
     }
