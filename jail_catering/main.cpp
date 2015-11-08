@@ -37,16 +37,20 @@ std::size_t getBestRoundForConvict(
     std::uniform_int_distribution<std::size_t> distribution(
         0, candidateRounds.size() - 1);
 
-    for(const auto& roundIndex : candidateRounds) {
+    std::size_t index = candidateRounds[distribution(gen)];
+
+    for(auto roundIndex : candidateRounds) {
         if(std::find(rounds[roundIndex].begin(), rounds[roundIndex].end(),
                     aggression) != rounds[roundIndex].end()) {
             return roundIndex;
             // We have already assigned a convict with this particular
             // aggression to this round, so assigning a similar one is good.
         }
+        if(rounds[roundIndex].size() > rounds[index].size()) {
+            index = roundIndex;
+        }
     }
 
-    std::size_t index = candidateRounds[distribution(gen)];
     return index;
 }
 
