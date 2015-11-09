@@ -122,7 +122,10 @@ int main() {
 
     std::vector<Reverse> reverses;
 
+    int step = 0;
     while (original != expected) {
+        std::cerr << "At step " << step++
+            << " diff = " << getDiffCount(original, expected) << std::endl;
         Reverse r = getGreedyCandidate(original, expected);
         if (r.from == r.to) {
             std::cerr << "Empty reverse after greed: diffCount = "
