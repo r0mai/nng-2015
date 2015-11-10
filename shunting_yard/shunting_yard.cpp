@@ -57,7 +57,7 @@ Reverses swapSteps(int i, int j) {
     };
 }
 
-Reverse getGreedyCandidate(
+Reverses getGreedyCandidate(
     const std::string& original, const std::string& expected)
 {
     assert(original.size() == expected.size());
@@ -78,9 +78,39 @@ Reverse getGreedyCandidate(
         }
     }
     if (bestDiff > 0) {
-        return bestReverse;
+        return {bestReverse};
     }
-    return Reverse{};
+    return {};
+}
+
+Reverses getVeryGreedyCandidate(
+    const std::string& original, const std::string& expected)
+{
+    assert(original.size() == expected.size());
+
+    int size = original.size();
+    int beforeDiff = getDiffCount(original, expected);
+
+    int bestDiff = 0;
+    Reverses bestReverses;
+    for (int i = 0; i < size; ++i) {
+        for (int j = i + 1; j < size; ++j) {
+            for (int k = 0; k < size; ++k) {
+                for (int l = k + 1; l < size; ++l) {
+                    std::string new_original = apply(original, {{i, j}, {k, l}});
+                    int afterDiff = getDiffCount(new_original, expected);
+                    if (beforeDiff - afterDiff > bestDiff) {
+                        bestDiff = beforeDiff - afterDiff;
+                        bestReverses = {{i, j}, {k, l}};
+                    }
+                }
+            }
+        }
+    }
+    if (bestDiff > 0) {
+        return bestReverses;
+    }
+    return {};
 }
 
 Reverses getSwapCandidate(
@@ -126,14 +156,14 @@ int main() {
     while (original != expected) {
         std::cerr << "At step " << step++
             << " diff = " << getDiffCount(original, expected) << std::endl;
-        Reverse r = getGreedyCandidate(original, expected);
-        if (r.from == r.to) {
-            std::cerr << "Empty reverse after greed: diffCount = "
+        Reverses rs = getVeryGreedyCandidate(original, expected);
+        if (rs.empty()) {
+            std::cerr << "Empty candidate after greed: diffCount = "
                 << getDiffCount(original, expected) << std::endl;
             break;
         }
-        original = apply(original, r);
-        reverses.push_back(r);
+        original = apply(original, rs);
+        reverses.insert(reverses.end(), rs.begin(), rs.end());
     }
 
     while (original != expected) {
@@ -147,6 +177,7 @@ int main() {
         reverses.insert(reverses.end(), rs.begin(), rs.end());
     }
 
+    std::cerr << "Final size = " << reverses.size() << std::endl;
     std::cout << reverses.size() << std::endl;
     for (auto r : reverses) {
         std::cout << r.from << " " << r.to << std::endl;
