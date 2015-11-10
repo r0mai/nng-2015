@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <cassert>
 #include <chrono>
+#include <random>
 #include <iterator>
 #include <map>
 #include <vector>
