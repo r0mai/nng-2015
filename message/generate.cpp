@@ -1,4 +1,5 @@
 #include <array>
+#include <tuple>
 #include <string>
 #include <vector>
 #include <cassert>
@@ -55,6 +56,13 @@ std::string textToDns(const std::string& text) {
     return ss.str();
 }
 
+int count_substrings(const std::string& corpus, const std::string& needle) {
+    int count = 0;
+    // Based on the KICS principle (Keep It Complicated Smart)
+    for (size_t offset = 0; (offset = corpus.find(needle, offset)) < corpus.size(); ++count, ++offset) {}
+    return count;
+}
+
 // Based on: http://stackoverflow.com/questions/10355103/finding-the-longest-repeated-substring
 // return the longest common prefix of s and t
 std::string lcp(const std::string& s, const std::string& t) {
@@ -67,8 +75,8 @@ std::string lcp(const std::string& s, const std::string& t) {
 }
 
 
-// longest repeated strings
-std::vector<std::string> lrs(std::string s) {
+// longest repeated strings <lrs, count>
+std::vector<std::tuple<std::string, int>> lrs(const std::string& s) {
 
     // form the N suffixes
     std::vector<std::string> suffixes(s.size());
@@ -79,20 +87,28 @@ std::vector<std::string> lrs(std::string s) {
     // sort them
     std::sort(suffixes.begin(), suffixes.end());
 
-    std::vector<std::string> repeated_strings;
+    std::vector<std::tuple<std::string, int>> repeated_strings;
 
     for (int i = 0; i < s.size() - 1; i++) {
-        auto s = lcp(suffixes[i], suffixes[i+1]);
-        if (s.size() > 1) {
-            repeated_strings.push_back(s);
+        auto sub = lcp(suffixes[i], suffixes[i+1]);
+        if (sub.size() <= 2) {
+            continue;
         }
+        repeated_strings.push_back({sub, count_substrings(s, sub)});
     }
     std::sort(repeated_strings.begin(), repeated_strings.end(),
         [](const auto& lhs, const auto& rhs) {
-            return lhs.size() < rhs.size();
+            auto lhs_cost = std::get<0>(lhs).size() * std::get<1>(lhs);
+            auto rhs_cost = std::get<0>(rhs).size() * std::get<1>(rhs);
+            if (lhs_cost != rhs_cost) {
+                return lhs_cost < rhs_cost;
+            }
+            return std::get<0>(lhs) < std::get<0>(rhs);
         }
     );
-    return repeated_strings;
+    return decltype(repeated_strings)(
+        repeated_strings.begin(),
+        std::unique(repeated_strings.begin(), repeated_strings.end()));
 }
 
 void analyze_chars(const std::string& text) {
@@ -153,7 +169,9 @@ int main() {
     assert(dns == dns_back);
 
     auto repeated_strings = lrs(text);
-    analyze_chars(text);
+    for (const auto& s : repeated_strings) {
+        std::cerr << "(" << std::get<1>(s) << ") \"" << std::get<0>(s) << '"' << std::endl;
+    }
 
     generate_decoder(dns);
 }
