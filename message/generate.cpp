@@ -1,4 +1,6 @@
+#include <array>
 #include <string>
+#include <vector>
 #include <cassert>
 #include <sstream>
 #include <iostream>
@@ -53,6 +55,58 @@ std::string textToDns(const std::string& text) {
     return ss.str();
 }
 
+// Based on: http://stackoverflow.com/questions/10355103/finding-the-longest-repeated-substring
+// return the longest common prefix of s and t
+std::string lcp(const std::string& s, const std::string& t) {
+    int n = std::min(s.size(), t.size());
+    for (int i = 0; i < n; i++) {
+        if (s[i] != t[i])
+            return s.substr(0, i);
+    }
+    return s.substr(0, n);
+}
+
+
+// longest repeated strings
+std::vector<std::string> lrs(std::string s) {
+
+    // form the N suffixes
+    std::vector<std::string> suffixes(s.size());
+    for (int i = 0; i < s.size(); i++) {
+        suffixes[i] = s.substr(i);
+    }
+
+    // sort them
+    std::sort(suffixes.begin(), suffixes.end());
+
+    std::vector<std::string> repeated_strings;
+
+    for (int i = 0; i < s.size() - 1; i++) {
+        auto s = lcp(suffixes[i], suffixes[i+1]);
+        if (s.size() > 1) {
+            repeated_strings.push_back(s);
+        }
+    }
+    std::sort(repeated_strings.begin(), repeated_strings.end(),
+        [](const auto& lhs, const auto& rhs) {
+            return lhs.size() < rhs.size();
+        }
+    );
+    return repeated_strings;
+}
+
+void analyze_chars(const std::string& text) {
+    std::array<int, 256> chars = {{ 0 }};
+    for (char ch : text) {
+        ++chars[(unsigned char)(ch)];
+    }
+    for (unsigned i = 0; i < chars.size(); ++i) {
+        if (chars[i] != 0) {
+            std::cerr << i << " = " << chars[i] << std::endl;
+        }
+    }
+}
+
 void generate_decoder(const std::string& dns) {
     auto text = dnsToText(dns);
 
@@ -97,6 +151,9 @@ int main() {
     auto text = dnsToText(dns);
     auto dns_back = textToDns(text);
     assert(dns == dns_back);
+
+    auto repeated_strings = lrs(text);
+    analyze_chars(text);
 
     generate_decoder(dns);
 }
