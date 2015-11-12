@@ -1,6 +1,12 @@
-31 6
+32 6
 XXXXX 
     X 
+      
+      
+      
+      
+XXXXX 
+X     
       
       
       
@@ -18,26 +24,14 @@ X
       
       
 XXXX  
+   X  
+   X  
+      
+      
+      
+XXXX  
 XX    
       
-      
-      
-      
-XXXX  
- X    
- X    
-      
-      
-      
-XXXX  
- XX   
-      
-      
-      
-      
-XXXX  
-  X   
-  X   
       
       
       
@@ -48,13 +42,31 @@ XXXX
       
       
 XXXX  
-   X  
-   X  
+ X    
+ X    
+      
+      
+      
+XXXX  
+  X   
+  X   
+      
+      
+      
+XXXX  
+ XX   
+      
       
       
       
 XXXX  
    XX 
+      
+      
+      
+      
+ XXXX 
+XX    
       
       
       
@@ -72,6 +84,12 @@ X
       
       
 XXX   
+X X   
+  X   
+      
+      
+      
+XXX   
 XXX   
       
       
@@ -84,8 +102,20 @@ XXX
       
       
 XXX   
+XX    
+ X    
+      
+      
+      
+XXX   
   XX  
    X  
+      
+      
+      
+ XXX  
+XX    
+X     
       
       
       
@@ -95,52 +125,34 @@ XXX
       
       
       
+  XXX 
+XXX   
+      
+      
+      
+      
 XXX   
   X   
   XX  
       
       
       
+ XXX  
+ X    
+XX    
+      
+      
+      
 XX    
 XXX   
   X   
       
       
       
-XX    
-XX    
  XX   
-      
-      
-      
 XXX   
 X     
-XX    
       
-      
-      
-X     
-XXX   
-XX    
-      
-      
-      
-X     
-X     
-XXX   
-  X   
-      
-      
-X     
-X     
-XX    
- X    
- X    
-      
-X     
-X     
-XX    
- XX   
       
       
 XX    
@@ -149,8 +161,20 @@ XX
       
       
       
+  XX  
+XXX   
+X     
+      
+      
+      
 XX    
  XX   
+ X    
+ X    
+      
+      
+ XX   
+XX    
  X    
  X    
       
@@ -161,27 +185,9 @@ XX
       
       
       
-X     
-XXXX  
- X    
-      
-      
-      
-X     
-XX    
+  XX  
  XX   
-  X   
-      
-      
-X     
 XX    
- X    
- X    
- X    
       
-X     
-XX    
- X    
- XX   
       
       
