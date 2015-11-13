@@ -1,4 +1,4 @@
-32 6
+35 6
 XXXXX 
     X 
       
@@ -167,6 +167,18 @@ X
       
       
       
+XX X  
+ XXX  
+      
+      
+      
+      
+X XX  
+XXX   
+      
+      
+      
+      
 XX    
  XX   
  X    
@@ -177,6 +189,12 @@ XX
 XX    
  X    
  X    
+      
+      
+XX    
+ XX   
+XX    
+      
       
       
 XX    
