@@ -8,6 +8,7 @@ if len(sys.argv) != 3:
 
 with open(sys.argv[1]) as output:
     with open(sys.argv[2]) as reference:
+        index = 0
         while True:
             co = output.read(1)
             cr = reference.read(1)
@@ -21,6 +22,7 @@ with open(sys.argv[1]) as output:
                 print "More chars in output"
                 sys.exit(1)
             if co != cr:
-                print "Diff found"
+                print "Diff found at", index
                 sys.exit(1)
+            index += 1
 

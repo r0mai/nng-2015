@@ -291,7 +291,7 @@ std::string compressedToText(const std::string& compressed) {
 }
 int main() {
     auto d=R"()RAW" << replaced_result.compressed_string << R"RAW()";
-    std::cout << compressedToText(textToDns(d));
+    std::cout << textToDns(compressedToText(d));
 }
 )RAW";
 
