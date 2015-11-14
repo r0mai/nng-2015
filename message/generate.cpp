@@ -4,6 +4,7 @@
 #include <tuple>
 #include <string>
 #include <vector>
+#include <iomanip>
 #include <cassert>
 #include <sstream>
 #include <iostream>
@@ -220,6 +221,24 @@ void analyze_chars(const std::string& text) {
     }
 }
 
+bool isSpecialChar(char ch) {
+    switch (ch) {
+        default: return false;
+        case '\n': return true;
+        case '\r': return true;
+    }
+}
+
+std::string toStringLiteral(const std::string& str) {
+    std::stringstream ss;
+    if (std::any_of(str.begin(), str.end(), isSpecialChar)) {
+        ss << "R\"(" << str << ")\"";
+    } else {
+        ss << std::quoted(str);
+    }
+    return ss.str();
+}
+
 std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
     std::stringstream ss;
 
@@ -232,7 +251,7 @@ std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
         } else {
             ss << ",";
         }
-        ss << "R\"(" << e.second << ")\"";
+        ss << toStringLiteral(e.second);
     }
     ss << "};";
     return ss.str();
