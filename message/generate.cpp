@@ -294,7 +294,7 @@ std::string compressedToText(const std::string& compressed) {
         if (ch & 128) {
             ss << m[ch - 128];
         } else {
-            ss << char(ch);
+            ss << ch;
         }
     }
     return ss.str();
