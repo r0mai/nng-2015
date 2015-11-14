@@ -264,7 +264,7 @@ std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
     return ss.str();
 }
 
-std::string generate_decoder(const std::string& dns, int replace_start = 123) {
+std::string generate_decoder(const std::string& dns, int replace_start = 130) {
     std::stringstream ss;
     auto text = dnsToText(dns);
 
