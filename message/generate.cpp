@@ -280,28 +280,29 @@ std::string generate_decoder(const std::string& dns, int replace_start = 128) {
     ss << R"RAW(
 #include <cstdio>
 #include <string>
+#include <cstring>
 #include <sstream>
 #include <iostream>
 )RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
-void textToDns(std::string text) {
-    for (int i = 0; i < text.size()*4; ++i) {
-        putchar("ACTG"[text[i/4] >> i%4*2 & 3]);
-    }
-}
-std::string compressedToText(const std::string& compressed) {
-    std::stringstream ss;
+char global[2];
+void compressedToText(const std::string& compressed) {
+    auto f = [](char *text) {
+        for (int i = 0; i < strlen(text)*4; ++i) {
+            putchar("ACTG"[text[i/4] >> i%4*2 & 3]);
+        }
+    };
     for (unsigned char ch : compressed) {
         if (ch & 128) {
-            ss << m[ch - 128];
+            f(m[ch - 128]);
         } else {
-            ss << ch;
+            *global = ch;
+            f(global);
         }
     }
-    return ss.str();
 }
 int main() {
     auto d=R"()RAW" << replaced_result.compressed_string << R"RAW()";
-    textToDns(compressedToText(d));
+    compressedToText(d);
 }
 )RAW";
 
