@@ -167,8 +167,25 @@ struct StringReplaceResult {
     std::map<char, std::string> decode_map;
 };
 
-StringReplaceResult repalce_strings_in_string(std::string text) {
+StringReplaceResult repalce_strings_in_string(
+    const std::string& text,
+    const std::vector<SubString>& substrings)
+{
+    StringReplaceResult result = {text, {}};
 
+    int start = 198;
+    int end = 255;
+    int char_index = start;
+    for (int i = substrings.size() - 1; i >= 0 && char_index <= end; --i, ++char_index) {
+        boost::replace_all(
+            result.compressed_string,
+            substrings[i].str,
+            std::string(1, char(char_index)));
+
+        result.decode_map[char(char_index)] = substrings[i].str;
+    }
+
+    return result;
 }
 
 
@@ -183,10 +200,9 @@ void analyze_chars(const std::string& text) {
         if (chars[i] == 0) {
             if (start == -1) {
                 start = i;
-            } else {
-                end = i;
             }
-        } else if (chars[start] == 0 && chars[end] == 0) {
+            end = i;
+        } else if (start != -1 && end != -1 && chars[start] == 0 && chars[end] == 0) {
             std::cerr << "Range [" << start << ", " << end << "] ("
                 << end - start + 1 << ")" << std::endl;
             start = end = -1;
@@ -199,14 +215,47 @@ void analyze_chars(const std::string& text) {
     }
 }
 
-void generate_decoder(const std::string& dns) {
+std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
+    std::stringstream ss;
+
+    ss << "std::map<char, const char*>m={";
+    bool first = true;
+    for (const auto& e : srr.decode_map) {
+        // TODO don't use raw literals if not needed
+        if (first) {
+            first = false;
+        } else {
+            ss << ",";
+        }
+        ss << "{R\"(" << e.first << ")\"[0],R\"(" << e.second << ")\"}";
+    }
+    ss << "};";
+    return ss.str();
+}
+
+std::string generate_decoder(const std::string& dns) {
+    std::stringstream ss;
     auto text = dnsToText(dns);
 
+    auto repeated_strings = lrs(text);
+    for (const auto& s : repeated_strings) {
+        std::cerr
+            << "(" << s.repeat_count << ") \""
+            << s.str << "\" cost = "
+            << s.cost() << std::endl;
+    }
+    analyze_chars(text);
+
+    StringReplaceResult replaced_result =
+        repalce_strings_in_string(text, repeated_strings);
+
     // no attempt was made to make it shorter, yet
-    std::cout << R"RAW(
+    ss << R"RAW(
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <map>
+)RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
 char bitsToDnsChar(char ch) {
     switch (ch) {
         case 0: return 'A';
@@ -229,29 +278,32 @@ std::string textToDns(const std::string& text) {
     }
     return ss.str();
 }
+std::string compressedToText(const std::string& compressed) {
+    std::stringstream ss;
+    for (char ch : compressed) {
+        if (m.count(ch)) {
+            ss << m[ch];
+        } else {
+            ss << ch;
+        }
+    }
+    return ss.str();
+}
 int main() {
-    auto d=R"()RAW" << text << R"RAW()";
-    std::cout << textToDns(d);
+    auto d=R"()RAW" << replaced_result.compressed_string << R"RAW()";
+    std::cout << compressedToText(textToDns(d));
 }
 )RAW";
+
+    return ss.str();
 }
 
 int main() {
     std::string dns;
     std::getline(std::cin, dns);
 
-    auto text = dnsToText(dns);
-    auto dns_back = textToDns(text);
-    assert(dns == dns_back);
-
-    auto repeated_strings = lrs(text);
-    for (const auto& s : repeated_strings) {
-        std::cerr
-            << "(" << s.repeat_count << ") \""
-            << s.str << "\" cost = "
-            << s.cost() << std::endl;
-    }
-
-    generate_decoder(dns);
-    analyze_chars(text);
+    auto generated_source = generate_decoder(dns);
+    std::cerr << "Generated source size = "
+        << generated_source.size() << std::endl;
+    std::cout << generated_source << std::flush;
 }
