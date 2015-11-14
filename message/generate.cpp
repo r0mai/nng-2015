@@ -264,12 +264,12 @@ std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
     return ss.str();
 }
 
-std::string generate_decoder(const std::string& dns, int replace_start = 152) {
+std::string generate_decoder(const std::string& dns, int replace_start = 123) {
     std::stringstream ss;
     auto text = dnsToText(dns);
 
     auto repeated_strings = lrs(text);
-    analyze_chars(text);
+    //analyze_chars(text);
 
     StringReplaceResult replaced_result =
         repalce_strings_in_string(text, repeated_strings, replace_start);
