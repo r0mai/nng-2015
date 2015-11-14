@@ -116,10 +116,25 @@ void analyze_chars(const std::string& text) {
     for (char ch : text) {
         ++chars[(unsigned char)(ch)];
     }
+    int start = -1;
+    int end = -1;
     for (unsigned i = 0; i < chars.size(); ++i) {
-        if (chars[i] != 0) {
-            std::cerr << i << " = " << chars[i] << std::endl;
+        if (chars[i] == 0) {
+            if (start == -1) {
+                start = i;
+            } else {
+                end = i;
+            }
+        } else if (chars[start] == 0 && chars[end] == 0) {
+            std::cerr << "Range [" << start << ", " << end << "] ("
+                << end - start + 1 << ")" << std::endl;
+            start = end = -1;
         }
+    }
+    if (start != -1) {
+        end = 255;
+        std::cerr << "Range [" << start << ", " << end << "] ("
+            << end - start + 1 << ")" << std::endl;
     }
 }
 
@@ -170,8 +185,12 @@ int main() {
 
     auto repeated_strings = lrs(text);
     for (const auto& s : repeated_strings) {
-        std::cerr << "(" << std::get<1>(s) << ") \"" << std::get<0>(s) << '"' << std::endl;
+        std::cerr
+            << "(" << std::get<1>(s) << ") \""
+            << std::get<0>(s) << "\" cost = "
+            << std::get<0>(s).size() * std::get<1>(s) << std::endl;
     }
+    analyze_chars(text);
 
     generate_decoder(dns);
 }
