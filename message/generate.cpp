@@ -285,12 +285,10 @@ char global[2];
 int main() {
     for (unsigned char ch : R"()RAW" << replaced_result.compressed_string << R"RAW()") {
         auto ptr = &(*global = ch);
-        if (ch & 128) {
+        if (ch & 128)
             ptr = m[ch - 128];
-        }
-        for (int i = 0; i < strlen(ptr)*4; ++i) {
+        for (int i = 0; i < strlen(ptr)*4; ++i)
             putchar("ACTG"[ptr[i/4] >> i%4*2 & 3]);
-        }
     }
 }
 )RAW";
