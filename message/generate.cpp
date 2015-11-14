@@ -280,12 +280,12 @@ std::string generate_decoder(const std::string& dns, int replace_start = 128) {
         "#include<cstdio>\n"
         "#include<cstring>\n"
         << replaceMapToSourceArray(replaced_result) <<
-        "char global[2];"
+        "char g[2];"
         "int main() {"
-            "for (unsigned char ch : R\"(" << replaced_result.compressed_string << ")\") {"
-                "auto ptr = ch & 128 ? m[ch - 128] : &(*global = ch);"
-                "for (int i = 0; i < strlen(ptr)*4; ++i)"
-                    "putchar(\"ACTG\"[ptr[i/4] >> i%4*2 & 3]);"
+            "for (unsigned char c : R\"(" << replaced_result.compressed_string << ")\") {"
+                "auto p = c & 128 ? m[c - 128] : &(*g = c);"
+                "for (int i = 0; i < strlen(p)*4; ++i)"
+                    "putchar(\"ACTG\"[p[i/4] >> i%4*2 & 3]);"
             "}"
         "}";
 
