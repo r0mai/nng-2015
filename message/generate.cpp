@@ -264,7 +264,7 @@ std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
     return ss.str();
 }
 
-std::string generate_decoder(const std::string& dns, int replace_start = 130) {
+std::string generate_decoder(const std::string& dns, int replace_start = 128) {
     std::stringstream ss;
     auto text = dnsToText(dns);
 
@@ -274,11 +274,14 @@ std::string generate_decoder(const std::string& dns, int replace_start = 130) {
     StringReplaceResult replaced_result =
         repalce_strings_in_string(text, repeated_strings, replace_start);
 
+    assert(replace_start == 128);
+
     // no attempt was made to make it shorter, yet
     ss << R"RAW(
 #include <cstdio>
 #include <string>
 #include <sstream>
+#include <iostream>
 )RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
 void textToDns(std::string text) {
     for (int i = 0; i < text.size()*4; ++i) {
@@ -287,11 +290,11 @@ void textToDns(std::string text) {
 }
 std::string compressedToText(const std::string& compressed) {
     std::stringstream ss;
-    for (char ch : compressed) {
-        if ((unsigned char)ch > )RAW" << replace_start-1 << R"RAW() {
-            ss << m[(unsigned char)ch - )RAW" << replace_start << R"RAW(];
+    for (unsigned char ch : compressed) {
+        if (ch & 128) {
+            ss << m[ch - 128];
         } else {
-            ss << ch;
+            ss << char(ch);
         }
     }
     return ss.str();
