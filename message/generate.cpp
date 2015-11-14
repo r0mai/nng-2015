@@ -276,16 +276,14 @@ std::string generate_decoder(const std::string& dns, int replace_start = 130) {
 
     // no attempt was made to make it shorter, yet
     ss << R"RAW(
-#include <iostream>
+#include <cstdio>
 #include <string>
 #include <sstream>
 )RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
-std::string textToDns(const std::string& text) {
-    std::stringstream ss;
+void textToDns(std::string text) {
     for (int i = 0; i < text.size()*4; ++i) {
-        ss << "ACTG"[text[i/4] >> i%4*2 & 3];
+        putchar("ACTG"[text[i/4] >> i%4*2 & 3]);
     }
-    return ss.str();
 }
 std::string compressedToText(const std::string& compressed) {
     std::stringstream ss;
@@ -300,7 +298,7 @@ std::string compressedToText(const std::string& compressed) {
 }
 int main() {
     auto d=R"()RAW" << replaced_result.compressed_string << R"RAW()";
-    std::cout << textToDns(compressedToText(d));
+    textToDns(compressedToText(d));
 }
 )RAW";
 
