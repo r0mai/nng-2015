@@ -286,17 +286,13 @@ std::string generate_decoder(const std::string& dns, int replace_start = 128) {
 )RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
 char global[2];
 void compressedToText(const std::string& compressed) {
-    auto f = [](char *text) {
-        for (int i = 0; i < strlen(text)*4; ++i) {
-            putchar("ACTG"[text[i/4] >> i%4*2 & 3]);
-        }
-    };
     for (unsigned char ch : compressed) {
+        auto ptr = &(*global = ch);
         if (ch & 128) {
-            f(m[ch - 128]);
-        } else {
-            *global = ch;
-            f(global);
+            ptr = m[ch - 128];
+        }
+        for (int i = 0; i < strlen(ptr)*4; ++i) {
+            putchar("ACTG"[ptr[i/4] >> i%4*2 & 3]);
         }
     }
 }
