@@ -249,7 +249,7 @@ void analyze_chars(const std::string& text) {
 std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
     std::stringstream ss;
 
-    ss << "char*m[]={";
+    ss << "{";
     bool first = true;
     for (const auto& e : srr.decode_map) {
         // TODO don't use raw literals if not needed
@@ -260,7 +260,7 @@ std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
         }
         ss << toStringLiteral(e.second);
     }
-    ss << "};";
+    ss << "}";
     return ss.str();
 }
 
@@ -279,8 +279,8 @@ std::string generate_decoder(const std::string& dns, int replace_start = 128) {
     ss <<
         "#include<cstdio>\n"
         "#include<cstring>\n"
-        << replaceMapToSourceArray(replaced_result) <<
-        "char g[2];"
+        "char*m[]=" << replaceMapToSourceArray(replaced_result) <<
+        ",g[2];"
         "int main() {"
             "for (unsigned char c : R\"(" << replaced_result.compressed_string << ")\") {"
                 "auto p = c & 128 ? m[c - 128] : &(*g = c);"
