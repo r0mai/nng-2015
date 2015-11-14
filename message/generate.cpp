@@ -79,6 +79,25 @@ std::string lcp(const std::string& s, const std::string& t) {
     return s.substr(0, n);
 }
 
+bool isSpecialChar(char ch) {
+    switch (ch) {
+        default: return false;
+        case '\n': return true;
+        case '\r': return true;
+    }
+}
+
+std::string toStringLiteral(const std::string& str) {
+    std::stringstream ss;
+    if (std::any_of(str.begin(), str.end(), isSpecialChar)) {
+        ss << "R\"(" << str << ")\"";
+    } else {
+        ss << std::quoted(str);
+    }
+    return ss.str();
+}
+
+
 struct SubString {
     std::string str;
     int repeat_count;
@@ -87,8 +106,8 @@ struct SubString {
     int cost() const {
         return
             str.size() * repeat_count // reduction
-           -3 // two quotes and comma
-           -str.size() // the actual string in the map
+            -1 // comma
+            -toStringLiteral(str).size()
         ;
     }
 };
@@ -225,24 +244,6 @@ void analyze_chars(const std::string& text) {
         std::cerr << "Range [" << start << ", " << end << "] ("
             << end - start + 1 << ")" << std::endl;
     }
-}
-
-bool isSpecialChar(char ch) {
-    switch (ch) {
-        default: return false;
-        case '\n': return true;
-        case '\r': return true;
-    }
-}
-
-std::string toStringLiteral(const std::string& str) {
-    std::stringstream ss;
-    if (std::any_of(str.begin(), str.end(), isSpecialChar)) {
-        ss << "R\"(" << str << ")\"";
-    } else {
-        ss << std::quoted(str);
-    }
-    return ss.str();
 }
 
 std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
