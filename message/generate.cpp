@@ -106,9 +106,26 @@ std::vector<std::tuple<std::string, int>> lrs(const std::string& s) {
             return std::get<0>(lhs) < std::get<0>(rhs);
         }
     );
-    return decltype(repeated_strings)(
+    repeated_strings = decltype(repeated_strings)(
         repeated_strings.begin(),
         std::unique(repeated_strings.begin(), repeated_strings.end()));
+
+    std::vector<unsigned> marked_for_removal;
+    for (unsigned i = 0; i < repeated_strings.size(); ++i) {
+        const auto& istr = std::get<0>(repeated_strings[i]);
+        for (unsigned j = i+1; j < repeated_strings.size(); ++j) {
+            const auto& jstr = std::get<0>(repeated_strings[j]);
+            if (jstr.find(istr) != std::string::npos) {
+                marked_for_removal.push_back(i);
+                break;
+            }
+        }
+    }
+    for (int i = marked_for_removal.size() - 1; i >= 0; --i) {
+        repeated_strings.erase(repeated_strings.begin() + marked_for_removal[i]);
+    }
+
+    return repeated_strings;
 }
 
 void analyze_chars(const std::string& text) {
@@ -190,7 +207,7 @@ int main() {
             << std::get<0>(s) << "\" cost = "
             << std::get<0>(s).size() * std::get<1>(s) << std::endl;
     }
-    analyze_chars(text);
+    //analyze_chars(text);
 
     generate_decoder(dns);
 }
