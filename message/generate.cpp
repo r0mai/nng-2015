@@ -238,20 +238,12 @@ std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
     return ss.str();
 }
 
-std::string generate_decoder(const std::string& dns) {
+std::string generate_decoder(const std::string& dns, int replace_start = 152) {
     std::stringstream ss;
     auto text = dnsToText(dns);
 
     auto repeated_strings = lrs(text);
-    for (const auto& s : repeated_strings) {
-        std::cerr
-            << "(" << s.repeat_count << ") \""
-            << s.str << "\" cost = "
-            << s.cost() << std::endl;
-    }
     analyze_chars(text);
-
-    int replace_start = 189;
 
     StringReplaceResult replaced_result =
         repalce_strings_in_string(text, repeated_strings, replace_start);
