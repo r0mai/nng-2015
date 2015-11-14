@@ -256,14 +256,7 @@ std::string generate_decoder(const std::string& dns) {
 #include <sstream>
 #include <map>
 )RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
-char bitsToDnsChar(char ch) {
-    switch (ch) {
-        case 0: return 'A';
-        case 1: return 'C';
-        case 2: return 'T';
-        case 3: return 'G';
-    }
-}
+char bitsToDnsChar(char c){return "ACTG"[c];}
 std::string charToDnsSequence(char ch) {
     std::string s(4, '\0');
     for (unsigned j = 0; j < 4; ++j) {
