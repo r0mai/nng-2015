@@ -223,7 +223,7 @@ void analyze_chars(const std::string& text) {
 std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
     std::stringstream ss;
 
-    ss << "std::vector<const char*>m={";
+    ss << "char*m[]={";
     bool first = true;
     for (const auto& e : srr.decode_map) {
         // TODO don't use raw literals if not needed
@@ -253,7 +253,6 @@ std::string generate_decoder(const std::string& dns, int replace_start = 152) {
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <vector>
 )RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
 char bitsToDnsChar(char c){return "ACTG"[c];}
 std::string charToDnsSequence(char ch) {
