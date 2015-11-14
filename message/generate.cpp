@@ -1,4 +1,5 @@
 #include <set>
+#include <map>
 #include <array>
 #include <tuple>
 #include <string>
@@ -77,9 +78,22 @@ std::string lcp(const std::string& s, const std::string& t) {
     return s.substr(0, n);
 }
 
+struct SubString {
+    std::string str;
+    int repeat_count;
+
+    // higher means more compression
+    int cost() const { return str.size() * repeat_count; }
+};
+
+bool operator==(const SubString& lhs, const SubString& rhs) {
+    return
+        std::tie(lhs.str, lhs.repeat_count) ==
+        std::tie(rhs.str, rhs.repeat_count);
+}
 
 // longest repeated strings <lrs, count>
-std::vector<std::tuple<std::string, int>> lrs(const std::string& s) {
+std::vector<SubString> lrs(const std::string& s) {
 
     // form the N suffixes
     std::vector<std::string> suffixes(s.size());
@@ -90,7 +104,7 @@ std::vector<std::tuple<std::string, int>> lrs(const std::string& s) {
     // sort them
     std::sort(suffixes.begin(), suffixes.end());
 
-    std::vector<std::tuple<std::string, int>> repeated_strings;
+    std::vector<SubString> repeated_strings;
 
     for (int i = 0; i < s.size() - 1; i++) {
         auto sub = lcp(suffixes[i], suffixes[i+1]);
@@ -101,12 +115,10 @@ std::vector<std::tuple<std::string, int>> lrs(const std::string& s) {
     }
     std::sort(repeated_strings.begin(), repeated_strings.end(),
         [](const auto& lhs, const auto& rhs) {
-            auto lhs_cost = std::get<0>(lhs).size() * std::get<1>(lhs);
-            auto rhs_cost = std::get<0>(rhs).size() * std::get<1>(rhs);
-            if (lhs_cost != rhs_cost) {
-                return lhs_cost < rhs_cost;
+            if (lhs.cost() != rhs.cost()) {
+                return lhs.cost() < rhs.cost();
             }
-            return std::get<0>(lhs) < std::get<0>(rhs);
+            return lhs.str < rhs.str;
         }
     );
     repeated_strings = decltype(repeated_strings)(
@@ -118,9 +130,8 @@ std::vector<std::tuple<std::string, int>> lrs(const std::string& s) {
         if (marked_for_removal.count(i) > 0) {
             continue;
         }
-        std::string istr;
-        int icost;
-        std::tie(istr, icost) = repeated_strings[i];
+        const std::string& istr = repeated_strings[i].str;
+        int icost = repeated_strings[i].cost();
         for (unsigned j = 0; j < repeated_strings.size(); ++j) {
             if (marked_for_removal.count(j) > 0) {
                 continue;
@@ -128,13 +139,16 @@ std::vector<std::tuple<std::string, int>> lrs(const std::string& s) {
             if (i == j) {
                 continue;
             }
-            std::string jstr;
-            int jcost;
-            std::tie(jstr, jcost) = repeated_strings[j];
+            const std::string& jstr = repeated_strings[j].str;
+            int jcost = repeated_strings[j].cost();
             if (jstr.find(istr) != std::string::npos ||
                 istr.find(jstr) != std::string::npos)
             {
-                marked_for_removal.insert(i);
+                if (icost > jcost) {
+                    marked_for_removal.insert(j);
+                } else {
+                    marked_for_removal.insert(i);
+                }
                 break;
             }
         }
@@ -147,6 +161,16 @@ std::vector<std::tuple<std::string, int>> lrs(const std::string& s) {
 
     return repeated_strings;
 }
+
+struct StringReplaceResult {
+    std::string compressed_string;
+    std::map<char, std::string> decode_map;
+};
+
+StringReplaceResult repalce_strings_in_string(std::string text) {
+
+}
+
 
 void analyze_chars(const std::string& text) {
     std::array<int, 256> chars = {{ 0 }};
@@ -223,9 +247,9 @@ int main() {
     auto repeated_strings = lrs(text);
     for (const auto& s : repeated_strings) {
         std::cerr
-            << "(" << std::get<1>(s) << ") \""
-            << std::get<0>(s) << "\" cost = "
-            << std::get<0>(s).size() * std::get<1>(s) << std::endl;
+            << "(" << s.repeat_count << ") \""
+            << s.str << "\" cost = "
+            << s.cost() << std::endl;
     }
 
     generate_decoder(dns);
