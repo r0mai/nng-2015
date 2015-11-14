@@ -276,20 +276,18 @@ std::string generate_decoder(const std::string& dns, int replace_start = 128) {
 
     assert(replace_start == 128);
 
-    // no attempt was made to make it shorter, yet
-    ss << R"RAW(
-#include <cstdio>
-#include <cstring>
-)RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
-char global[2];
-int main() {
-    for (unsigned char ch : R"()RAW" << replaced_result.compressed_string << R"RAW()") {
-        auto ptr = ch & 128 ? m[ch - 128] : &(*global = ch);
-        for (int i = 0; i < strlen(ptr)*4; ++i)
-            putchar("ACTG"[ptr[i/4] >> i%4*2 & 3]);
-    }
-}
-)RAW";
+    ss <<
+        "#include<cstdio>\n"
+        "#include<cstring>\n"
+        << replaceMapToSourceArray(replaced_result) <<
+        "char global[2];"
+        "int main() {"
+            "for (unsigned char ch : R\"(" << replaced_result.compressed_string << ")\") {"
+                "auto ptr = ch & 128 ? m[ch - 128] : &(*global = ch);"
+                "for (int i = 0; i < strlen(ptr)*4; ++i)"
+                    "putchar(\"ACTG\"[ptr[i/4] >> i%4*2 & 3]);"
+            "}"
+        "}";
 
     return ss.str();
 }
