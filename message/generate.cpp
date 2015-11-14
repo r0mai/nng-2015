@@ -281,11 +281,11 @@ std::string generate_decoder(const std::string& dns, int replace_start = 128) {
         "#include<cstring>\n"
         "char*m[]=" << replaceMapToSourceArray(replaced_result) <<
         ",g[2];"
-        "int main() {"
-            "for (unsigned char c : R\"(" << replaced_result.compressed_string << ")\") {"
-                "auto p = c & 128 ? m[c - 128] : &(*g = c);"
-                "for (int i = 0; i < strlen(p)*4; ++i)"
-                    "putchar(\"ACTG\"[p[i/4] >> i%4*2 & 3]);"
+        "int main(){"
+            "for(unsigned char c:R\"(" << replaced_result.compressed_string << ")\"){"
+                "auto p=c&128?m[c-128]:&(*g=c);"
+                "for(int i=0;i<strlen(p)*4;++i)"
+                    "putchar(\"ACTG\"[p[i/4]>>i%4*2&3]);"
             "}"
         "}";
 
