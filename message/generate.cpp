@@ -84,7 +84,13 @@ struct SubString {
     int repeat_count;
 
     // higher means more compression
-    int cost() const { return str.size() * repeat_count; }
+    int cost() const {
+        return
+            str.size() * repeat_count // reduction
+           -3 // two quotes and comma
+           -str.size() // the actual string in the map
+        ;
+    }
 };
 
 bool operator==(const SubString& lhs, const SubString& rhs) {
