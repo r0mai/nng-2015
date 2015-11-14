@@ -251,7 +251,7 @@ std::string generate_decoder(const std::string& dns) {
     }
     analyze_chars(text);
 
-    int replace_start = 198;
+    int replace_start = 189;
 
     StringReplaceResult replaced_result =
         repalce_strings_in_string(text, repeated_strings, replace_start);
