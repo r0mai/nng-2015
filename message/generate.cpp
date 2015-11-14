@@ -169,20 +169,25 @@ struct StringReplaceResult {
 
 StringReplaceResult repalce_strings_in_string(
     const std::string& text,
-    const std::vector<SubString>& substrings)
+    const std::vector<SubString>& substrings,
+    int start)
 {
     StringReplaceResult result = {text, {}};
 
-    int start = 198;
     int end = 255;
     int char_index = start;
     for (int i = substrings.size() - 1; i >= 0 && char_index <= end; --i, ++char_index) {
-        boost::replace_all(
-            result.compressed_string,
-            substrings[i].str,
-            std::string(1, char(char_index)));
+        if (result.compressed_string.find(char_index) != std::string::npos) {
+            ++i;
+            result.decode_map[char(char_index)] = std::string(1, char(char_index));
+        } else {
+            boost::replace_all(
+                result.compressed_string,
+                substrings[i].str,
+                std::string(1, char(char_index)));
 
-        result.decode_map[char(char_index)] = substrings[i].str;
+            result.decode_map[char(char_index)] = substrings[i].str;
+        }
     }
 
     return result;
@@ -218,7 +223,7 @@ void analyze_chars(const std::string& text) {
 std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
     std::stringstream ss;
 
-    ss << "std::map<char, const char*>m={";
+    ss << "std::vector<const char*>m={";
     bool first = true;
     for (const auto& e : srr.decode_map) {
         // TODO don't use raw literals if not needed
@@ -227,7 +232,7 @@ std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
         } else {
             ss << ",";
         }
-        ss << "{*R\"(" << e.first << ")\",R\"(" << e.second << ")\"}";
+        ss << "R\"(" << e.second << ")\"";
     }
     ss << "};";
     return ss.str();
@@ -246,15 +251,17 @@ std::string generate_decoder(const std::string& dns) {
     }
     analyze_chars(text);
 
+    int replace_start = 198;
+
     StringReplaceResult replaced_result =
-        repalce_strings_in_string(text, repeated_strings);
+        repalce_strings_in_string(text, repeated_strings, replace_start);
 
     // no attempt was made to make it shorter, yet
     ss << R"RAW(
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <map>
+#include <vector>
 )RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
 char bitsToDnsChar(char c){return "ACTG"[c];}
 std::string charToDnsSequence(char ch) {
@@ -274,8 +281,8 @@ std::string textToDns(const std::string& text) {
 std::string compressedToText(const std::string& compressed) {
     std::stringstream ss;
     for (char ch : compressed) {
-        if (m.count(ch)) {
-            ss << m[ch];
+        if ((unsigned char)ch > )RAW" << replace_start-1 << R"RAW() {
+            ss << m[(unsigned char)ch - )RAW" << replace_start << R"RAW(];
         } else {
             ss << ch;
         }
