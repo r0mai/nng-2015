@@ -227,7 +227,7 @@ std::string replaceMapToSourceArray(const StringReplaceResult& srr) {
         } else {
             ss << ",";
         }
-        ss << "{R\"(" << e.first << ")\"[0],R\"(" << e.second << ")\"}";
+        ss << "{*R\"(" << e.first << ")\",R\"(" << e.second << ")\"}";
     }
     ss << "};";
     return ss.str();
