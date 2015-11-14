@@ -279,10 +279,7 @@ std::string generate_decoder(const std::string& dns, int replace_start = 128) {
     // no attempt was made to make it shorter, yet
     ss << R"RAW(
 #include <cstdio>
-#include <string>
 #include <cstring>
-#include <sstream>
-#include <iostream>
 )RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
 char global[2];
 int main() {
