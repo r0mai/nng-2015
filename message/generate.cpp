@@ -280,11 +280,10 @@ std::string generate_decoder(const std::string& dns, int replace_start = 130) {
 #include <string>
 #include <sstream>
 )RAW" << replaceMapToSourceArray(replaced_result) << R"RAW(
-char bitsToDnsChar(char c){return "ACTG"[c];}
 std::string charToDnsSequence(char ch) {
     std::string s(4, '\0');
     for (unsigned j = 0; j < 4; ++j) {
-        s[j] = bitsToDnsChar((ch >> 2*j) & 0x03);
+        s[j] = "ACTG"[(ch >> 2*j) & 0x03];
     }
     return s;
 }
