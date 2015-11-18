@@ -1,0 +1,62 @@
+Kedves Guru!
+
+Csatoltam a fájlokat, amiket kértél. Kérlek törekedj arra, hogy a lehető legkevesebb fordítást kelljen végrehajtani. A forgatások hossza nem számít, a daru igen különleges darab, akár az egész szerelvény összes konténerét is elbírja egyben.
+
+Még egyszer köszönöm!
+
+Gustav von Depot
+
+containers1.txt containers2.txt containers3.txt
+Kedves Gustav!
+
+Ahhoz, hogy segíteni tudjak neked, küld el nekem a három szerelvény eredeti és kívánt árusorrendjét egy-egy ilyen fájlban:
+
+<eredeti konténer sorrend>
+<kívánt konténer sorrend>
+
+Ahol
+
+<eredeti konténer sorrend> := Egy [a-z] karakterekből álló string, amiben nincs szóköz. 
+A sor végén egyetlen '\n' karakterrel.
+
+<kívánt konténer sorrend> := Egy [a-z] karakterekből álló string, amiben nincs szóköz. 
+A sor végén egyetlen '\n' karakterrel.
+Én pedig egy ilyen fájlban fogom küldeni a megoldást:
+
+<fordítások száma>
+<1. fordítás>
+<2. fordítás>
+...
+<n. fordítás>
+
+Ahol
+
+<fordítások száma> := Egy egész szám, ami megmutatja, hogy hány csere következik.
+<x. fordítás> := Két darab szóközzel elválasztott egész szám (zárójel nélkül), ami megadja, hogy melyik szakaszt kell megfordítani. Ez egy zárt intervallum, mint az első, mind az utolsó elem része a cserének. A számozás 0-tól kezdődik. 
+
+Várom a fájlokat, de addig is:
+
+Béke veled,
+Guru
+Herr Guru! 
+
+A nevem Gustav von Depot, és egy híres logisztikus családból származom. 
+Az egész mesterség a véremben van. Az apám szerint egy szállítólevéllel a kezemben születtem, és addig nem engedtem elvágni a köldökzsinórt, amíg alá nem írták. 
+
+Most egy kisebb rendező pályaudvaron dolgozom, ahol hosszú, konténerekkel megrakott vonatok haladnak át naponta. A feladatom az, hogy a beérkező szerelvényeken a megfelelő sorrendbe rendezzem a konténereket, hogy továbbhaladva, az azt következő állomásokon, könnyen le lehessen pakolni az oda szánt árut. Ehhez egy speciális fogókarral felszelelt daru áll rendelkezésemre, ami egyszerre több egymás mellett lévő konténert is fel tud emelni. Mivel ez egy kis állomás, így nincs helyünk lepakolni a konténereket. Mindössze annyit tudok tenni a daruval, hogy a felemelt konténereket megfordítom, és fordított sorrendben visszahelyezem oda, ahonnan elvettem. 
+
+A legtöbb esetben egy vagy két fordítás elég szokott lenni, hogy a kívánt sorrendbe kerüljenek a konténerek. Van viszont három rendszeres szállítmány, aminek az átforgatása igen sok időt szokott igénybe venni. Abban szeretném a segítségedet kérni, hogy dolgozd ki a forgatások olyan sorrendjét, amivel a lehető legkevesebb lépésben elő tudom állítani a kívánt sorrendet a szerelvényeken. A dolgot könnyíti az, hogy azok a konténerek, amikben ugyan olyan áru van, felcserélhetőek. Tehát ha valahova egy konténer kínai szöszmösz pulcsit kell szállítani, akkor mindegy, hogy melyik konténer szöszmösz pulcsi kerül oda. Az egyszerűség kedvéért minden árunak van egy betűkódja (1 db ékezet nélküli kisbetű), így egy szerelvény könnyen leírható egy hosszú karakterlánccal így: 
+
+aabbcc 
+
+Ha ebből szeretném mondjuk ezt a sorrendet előállítani: 
+
+acbabc 
+
+Akkor azt jelenleg két lépésben meg tudom tenni. A darukezelőnek két számmal szoktuk jelezni, hogy melyik szakaszt kell megfordítani úgy, hogy megadjuk a két konténer sorszámát, ami elé és ami után kell a fogókarokat beilleszteni (0-tól kezdjük a számozást). Például a fenti esetben két fordítás után megkaphatjuk a kívánt sorrendet: 
+
+aabbcc -> (1 4) -> acbbac -> (3 4) -> acbabc 
+
+Előre is köszönöm a segítséged, 
+
+Gustav von Depot

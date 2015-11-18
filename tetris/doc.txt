@@ -1,0 +1,45 @@
+Nagy vagy Guru! 
+
+Megcsinálom a fájlt, amit kértél, addig is küldök belőle egy mintát egy dobozról, amit a múltkor borítottam ki, hogy ki tudd próbálni programod. Most nem ezek a kártyák vannak kiszórva, de kipróbálni ez is jó lesz, a szekrényben kb tízszer ennyi kártya volt. Kérlek a legfontosabb, hogy gyors legyen. Minden más mellékes. Az a legfontosabb, hogy a program a lehető leggyorsabban lefusson az adatok betöltésével és az eredmény kiírásával együtt.
+
+Még egyszer köszi, 
+Anti Kolléga
+sample.txt
+Kedves Anti! 
+
+Kérlek, csinálj egy fájlt, amiben a következő formátumban felsorolod a rendezendő stringeket.
+
+<sorok száma>
+<string 1>
+<string 2>
+<string 3>
+....
+<string n>
+
+Ahol minden sor végén '\n' van és
+
+<sorok száma> := egy egész szám és megadja, hogy hány db string következik a fájlban. 
+<string n> := Egy csupa kisbetűből álló string, ami minimum 4 maximum 64 karakter hosszú. 
+
+A program a standard bemenetről fogja beolvasni a fájlodat és a standard kimenetre írja ki a stringeket rendezve így: 
+
+<string R1>
+<string R2>
+<string R3>
+...
+<string Rn>
+
+Itt is minden sor végén '\n' lesz.
+
+Béke veled,
+Guru
+Kedves Guru! 
+
+Biztos dolgoztál már olyan cégnél, ahol az volt az elv, hogy ami működik, azt ne javítsuk meg, és ezért évekig őrizgették a "jól működő" régi rendszereket. Nos, én is egy ilyen helyen dolgozom. Most biztos azt gondolod, hogy nem is olyan vészes dolog COBOL-ban dolgozni valamelyik bank vagy biztosító ősi rendszerén. De tévedsz! Egy lyukkártyával működő gép működését kell felügyelnem. Agyrém. Már az is előléptetés lenne, ha COBOL-ban programozhatnék. Az úgynevezett központi szervernél még a nyolczenés kvarcórámban is komolyabb hardware van. Viszont legalább télen nem kell aggódni a fűtésért, a sok elektroncső melegen tart. És vész esetén kiváló erősítőt lehet építeni belőle. 
+
+Elnézést, kicsit eltértem a tárgytól. Szóval a kérdésem a következő lenne: Borítottál már ki sorba rendezett lyukkártyákkal teli szekrényt? Mert én igen. Most eléggé kétségbe vagyok esve, mert nemsokára jön a főnök és addig vissza kellene pakolnom az egészet. Szerencsére minden kártyán van egy rövid karakteres azonosító, ami legalább 4, de maximum 64 hosszú és csak kisbetűkből áll. Ez alapján újra sorba lehet rendezni őket. De rengeteg van, és fogalmam sincs, hogyan tudnám sorba rendezni őket. Sajnos annyit dolgoztam ezzel a rendszerrel, hogy a rendezőalgoritmusokról is egy BKK jegylyukasztó jut először eszembe. 
+
+Kérlek segíts nekem! Sikerült becsempésznem a laptopom, amiben egy Intel(R) Core(™) i5-4200 1.6GHz (2.3GHz max) CPU van és 10 Gb memória. Van rajta egy Windows 8.1 64 bit és egy Visual Studio C++ 2015 is. Kérlek, küldj egy forráskódot, amit le tudok fordítani 64 bites architektúrára rajta, és sorba rendezi nekem a kártyákat.
+
+Üdvözlettel, 
+Anti Kolléga

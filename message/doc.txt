@@ -1,0 +1,17 @@
+Kedves Oszkár! 
+
+Ne aggódj testvérem! Átérzem a küldetés fontosságát. Megteszek mindent, és küldöm a programot. 
+
+Béke Veled, 
+Guru
+Kedves Guru! 
+
+A NASA egyik tervezőmérnöke vagyok, és egy érdekes feladatom lenne a számodra. Mint a hírekből már hallhattad, a New Horizon nevű űrszondánk most hagyta el a Plútót, és kifelé tart a Naprendszerből. Sajnos az induláskor a sok vita miatt egy fontos dolgot kifelejtettünk belőle, szerencsére még nem késő pótolni. Ugyanis minden ember alkotta űrjárműnek, ami elhagyja a naprendszert tartalmaznia kell az emberiség üzenetét arra az esetre, ha a földönkívüliek megtalálnák. 
+
+Mivel teljesen szabad kezet kaptam az üzenet meghatározásában ezért a fiúkkal egy intenzív sörözés után arra jutottunk, hogy női mell méretéért és alakjáért felelős DNS sorozatot fogjuk kiküldeni, mint üzenetet. Mivel a sávszélességünk nagyon szűk, ezért tömöríteni kellene az üzenetet. Ez viszont azt jelenti, hogy a kitömörítő programot is át kellene küldeni a szondának, és mivel a szondán elég speciális oprendeszer fut ezért az a legjobb, ha forráskódként küldjük át az egészet. Szóval a fiúkkal azt találtuk ki, hogy egy olyan forráskódot küldünk át, amit a szondán lefordítva és lefuttatva a standard kimenetre kiírja a megadott szöveget. 
+
+Mint mondtam a sávszélesség nagyon fontos, ezért kérlek írd meg nekünk a lehető legrövidebb olyan programot, ami fordítás és futtatás után pontosan kiírja a fájlt, amit csatoltam. Már előkészítettem a scriptet, ami a túloldalon fogadja az adatokat és main.cpp néven lementi, majd fordítja, futtatja és a kimenetet beirányítja a megfelelő fájlba. Kérlek csak olyan forrást küldj, amit Visual Studio 2015-tel tudok fordítani.
+
+Kérlek segíts, az emberiség jövője múlik rajta! 
+
+Magyar Oszkár
